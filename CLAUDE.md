@@ -25,7 +25,7 @@ uv run quarto render blog/first-post.qmd
 ## Architecture
 
 - **Quarto website project** configured in `_quarto.yml`
-- **Deployed via GitHub Actions** — `docs/` is not committed; the action renders and deploys directly
+- **Deployed via GitHub Actions** — on push to `main`, the Quarto Publish workflow renders and pushes to `gh-pages` branch. GitHub Pages serves from `gh-pages`
 - **`freeze: auto`** — Python execution output is saved to `_freeze/` and committed to git. The GitHub Actions runner uses frozen output and does not execute Python code. Posts that query local databases must be rendered locally before pushing.
 - Content is `.qmd` files (Markdown + executable Python code blocks)
 - `blog/` — blog posts with date/categories frontmatter, auto-listed via `blog/index.qmd`
