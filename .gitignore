@@ -16,5 +16,5 @@ __pycache__/
 # Jupyter intermediates
 *.ipynb
 
-# Example posts
-example_posts/
+# Research
+research/

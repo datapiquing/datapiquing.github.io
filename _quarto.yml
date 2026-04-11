@@ -4,6 +4,8 @@ project:
     - "*.qmd"
     - "blog/*.qmd"
     - "reports/*.qmd"
+  resources:
+    - robots.txt
 
 lang: en
 
@@ -13,6 +15,7 @@ execute:
 website:
   title: "datapiquing"
   description: "Garry Sykes - data science blog and reports"
+  site-url: https://datapiquing.com
   navbar:
     left:
       - text: Home
@@ -28,6 +31,8 @@ website:
     right:
       - icon: github
         href: https://github.com/datapiquing
+  open-graph: true
+  twitter-card: true
 
 format:
   html:
