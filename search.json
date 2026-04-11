@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "blog/second-post.html",
+    "href": "blog/second-post.html",
+    "title": "Second Post",
+    "section": "",
+    "text": "Quarto: Creating a Website"
+  },
+  {
+    "objectID": "blog/second-post.html#documentation",
+    "href": "blog/second-post.html#documentation",
+    "title": "Second Post",
+    "section": "",
+    "text": "Quarto: Creating a Website"
+  },
+  {
+    "objectID": "blog/second-post.html#alerts",
+    "href": "blog/second-post.html#alerts",
+    "title": "Second Post",
+    "section": "Alerts",
+    "text": "Alerts\n\n\n\n\n\n\nNote\n\n\n\nThis is a note (works natively in Quarto)"
+  },
+  {
+    "objectID": "blog/second-post.html#collapsible-section",
+    "href": "blog/second-post.html#collapsible-section",
+    "title": "Second Post",
+    "section": "Collapsible section",
+    "text": "Collapsible section\n\n\n\n\n\n\nTip\n\n\n\n\n\nHidden content inside a collapsible block"
+  },
+  {
+    "objectID": "blog/second-post.html#mermaid",
+    "href": "blog/second-post.html#mermaid",
+    "title": "Second Post",
+    "section": "Mermaid",
+    "text": "Mermaid\n\n\n\n\n\ngraph TD\nA --&gt; B"
+  },
+  {
+    "objectID": "blog/second-post.html#latex",
+    "href": "blog/second-post.html#latex",
+    "title": "Second Post",
+    "section": "LaTeX",
+    "text": "LaTeX\nInline: \\(E = mc^2\\)\nDisplay block:\n\\[\n\\int_0^\\infty e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}\n\\]\n\n\nimport pandas as pd\n\ndf = pd.DataFrame({\"A\": [1, 2], \"B\": [3, 4]})\ndf\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n0\n1\n3\n\n\n1\n2\n4"
+  },
+  {
+    "objectID": "reports/index.html",
+    "href": "reports/index.html",
+    "title": "Reports",
+    "section": "",
+    "text": "Example Report 2\n\n\n\n\n\n\nanalysis\n\n\ntest\n\n\n\n\n\n\n\n\n\nJul 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nExample Report\n\n\n\n\n\n\nanalysis\n\n\ntest\n\n\n\n\n\n\n\n\n\nJun 15, 2024\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Second Post\n\n\n\n\n\n\ntest\n\n\ntrees\n\n\n\nA follow-up test post exploring additional Quarto formatting options\n\n\n\n\n\nAug 6, 2024\n\n\nGarry Sykes\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Post\n\n\n\n\n\n\ntest\n\n\nwelcome\n\n\n\nTesting Quarto features: callouts, mermaid diagrams, collapsible sections, and LaTeX\n\n\n\n\n\nMay 23, 2024\n\n\nGarry Sykes\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Garry Sykes",
+    "section": "",
+    "text": "Garry Sykes is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Garry enjoys spending time unicycling and playing with her pet iguana."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Garry Sykes",
+    "section": "Education",
+    "text": "Education\nUniversity of California, San Diego | San Diego, CA PhD in Mathematics | Sept 2011 - June 2015\nMacalester College | St. Paul, MN B.A in Economics | Sept 2007 - June 2011"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Garry Sykes",
+    "section": "Experience",
+    "text": "Experience\nWengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Sept 2012 - April 2018"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Welcome to my site.\n\nBlog posts\nData reports\nExperiments\nabout"
+  },
+  {
+    "objectID": "blog/first-post.html",
+    "href": "blog/first-post.html",
+    "title": "First Post",
+    "section": "",
+    "text": "Quarto: Creating a Website"
+  },
+  {
+    "objectID": "blog/first-post.html#documentation",
+    "href": "blog/first-post.html#documentation",
+    "title": "First Post",
+    "section": "",
+    "text": "Quarto: Creating a Website"
+  },
+  {
+    "objectID": "blog/first-post.html#alerts",
+    "href": "blog/first-post.html#alerts",
+    "title": "First Post",
+    "section": "Alerts",
+    "text": "Alerts\n\n\n\n\n\n\nNote\n\n\n\nThis is a note (works natively in Quarto)"
+  },
+  {
+    "objectID": "blog/first-post.html#collapsible-section",
+    "href": "blog/first-post.html#collapsible-section",
+    "title": "First Post",
+    "section": "Collapsible section",
+    "text": "Collapsible section\n\n\n\n\n\n\nTip\n\n\n\n\n\nHidden content inside a collapsible block"
+  },
+  {
+    "objectID": "blog/first-post.html#mermaid",
+    "href": "blog/first-post.html#mermaid",
+    "title": "First Post",
+    "section": "Mermaid",
+    "text": "Mermaid\n\n\n\n\n\ngraph TD\nA --&gt; B"
+  },
+  {
+    "objectID": "blog/first-post.html#latex",
+    "href": "blog/first-post.html#latex",
+    "title": "First Post",
+    "section": "LaTeX",
+    "text": "LaTeX\nInline: \\(E = mc^2\\)\nDisplay block:\n\\[\n\\int_0^\\infty e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}\n\\]\n\n\nimport pandas as pd\n\ndf = pd.DataFrame({\"A\": [1, 2], \"B\": [3, 4]})\ndf\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n0\n1\n3\n\n\n1\n2\n4"
+  }
+]
