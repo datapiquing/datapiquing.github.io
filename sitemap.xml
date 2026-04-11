@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://datapiquing.com/reports/index.html</loc>
-    <lastmod>2026-04-11T10:21:07.881Z</lastmod>
-  </url>
-  <url>
-    <loc>https://datapiquing.com/reports/example-report.html</loc>
-    <lastmod>2026-04-11T10:21:07.881Z</lastmod>
-  </url>
-  <url>
     <loc>https://datapiquing.com/blog/second-post.html</loc>
-    <lastmod>2026-04-11T10:21:07.881Z</lastmod>
-  </url>
-  <url>
-    <loc>https://datapiquing.com/blog/first-post.html</loc>
-    <lastmod>2026-04-11T10:21:07.880Z</lastmod>
-  </url>
-  <url>
-    <loc>https://datapiquing.com/about.html</loc>
-    <lastmod>2026-04-11T10:21:07.880Z</lastmod>
-  </url>
-  <url>
-    <loc>https://datapiquing.com/blog/index.html</loc>
-    <lastmod>2026-04-11T10:21:07.881Z</lastmod>
-  </url>
-  <url>
-    <loc>https://datapiquing.com/index.html</loc>
-    <lastmod>2026-04-11T10:21:07.881Z</lastmod>
+    <lastmod>2026-04-11T10:39:20.222Z</lastmod>
   </url>
   <url>
     <loc>https://datapiquing.com/reports/example-report2.html</loc>
-    <lastmod>2026-04-11T10:21:07.881Z</lastmod>
+    <lastmod>2026-04-11T10:39:20.222Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/reports/index.html</loc>
+    <lastmod>2026-04-11T10:39:20.222Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/blog/index.html</loc>
+    <lastmod>2026-04-11T10:39:20.222Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/about.html</loc>
+    <lastmod>2026-04-11T10:39:20.221Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/index.html</loc>
+    <lastmod>2026-04-11T10:39:20.222Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/reports/example-report.html</loc>
+    <lastmod>2026-04-11T10:39:20.222Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/blog/first-post.html</loc>
+    <lastmod>2026-04-11T10:39:20.221Z</lastmod>
   </url>
 </urlset>

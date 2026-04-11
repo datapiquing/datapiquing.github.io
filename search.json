@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "reports/index.html",
-    "href": "reports/index.html",
-    "title": "Reports",
-    "section": "",
-    "text": "Example Report 2\n\n\n\nanalysis\n\ntest\n\n\n\n\n\n\n\n\n\nJul 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nExample Report\n\n\n\nanalysis\n\ntest\n\n\n\n\n\n\n\n\n\nJun 15, 2024\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "blog/second-post.html",
     "href": "blog/second-post.html",
     "title": "Second Post",
@@ -49,6 +42,48 @@
     "text": "LaTeX\nInline: \\(E = mc^2\\)\nDisplay block:\n\\[\n\\int_0^\\infty e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}\n\\]\n\n\nimport pandas as pd\n\ndf = pd.DataFrame({\"A\": [1, 2], \"B\": [3, 4]})\ndf\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n0\n1\n3\n\n\n1\n2\n4"
   },
   {
+    "objectID": "reports/index.html",
+    "href": "reports/index.html",
+    "title": "Reports",
+    "section": "",
+    "text": "Example Report 2\n\n\n\n\n\n\nanalysis\n\n\ntest\n\n\n\n\n\n\n\n\n\nJul 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nExample Report\n\n\n\n\n\n\nanalysis\n\n\ntest\n\n\n\n\n\n\n\n\n\nJun 15, 2024\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Second Post\n\n\n\n\n\n\ntest\n\n\ntrees\n\n\n\nA follow-up test post exploring additional Quarto formatting options\n\n\n\n\n\nAug 6, 2024\n\n\nGarry Sykes\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Post\n\n\n\n\n\n\ntest\n\n\nwelcome\n\n\n\nTesting Quarto features: callouts, mermaid diagrams, collapsible sections, and LaTeX\n\n\n\n\n\nMay 23, 2024\n\n\nGarry Sykes\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Garry Sykes",
+    "section": "",
+    "text": "Garry Sykes is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Garry enjoys spending time unicycling and playing with her pet iguana."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Garry Sykes",
+    "section": "Education",
+    "text": "Education\nUniversity of California, San Diego | San Diego, CA PhD in Mathematics | Sept 2011 - June 2015\nMacalester College | St. Paul, MN B.A in Economics | Sept 2007 - June 2011"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Garry Sykes",
+    "section": "Experience",
+    "text": "Experience\nWengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Sept 2012 - April 2018"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Welcome to my site.\n\nBlog posts\nData reports\nExperiments\nabout"
+  },
+  {
     "objectID": "blog/first-post.html",
     "href": "blog/first-post.html",
     "title": "First Post",
@@ -89,40 +124,5 @@
     "title": "First Post",
     "section": "LaTeX",
     "text": "LaTeX\nInline: \\(E = mc^2\\)\nDisplay block:\n\\[\n\\int_0^\\infty e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}\n\\]\n\n\nimport pandas as pd\n\ndf = pd.DataFrame({\"A\": [1, 2], \"B\": [3, 4]})\ndf\n\n\n\n\n\n\n\n\nA\nB\n\n\n\n\n0\n1\n3\n\n\n1\n2\n4"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Garry Sykes",
-    "section": "",
-    "text": "Garry Sykes is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Garry enjoys spending time unicycling and playing with her pet iguana."
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "Garry Sykes",
-    "section": "Education",
-    "text": "Education\nUniversity of California, San Diego | San Diego, CA PhD in Mathematics | Sept 2011 - June 2015\nMacalester College | St. Paul, MN B.A in Economics | Sept 2007 - June 2011"
-  },
-  {
-    "objectID": "about.html#experience",
-    "href": "about.html#experience",
-    "title": "Garry Sykes",
-    "section": "Experience",
-    "text": "Experience\nWengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Sept 2012 - April 2018"
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Second Post\n\n\n\ntest\n\ntrees\n\n\n\nA follow-up test post exploring additional Quarto formatting options\n\n\n\n\n\nAug 6, 2024\n\n\nGarry Sykes\n\n\n\n\n\n\n\n\n\n\n\n\nFirst Post\n\n\n\ntest\n\nwelcome\n\n\n\nTesting Quarto features: callouts, mermaid diagrams, collapsible sections, and LaTeX\n\n\n\n\n\nMay 23, 2024\n\n\nGarry Sykes\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "Welcome to my site.\n\nBlog posts\nData reports\nExperiments\nabout"
   }
 ]
