@@ -1,16 +1,10 @@
 [
   {
     "listing": "/reports/index.html",
-    "items": [
-      "/reports/example-report2.html",
-      "/reports/example-report.html"
-    ]
+    "items": []
   },
   {
     "listing": "/blog/index.html",
-    "items": [
-      "/blog/second-post.html",
-      "/blog/first-post.html"
-    ]
+    "items": []
   }
 ]
