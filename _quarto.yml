@@ -1,0 +1,38 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "blog/*.qmd"
+    - "reports/*.qmd"
+
+lang: en
+
+execute:
+  freeze: auto
+
+website:
+  title: "datapiquing"
+  description: "Garry Sykes - data science blog and reports"
+  navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Blog
+        href: blog/index.qmd
+      - text: Reports
+        href: reports/index.qmd
+      - text: About
+        href: about.qmd
+  page-footer:
+    center: "Copyright 2026, Garry Sykes"
+    right:
+      - icon: github
+        href: https://github.com/datapiquing
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    code-copy: true

@@ -1,0 +1,17 @@
+# Build output
+docs/
+_site/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Quarto
+/.quarto/
+
+# OS
+.DS_Store
+
+# Jupyter intermediates
+*.ipynb

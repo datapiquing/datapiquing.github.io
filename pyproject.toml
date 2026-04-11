@@ -1,0 +1,10 @@
+[project]
+name = "datapiquing"
+version = "0.1.0"
+description = "Quarto-based personal website - datapiquing.com"
+requires-python = ">=3.13.1"
+dependencies = [
+    "pandas",
+    "matplotlib",
+    "jupyter",
+]

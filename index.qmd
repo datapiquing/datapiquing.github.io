@@ -1,0 +1,10 @@
+---
+title: "Home"
+---
+
+Welcome to my site.
+
+- Blog posts
+- Data reports
+- Experiments
+- [about](about.qmd)
