@@ -14,10 +14,31 @@
     "text": "No matching items"
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Garry Sykes",
+    "section": "",
+    "text": "Garry Sykes is …."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Garry Sykes",
+    "section": "Education",
+    "text": "Education"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Garry Sykes",
+    "section": "Experience",
+    "text": "Experience"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Welcome to my site.\n\nBlog posts\nData reports\nExperiments\nabout"
+    "text": "Welcome to my site.\n\nBlog posts\nReports\nExperiments\nAbout"
   }
 ]
