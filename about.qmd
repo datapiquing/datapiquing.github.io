@@ -1,0 +1,22 @@
+---
+title: "Garry Sykes"
+about:
+  template: jolla
+  image: images/profile.jpg
+  links:
+    - icon: bluesky
+      text: Bluesky
+      href: https://bsky.app
+    - icon: github
+      text: Github
+      href: https://github.com
+---
+
+Garry Sykes is ....
+
+## Education
+
+
+
+## Experience
+

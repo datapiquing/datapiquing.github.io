@@ -5,6 +5,6 @@ title: "Home"
 Welcome to my site.
 
 - Blog posts
-- Data reports
+- Reports
 - Experiments
-- [about](about.qmd)
+- [About](about.qmd)
