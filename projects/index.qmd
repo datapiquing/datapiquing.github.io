@@ -1,0 +1,14 @@
+---
+title: "Projects"
+listing:
+  contents:
+    - "../hobbies/**/projects/*.qmd"
+  sort: "date desc"
+  fields: [title, date, categories]
+  type: table
+  categories: true
+---
+
+Every project I've built, aggregated automatically from each hobby. There's a single
+source of truth for each one — the project lives under its hobby, and this page just
+gathers them together.

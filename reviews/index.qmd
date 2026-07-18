@@ -1,0 +1,12 @@
+---
+title: "Reviews"
+listing:
+  id: reviews
+  contents: "*.qmd"
+  sort: "date desc"
+  type: default
+  fields: [title, description, categories]
+  categories: true
+---
+
+Periodic reviews — looking back at what I got done, what I learnt, and what's next.

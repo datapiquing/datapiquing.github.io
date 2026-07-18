@@ -17,3 +17,56 @@ h1, h2, h3 {
 .callout-tip {
   border-left: 4px solid #00a86b;
 }
+
+figure figcaption {
+  text-align: center;
+}
+
+// Journey & Reviews listings: left-justify the title with a small indent
+// (the default listing layout otherwise offsets/centres the title).
+#listing-years .quarto-post,
+#listing-reviews .quarto-post {
+  display: block;
+  padding-left: 0.5rem;
+}
+
+#listing-years .listing-title,
+#listing-reviews .listing-title {
+  margin: 0;
+}
+
+// Title-block dates (Published / Modified): subtle, single line, light grey.
+// Each item is a heading (label) + contents (date); render them inline.
+.quarto-title-meta-heading,
+.quarto-title-meta-contents,
+.quarto-title-meta-contents p {
+  display: inline;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #999;
+  margin: 0;
+}
+
+.quarto-title-meta-heading::after {
+  content: ":\00a0";
+}
+
+// About page (trestles): centre the Modified date under the name.
+// Selector deliberately mirrors (and outweighs) the theme's high-specificity
+// `#title-block-header.quarto-title-block.default .quarto-title-meta` grid rule.
+.quarto-about-trestles #title-block-header.quarto-title-block.default .quarto-title-meta {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+// Listing titles are links — give them a clear affordance.
+// (In default-type listings the title is an <h3>, so it inherits
+// heading colour rather than link colour without this.)
+.quarto-listing .listing-title a {
+  color: $primary;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

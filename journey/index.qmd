@@ -1,0 +1,12 @@
+---
+title: "Journey"
+listing:
+  id: years
+  contents: "*.qmd"
+  sort: "title desc"
+  type: default
+  fields: [title]
+---
+
+Unlike journals and projects — which are captured as they happen — the journey is
+*curated*. Each year gets a single hand-written page of the milestones worth remembering.

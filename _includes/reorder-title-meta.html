@@ -1,0 +1,15 @@
+<script>
+  // On pages with category tags (projects, journal entries, reviews), Quarto
+  // renders the Published/Modified dates *below* the tags and description.
+  // Move them to sit immediately beneath the title, matching every other page.
+  window.addEventListener("DOMContentLoaded", function () {
+    var header = document.getElementById("title-block-header");
+    if (!header) return;
+    var meta = header.querySelector(".quarto-title-meta");
+    var title = header.querySelector("h1.title");
+    var categories = header.querySelector(".quarto-categories");
+    if (meta && title && categories) {
+      title.insertAdjacentElement("afterend", meta);
+    }
+  });
+</script>

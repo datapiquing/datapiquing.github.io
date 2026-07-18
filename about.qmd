@@ -1,22 +1,24 @@
 ---
 title: "Garry Sykes"
 about:
-  template: jolla
+  template: trestles
   image: images/profile.jpg
+  image-width: 20em
+  image-shape: rectangle
   links:
-    - icon: bluesky
-      text: Bluesky
-      href: https://bsky.app
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/datapiquing
+    - icon: strava
+      text: Strava
+      href: https://www.strava.com/athletes/3361910
+    - icon: trigpointinguk
+      text: TrigpointingUK
+      href: https://trigpointing.uk/profile/4272
 ---
 
-Garry Sykes is ....
 
-## Education
+When I'm not hiking or cycling, you'll usually find me exploring the personal data I've accumulated over the years, building apps and reports, tinkering with LEGO robotics, or trying to improve my photography.
 
-
-
-## Experience
+This blog is a collection of those interests .. the projects I'm working on, the things I'm learning, and whatever happens to have captured my curiosity at the time.
 

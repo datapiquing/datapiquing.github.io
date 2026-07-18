@@ -1,0 +1,19 @@
+---
+title: "Woodworking · Roadmap"
+---
+
+The order I'm learning things in — each stage builds on the last.
+
+```{mermaid}
+graph TD
+  A[Sharpening] --> B[Sawing to a line]
+  B --> C[Planing flat & square]
+  C --> D[Basic joints]
+  D --> E[First furniture piece]
+```
+
+1. **Sharpening** — nothing else works without it.
+2. **Sawing to a line** — rip and crosscut, staying on the waste side.
+3. **Planing flat & square** — reference faces and edges.
+4. **Basic joints** — mortise & tenon, then dovetails.
+5. **First furniture piece** — put it all together.

@@ -1,0 +1,16 @@
+---
+title: "Woodworking · Goals"
+---
+
+What I want to be able to make, roughly in order of ambition.
+
+- [x] Cut a straight line by hand
+- [x] Sharpen a chisel and plane iron to a working edge
+- [ ] Cut a clean mortise and tenon joint
+- [ ] Cut dovetails that don't need filler
+- [ ] Build a piece of furniture I'd keep in the living room
+
+::: callout-note
+Goals are outcomes. The [roadmap](roadmap.qmd) is how I get there; the
+[skills](skills.qmd) page tracks the techniques underneath.
+:::

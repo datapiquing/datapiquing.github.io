@@ -1,0 +1,16 @@
+---
+title: "Now"
+---
+
+*What I'm focused on right now. Inspired by [nownownow.com](https://nownownow.com).*
+
+- 🪵 **Woodworking** — my newest hobby. Learning to sharpen hand tools properly and
+  working through my [first few projects](hobbies/woodworking/index.qmd).
+- 📷 **Photography** — trying to get off auto mode and understand exposure.
+- 🌱 **Gardening** — planning a raised bed for next spring.
+- 🥾 Still hiking and cycling whenever the weather allows.
+
+::: callout-note
+This is a [/now page](https://nownownow.com/about) — a snapshot, not a feed. It changes
+as my focus changes.
+:::

@@ -1,36 +1,64 @@
 project:
   type: website
+
   render:
     - "*.qmd"
-    - "blog/*.qmd"
-    - "reports/*.qmd"
+    - "journey/**/*.qmd"
+    - "projects/**/*.qmd"
+    - "reviews/**/*.qmd"
+    - "hobbies/**/*.qmd"
+
   resources:
     - robots.txt
+    - images/
+    - assets/
 
 lang: en
+
+filters:
+  - _includes/git-modified.lua
 
 execute:
   freeze: auto
 
 website:
   title: "datapiquing"
-  description: "Garry Sykes - data science blog and reports"
+  description: "A personal learning journal documenting my hobbies, projects and discoveries."
   site-url: https://datapiquing.com
+
   navbar:
     left:
-      - text: Home
-        href: index.qmd
-      - text: Blog
-        href: blog/index.qmd
-      - text: Reports
-        href: reports/index.qmd
+      - text: Now
+        href: now.qmd
+
+      - text: Hobbies
+        menu:
+          - text: Woodworking
+            href: hobbies/woodworking/index.qmd
+          - text: Photography
+            href: hobbies/photography/index.qmd
+          - text: Gardening
+            href: hobbies/gardening/index.qmd
+
+      - text: Projects
+        href: projects/index.qmd
+
+      - text: Journey
+        href: journey/index.qmd
+
+      - text: Reviews
+        href: reviews/index.qmd
+
       - text: About
         href: about.qmd
-  page-footer:
-    center: "Copyright 2026, Garry Sykes"
+
     right:
       - icon: github
         href: https://github.com/datapiquing
+
+  page-footer:
+    center: "© 2026 Garry Sykes"
+
   open-graph: true
   twitter-card: true
 
@@ -39,5 +67,12 @@ format:
     theme:
       - cosmo
       - styles.scss
+
     toc: true
     code-copy: true
+    code-overflow: wrap
+
+    date-modified: last-modified
+    date-format: medium
+
+    include-after-body: _includes/reorder-title-meta.html

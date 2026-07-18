@@ -1,0 +1,36 @@
+---
+title: "Woodworking"
+listing:
+  - id: projects
+    contents: "projects/*.qmd"
+    sort: "date desc"
+    fields: [title, date, categories]
+    type: table
+    categories: true
+  - id: journal
+    contents: "journal/*.qmd"
+    sort: "date desc"
+    type: default
+    categories: true
+---
+
+My newest hobby: learning to work wood with hand tools. This dashboard pulls everything
+together automatically — I never maintain a list by hand.
+
+## The plan
+
+- [**Goals**](goals.qmd) — what I want to be able to make
+- [**Roadmap**](roadmap.qmd) — the order I'm learning things in
+- [**Skills**](skills.qmd) — techniques, and where I am with each
+- [**Tools**](tools.qmd) — what's in the kit
+- [**Resources**](resources.qmd) — books, videos and people worth following
+
+## Projects
+
+:::{#projects}
+:::
+
+## Journal
+
+:::{#journal}
+:::
