@@ -18,7 +18,7 @@ about:
 ---
 
 
-When I'm not hiking or cycling, you'll usually find me exploring the personal data I've accumulated over the years, building apps and reports, tinkering with LEGO robotics, or trying to improve my photography.
+When I'm not hiking or cycling, you'll usually find me exploring the personal data I've accumulated over many years, building apps and automations, tinkering with LEGO robotics, or trying to improve my photography.
 
 This blog is a collection of those interests .. the projects I'm working on, the things I'm learning, and whatever happens to have captured my curiosity at the time.
 

@@ -1,26 +1,19 @@
 ---
 title: "July 2026"
-description: "First month of the website, and my first steps in woodworking."
+description: "First month of the website, and first week with my X100vi."
 date: 2026-07-31
 categories: [2026, monthly]
 ---
 
 ## What happened
 
-The website went live and I threw myself into woodworking — chisels, a hand saw, and a
-lot of learning about sharpening.
 
 ## Highlights
 
-- Set up this site with Quarto and got it deploying to GitHub Pages
-- Made my [first cuts](../hobbies/woodworking/journal/2026-07-05-first-cuts.qmd)
-- Finally understood [why sharpening matters](../hobbies/woodworking/journal/2026-07-14-sharpening.qmd)
+
 
 ## What's next
 
-- Finish the coffee table
-- Start on a bird box
 
-::: callout-tip
-Keeping these short. A review I'll actually write beats a thorough one I won't.
-:::
+
+

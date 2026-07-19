@@ -1,0 +1,64 @@
+---
+title: "Toolsmithing · Goals"
+---
+
+## Photography
+
+#### <u>Current</u>
+
+- [ ] Automate image geocoding from a .gpx tracklog recorded during a shoot
+
+#### <u>Future</u>
+
+- [ ] Automate incremental export of images and accompanying webp thumbnails from Photos app 
+
+#### <u>Completed</u>
+
+- [x] Automate addition of Fuji film simulation to JPEG EXIF metadata so it can be displayed in Lightroom Classic
+
+
+## Robotics
+
+#### <u>Current</u>
+
+- [ ] Put finishing touches to LEGO 'Colour Matrix Studio' app
+
+#### <u>Future</u>
+
+- [ ] Put finishing touches to LEGO 'Data Logger' app
+
+#### <u>Completed</u>
+
+- [x] Add Animation Canvas and Timeline to LEGO 'Colour Matrix Studio' app
+
+
+## Outdoor Pursuits
+
+#### <u>Current</u>
+
+- [ ] Check Strava export still works with new API rules
+
+#### <u>Future</u>
+
+- [ ] Investigate new Strava MCP
+
+#### <u>Completed</u>
+
+- [x] Strava API export direct to Postgres database
+
+
+## Miscellaneous
+
+#### <u>Current</u>
+
+- [ ] Update MS Money parser app to export to a Postgres database
+
+#### <u>Future</u>
+
+- [ ] Put finishing touches to Travel Planning app
+
+#### <u>Completed</u>
+
+- [x] Legacy email extraction scripts
+
+

@@ -7,6 +7,7 @@ project:
     - "projects/**/*.qmd"
     - "reviews/**/*.qmd"
     - "hobbies/**/*.qmd"
+    - "!research/**"
 
   resources:
     - robots.txt
@@ -33,12 +34,14 @@ website:
 
       - text: Hobbies
         menu:
-          - text: Woodworking
-            href: hobbies/woodworking/index.qmd
+          - text: Toolsmithing
+            href: hobbies/toolsmithing/index.qmd
+          - text: Robotics
+            href: hobbies/robotics/index.qmd
           - text: Photography
             href: hobbies/photography/index.qmd
-          - text: Gardening
-            href: hobbies/gardening/index.qmd
+          - text: Outdoor Pursuits
+            href: hobbies/outdoor/index.qmd
 
       - text: Projects
         href: projects/index.qmd

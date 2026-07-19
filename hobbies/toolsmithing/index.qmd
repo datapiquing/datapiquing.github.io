@@ -1,0 +1,13 @@
+---
+title: "Toolsmithing"
+---
+
+Building personal apps, dashboards, databases, automations & workflows
+
+## The plan
+
+- [**Goals**](goals.qmd) — what I want to develop
+- [**Tools**](tools.qmd) — my tech stack
+- [**Resources**](resources.qmd) — useful reference stuff
+
+

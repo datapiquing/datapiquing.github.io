@@ -1,0 +1,12 @@
+{
+  "hash": "5854c664e7a9d795627fcd9c34460ecf",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Coffee Table\"\ndescription: \"My first real furniture project — a small oak coffee table.\"\ndate: 2026-07-20\ncategories: [furniture, oak, in-progress]\nexecute:\n  echo: false\n---\n\n\n\n\nMy first attempt at a piece of furniture: a small oak coffee table with a single shelf.\nIt's a stretch, but everything on the [roadmap](../roadmap.qmd) is pointing here.\n\n## Time spent so far\n\nI've been logging hours per session to see where the time actually goes. The Python below\nruns at render time and its output is frozen into `_freeze/` — so the GitHub Actions\nrunner never re-executes it.\n\n::: {#79f0eff5 .cell execution_count=1}\n\n::: {.cell-output .cell-output-display}\n![](coffee-table_files/figure-html/cell-2-output-1.png){}\n:::\n:::\n\n\nJoinery is eating the schedule, which tracks — it's the part I'm least practised at.\n\n## Status\n\nStill in progress. The base is glued up; next is fitting the shelf and starting the\nfinish.\n\n",
+    "supporting": [
+      "coffee-table_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

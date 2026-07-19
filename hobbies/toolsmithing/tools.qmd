@@ -1,0 +1,13 @@
+---
+title: "Toolsmithing · Tools"
+---
+
+My Developer Tools
+
+| Tool                | Detail                        |
+|---------------------|-------------------------------|
+| MacBook Pro         | M1, 16GB RAM, 1TB SSD, Tahoe  |
+| Windows 11 VM       | Parallels Desktop on MacOS    |
+
+
+

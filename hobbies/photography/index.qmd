@@ -2,10 +2,4 @@
 title: "Photography"
 ---
 
-Trying to get off auto mode and actually understand exposure — aperture, shutter, ISO,
-and how they trade off.
-
-::: callout-note
-Just getting started. Projects and a journal will appear here as I go — this dashboard
-will list them automatically, the same way [woodworking](../woodworking/index.qmd) does.
-:::
+Capuring, editing & printing images.
