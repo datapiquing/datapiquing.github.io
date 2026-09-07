@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reports – datapiquing</title>
+<title>Journey – datapiquing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,20 +71,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-years .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-years'] = new List('listing-years', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -128,9 +128,11 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="Reports – datapiquing">
+<meta property="og:title" content="Journey – datapiquing">
+<meta property="og:description" content="A personal learning journal documenting my hobbies, projects and discoveries.">
 <meta property="og:site_name" content="datapiquing">
-<meta name="twitter:title" content="Reports – datapiquing">
+<meta name="twitter:title" content="Journey – datapiquing">
+<meta name="twitter:description" content="A personal learning journal documenting my hobbies, projects and discoveries.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -152,20 +154,54 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../now.html"> 
+<span class="menu-text">Now</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hobbies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hobbies</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hobbies">    
+        <li>
+    <a class="dropdown-item" href="../hobbies/toolsmithing/index.html">
+ <span class="dropdown-text">Toolsmithing</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../hobbies/robotics/index.html">
+ <span class="dropdown-text">Robotics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../hobbies/photography/index.html">
+ <span class="dropdown-text">Photography</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../hobbies/outdoor/index.html">
+ <span class="dropdown-text">Outdoor Pursuits</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
-<span class="menu-text">Blog</span></a>
+    <a class="nav-link active" href="../journey/index.html" aria-current="page"> 
+<span class="menu-text">Journey</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../reports/index.html" aria-current="page"> 
-<span class="menu-text">Reports</span></a>
+    <a class="nav-link" href="../reviews/index.html"> 
+<span class="menu-text">Reviews</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/datapiquing"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -178,15 +214,15 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Reports</h1>
+<h1 class="title">Journey</h1>
 </div>
 
 
@@ -195,6 +231,12 @@ window.Quarto = {
 
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">Jul 19, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -203,18 +245,47 @@ window.Quarto = {
 </header>
 
 
+<p>A curated list of milestones worth remembering.</p>
 
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-default" id="listing-years">
 <div class="list quarto-listing-default">
-
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1788784058250" data-listing-reading-time-sort="1" data-listing-word-count-sort="40">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../journey/2026.html" class="no-external">2026</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../journey/2026.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="../journey/2026.html" class="no-external"></a></p><a href="../journey/2026.html" class="no-external">
+</a>
+</div>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
 </div></main> <!-- /main -->
+<script>
+  // On pages with category tags (projects, journal entries, reviews), Quarto
+  // renders the Published/Modified dates *below* the tags and description.
+  // Move them to sit immediately beneath the title, matching every other page.
+  window.addEventListener("DOMContentLoaded", function () {
+    var header = document.getElementById("title-block-header");
+    if (!header) return;
+    var meta = header.querySelector(".quarto-title-meta");
+    var title = header.querySelector("h1.title");
+    var categories = header.querySelector(".quarto-categories");
+    if (meta && title && categories) {
+      title.insertAdjacentElement("afterend", meta);
+    }
+  });
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -642,17 +713,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright 2026, Garry Sykes</p>
+<p>© 2026 Garry Sykes</p>
 </div>
     <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/datapiquing">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
+      &nbsp;
     </div>
   </div>
 </footer>

@@ -1,10 +1,27 @@
 [
   {
-    "listing": "/reports/index.html",
-    "items": []
+    "listing": "/reviews/index.html",
+    "items": [
+      "/reviews/2026-07.html"
+    ]
   },
   {
-    "listing": "/blog/index.html",
-    "items": []
+    "listing": "/projects/index.html",
+    "items": [
+      "/hobbies/toolsmithing/projects/lrc_film_simulation.html"
+    ]
+  },
+  {
+    "listing": "/journey/index.html",
+    "items": [
+      "/journey/2026.html"
+    ]
+  },
+  {
+    "listing": "/hobbies/toolsmithing/index.html",
+    "items": [
+      "/hobbies/toolsmithing/projects/lrc_film_simulation.html",
+      "/hobbies/toolsmithing/journal/2026-07-20-first-journal-entry.html"
+    ]
   }
 ]

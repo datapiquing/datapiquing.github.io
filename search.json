@@ -1,44 +1,233 @@
 [
   {
-    "objectID": "reports/index.html",
-    "href": "reports/index.html",
-    "title": "Reports",
+    "objectID": "reviews/index.html",
+    "href": "reviews/index.html",
+    "title": "Reviews",
     "section": "",
-    "text": "No matching items"
+    "text": "Periodic reviews — looking back at what I got done, what I learnt, and what’s next.\n\n\n\n\n\n\n\n\n\nJuly 2026\n\n\n\n\n\n\n2026\n\n\nmonthly\n\n\n\nFirst month of the website, and first week with my X100vi.\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
     "section": "",
-    "text": "No matching items"
+    "text": "Below is a list of every project I’ve built, aggregated automatically from each hobby. There’s a single source of truth for each one — the project lives under its hobby, and this page just gathers them together.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDate\n\n\nCategories\n\n\n\n\n\n\nShow Fuji Film Simulation in LrC\n\n\nJul 20, 2026\n\n\nlightroom, photography, automation\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Garry Sykes",
+    "objectID": "journey/index.html",
+    "href": "journey/index.html",
+    "title": "Journey",
     "section": "",
-    "text": "Garry Sykes is …."
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "Garry Sykes",
-    "section": "Education",
-    "text": "Education"
-  },
-  {
-    "objectID": "about.html#experience",
-    "href": "about.html#experience",
-    "title": "Garry Sykes",
-    "section": "Experience",
-    "text": "Experience"
+    "text": "A curated list of milestones worth remembering.\n\n\n\n\n\n\n\n\n\n2026\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Home",
+    "title": "datapiquing",
     "section": "",
-    "text": "Welcome to my site.\n\nBlog posts\nReports\nExperiments\nAbout"
+    "text": "“Intimidating sheep” - Pennine Way, NW of Alston, Cumbria, UK, 12 March 2024\nA personal learning journal documenting my hobbies, projects and discoveries."
+  },
+  {
+    "objectID": "index.html#start-here",
+    "href": "index.html#start-here",
+    "title": "datapiquing",
+    "section": "Start here",
+    "text": "Start here\n\nNow — what I’m focused on at the moment\nHobbies — dashboards for each hobby I’m pursuing\nProjects — everything I’ve built, across every hobby\nJourney — a curated timeline of milestones\nReviews — periodic look backs\nAbout — who I am"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/resources.html",
+    "href": "hobbies/toolsmithing/resources.html",
+    "title": "Toolsmithing · Resources",
+    "section": "",
+    "text": "Reference sources I’ve found genuinely useful."
+  },
+  {
+    "objectID": "hobbies/toolsmithing/resources.html#books",
+    "href": "hobbies/toolsmithing/resources.html#books",
+    "title": "Toolsmithing · Resources",
+    "section": "Books",
+    "text": "Books\n\nTBA"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/resources.html#video",
+    "href": "hobbies/toolsmithing/resources.html#video",
+    "title": "Toolsmithing · Resources",
+    "section": "Video",
+    "text": "Video\n\nTBA"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/resources.html#communities",
+    "href": "hobbies/toolsmithing/resources.html#communities",
+    "title": "Toolsmithing · Resources",
+    "section": "Communities",
+    "text": "Communities\n\nTBA"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/journal/2026-07-20-first-journal-entry.html",
+    "href": "hobbies/toolsmithing/journal/2026-07-20-first-journal-entry.html",
+    "title": "My first photography project",
+    "section": "",
+    "text": "Today I completed my first photography project on the new website!\nUnsurprisingly, it’s to do with my new camera, though I didn’t expect to be scripting automations this early, after returning to an old hobby that’s been neglected for a decade … I guess you can’t take the developer out of me 😜\nFuji’s film simulations (sims) garner alot of hype and are often cited as the reason why people buy Fuji cameras. I was keen to try them on my first foray out with the X100vi. Arriving back at my Mac and importing my images into Lightroom Classic (LrC) I was a little disappointed that I couldn’t see the sims applied to each image nor filter my images by the sim used.\nWith an itch to stratch, the automation project was conceived …"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/goals.html",
+    "href": "hobbies/toolsmithing/goals.html",
+    "title": "Toolsmithing · Goals by Hobby",
+    "section": "",
+    "text": "Automate image geocoding from a .gpx tracklog recorded during a shoot\n\n\n\n\n\nAutomate incremental export of images and accompanying webp thumbnails from Photos app\n\n\n\n\n\nAutomate addition of Fuji film simulation to JPEG EXIF metadata so it can be displayed in Lightroom Classic"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/goals.html#photography",
+    "href": "hobbies/toolsmithing/goals.html#photography",
+    "title": "Toolsmithing · Goals by Hobby",
+    "section": "",
+    "text": "Automate image geocoding from a .gpx tracklog recorded during a shoot\n\n\n\n\n\nAutomate incremental export of images and accompanying webp thumbnails from Photos app\n\n\n\n\n\nAutomate addition of Fuji film simulation to JPEG EXIF metadata so it can be displayed in Lightroom Classic"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/goals.html#robotics",
+    "href": "hobbies/toolsmithing/goals.html#robotics",
+    "title": "Toolsmithing · Goals by Hobby",
+    "section": "Robotics",
+    "text": "Robotics\n\nCurrent\n\nPut finishing touches to LEGO ‘Colour Matrix Studio’ app\n\n\n\nFuture\n\nPut finishing touches to LEGO ‘Data Logger’ app\n\n\n\nCompleted\n\nAdd Animation Canvas and Timeline to LEGO ‘Colour Matrix Studio’ app"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/goals.html#outdoor-pursuits",
+    "href": "hobbies/toolsmithing/goals.html#outdoor-pursuits",
+    "title": "Toolsmithing · Goals by Hobby",
+    "section": "Outdoor Pursuits",
+    "text": "Outdoor Pursuits\n\nCurrent\n\nCheck Strava export still works with new API rules\n\n\n\nFuture\n\nInvestigate new Strava MCP\n\n\n\nCompleted\n\nStrava API export direct to Postgres database"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/goals.html#miscellaneous",
+    "href": "hobbies/toolsmithing/goals.html#miscellaneous",
+    "title": "Toolsmithing · Goals by Hobby",
+    "section": "Miscellaneous",
+    "text": "Miscellaneous\n\nCurrent\n\nUpdate MS Money parser app to export to a Postgres database\n\n\n\nFuture\n\nPut finishing touches to Travel Planning app\n\n\n\nCompleted\n\nLegacy email extraction scripts"
+  },
+  {
+    "objectID": "hobbies/photography/index.html",
+    "href": "hobbies/photography/index.html",
+    "title": "Photography",
+    "section": "",
+    "text": "Capuring, editing & printing images."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Datapiquing",
+    "section": "",
+    "text": "When I’m not hiking or cycling, you’ll usually find me exploring the personal data I’ve accumulated over many years, building apps and automations, tinkering with LEGO robotics, or trying to improve my photography.\nThis journal is an exploration of those interests .. the projects I’m working on, the things I’m learning, and whatever happens to capture my interest on the day."
+  },
+  {
+    "objectID": "hobbies/outdoor/index.html",
+    "href": "hobbies/outdoor/index.html",
+    "title": "Outdoor Pursuits",
+    "section": "",
+    "text": "Hiking & cycling."
+  },
+  {
+    "objectID": "hobbies/robotics/index.html",
+    "href": "hobbies/robotics/index.html",
+    "title": "Robotics",
+    "section": "",
+    "text": "Designing LEGO robotics systems with custom control software."
+  },
+  {
+    "objectID": "hobbies/toolsmithing/index.html",
+    "href": "hobbies/toolsmithing/index.html",
+    "title": "Toolsmithing",
+    "section": "",
+    "text": "Building personal apps, dashboards, databases, automations & workflows"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/index.html#the-plan",
+    "href": "hobbies/toolsmithing/index.html#the-plan",
+    "title": "Toolsmithing",
+    "section": "The plan",
+    "text": "The plan\n\nGoals — what I want to develop\nTools — my tech stack\nResources — useful reference stuff"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/index.html#projects",
+    "href": "hobbies/toolsmithing/index.html#projects",
+    "title": "Toolsmithing",
+    "section": "Projects",
+    "text": "Projects\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nDate\n\n\nCategories\n\n\n\n\n\n\nShow Fuji Film Simulation in LrC\n\n\nJul 20, 2026\n\n\nlightroom, photography, automation\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/index.html#journal",
+    "href": "hobbies/toolsmithing/index.html#journal",
+    "title": "Toolsmithing",
+    "section": "Journal",
+    "text": "Journal\n\n\n\n\n\n\n\n\n\n\nMy first photography project\n\n\n\n\n\n\nphotography\n\n\n\n\n\n\n\n\n\nJul 20, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "hobbies/toolsmithing/projects/lrc_film_simulation.html",
+    "href": "hobbies/toolsmithing/projects/lrc_film_simulation.html",
+    "title": "Show Fuji Film Simulation in LrC",
+    "section": "",
+    "text": "When I imported my first Fuji RAW+JPEG images into Lightroom Classic (LrC) two things became apparent.\nFirstly, only the RAW images were displayed by default. I’d taken a number of images with Fuji’s much loved film simulations applied (e.g. Classic Chrome, Reala Ace, Velvia Vivid etc.). However, these simulations are only applied to the JPEG images and hence I was unable to see their effect on the image. Thankfully, this was quickly resolved by selecting a checkbox, ‘Treat JPEG files next to raw files as separate photos’, in Lightroom’s Preferences. Now RAW and JPEG images appeared separately, side-by-side in the Library Module.\nSecondly, there was no way to display the film simulation applied to each JPEG or filter images by film simulation."
+  },
+  {
+    "objectID": "hobbies/toolsmithing/projects/lrc_film_simulation.html#the-problem",
+    "href": "hobbies/toolsmithing/projects/lrc_film_simulation.html#the-problem",
+    "title": "Show Fuji Film Simulation in LrC",
+    "section": "",
+    "text": "When I imported my first Fuji RAW+JPEG images into Lightroom Classic (LrC) two things became apparent.\nFirstly, only the RAW images were displayed by default. I’d taken a number of images with Fuji’s much loved film simulations applied (e.g. Classic Chrome, Reala Ace, Velvia Vivid etc.). However, these simulations are only applied to the JPEG images and hence I was unable to see their effect on the image. Thankfully, this was quickly resolved by selecting a checkbox, ‘Treat JPEG files next to raw files as separate photos’, in Lightroom’s Preferences. Now RAW and JPEG images appeared separately, side-by-side in the Library Module.\nSecondly, there was no way to display the film simulation applied to each JPEG or filter images by film simulation."
+  },
+  {
+    "objectID": "hobbies/toolsmithing/projects/lrc_film_simulation.html#method",
+    "href": "hobbies/toolsmithing/projects/lrc_film_simulation.html#method",
+    "title": "Show Fuji Film Simulation in LrC",
+    "section": "Method",
+    "text": "Method\nAfter a little investigation it turned out that the film simulation is baked into the JPEG and stored in Fujufilm’s private maker-note tags. However, LrC does not surface that maker-note field. You can see it with ExifTool (exiftool -FilmMode *.jpg), but inside LrC there is no “Film Simulation” column and no way to filter or build Smart Collections by it."
+  },
+  {
+    "objectID": "hobbies/toolsmithing/projects/lrc_film_simulation.html#result",
+    "href": "hobbies/toolsmithing/projects/lrc_film_simulation.html#result",
+    "title": "Show Fuji Film Simulation in LrC",
+    "section": "Result",
+    "text": "Result\nWere applicable, JPEG images now show the film simulation name above each thumbnail in Grid view. In addition, the images can be grouped and filtered by film simulation."
+  },
+  {
+    "objectID": "hobbies/toolsmithing/tools.html",
+    "href": "hobbies/toolsmithing/tools.html",
+    "title": "Toolsmithing · Tools",
+    "section": "",
+    "text": "My Developer Tools\n\n\n\nTool\nDetail\n\n\n\n\nMacBook Pro\nM1, 16GB RAM, 1TB SSD, Tahoe\n\n\nWindows 11 VM\nParallels Desktop on MacOS"
+  },
+  {
+    "objectID": "journey/2026.html",
+    "href": "journey/2026.html",
+    "title": "2026",
+    "section": "",
+    "text": "Created this website\nBought a new camera (Fujifilm X100vi)\nBegan 2 steep learning curves, mastering the X100vi and Lightroom Classic (LrC)\nCreated some automations to geocode images and embed the Fuji film simulation into the EXIF of each JPEG"
+  },
+  {
+    "objectID": "journey/2026.html#july",
+    "href": "journey/2026.html#july",
+    "title": "2026",
+    "section": "",
+    "text": "Created this website\nBought a new camera (Fujifilm X100vi)\nBegan 2 steep learning curves, mastering the X100vi and Lightroom Classic (LrC)\nCreated some automations to geocode images and embed the Fuji film simulation into the EXIF of each JPEG"
+  },
+  {
+    "objectID": "now.html",
+    "href": "now.html",
+    "title": "Now",
+    "section": "",
+    "text": "What I’m focused on right now.\n\n👨‍💻 Toolsmithing — automating the geocoding of images from a .gpx tracklog.\n🤖 Robotics — testing my LEGO ‘Colour Matrix Studio’ app.\n📷 Photography — getting to grips with a new camera & editing software.\n🚲 Outdoor Pursuits — bagging Wainwrights and planning a bikepacking trip."
+  },
+  {
+    "objectID": "reviews/2026-07.html#highlights",
+    "href": "reviews/2026-07.html#highlights",
+    "title": "July 2026",
+    "section": "Highlights",
+    "text": "Highlights"
+  },
+  {
+    "objectID": "reviews/2026-07.html#whats-next",
+    "href": "reviews/2026-07.html#whats-next",
+    "title": "July 2026",
+    "section": "What’s next",
+    "text": "What’s next"
   }
 ]

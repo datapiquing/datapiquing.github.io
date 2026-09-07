@@ -1,19 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://datapiquing.com/reports/index.html</loc>
-    <lastmod>2026-04-11T11:38:59.221Z</lastmod>
+    <loc>https://datapiquing.com/reviews/index.html</loc>
+    <lastmod>2026-09-07T12:27:38.251Z</lastmod>
   </url>
   <url>
-    <loc>https://datapiquing.com/blog/index.html</loc>
-    <lastmod>2026-04-11T11:38:59.221Z</lastmod>
+    <loc>https://datapiquing.com/projects/index.html</loc>
+    <lastmod>2026-09-07T12:27:38.251Z</lastmod>
   </url>
   <url>
-    <loc>https://datapiquing.com/about.html</loc>
-    <lastmod>2026-04-11T11:38:59.221Z</lastmod>
+    <loc>https://datapiquing.com/journey/index.html</loc>
+    <lastmod>2026-09-07T12:27:38.251Z</lastmod>
   </url>
   <url>
     <loc>https://datapiquing.com/index.html</loc>
-    <lastmod>2026-04-11T11:38:59.221Z</lastmod>
+    <lastmod>2026-09-07T12:27:38.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/toolsmithing/resources.html</loc>
+    <lastmod>2026-09-07T12:27:38.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/toolsmithing/journal/2026-07-20-first-journal-entry.html</loc>
+    <lastmod>2026-09-07T12:27:38.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/toolsmithing/goals.html</loc>
+    <lastmod>2026-09-07T12:27:38.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/photography/index.html</loc>
+    <lastmod>2026-09-07T12:27:38.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/about.html</loc>
+    <lastmod>2026-09-07T12:27:38.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/outdoor/index.html</loc>
+    <lastmod>2026-09-07T12:27:38.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/robotics/index.html</loc>
+    <lastmod>2026-09-07T12:27:38.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/toolsmithing/index.html</loc>
+    <lastmod>2026-09-07T12:27:38.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/toolsmithing/projects/lrc_film_simulation.html</loc>
+    <lastmod>2026-09-07T12:27:38.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/hobbies/toolsmithing/tools.html</loc>
+    <lastmod>2026-09-07T12:27:38.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/journey/2026.html</loc>
+    <lastmod>2026-09-07T12:27:38.250Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/now.html</loc>
+    <lastmod>2026-09-07T12:27:38.251Z</lastmod>
+  </url>
+  <url>
+    <loc>https://datapiquing.com/reviews/2026-07.html</loc>
+    <lastmod>2026-09-07T12:27:38.251Z</lastmod>
   </url>
 </urlset>
