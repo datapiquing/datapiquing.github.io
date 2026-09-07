@@ -1,5 +1,5 @@
 ---
-title: "Garry Sykes"
+title: "Datapiquing"
 about:
   template: trestles
   image: images/profile.jpg
@@ -11,14 +11,14 @@ about:
       href: https://github.com/datapiquing
     - icon: strava
       text: Strava
-      href: https://www.strava.com/athletes/3361910
+      # href: https://www.strava.com/athletes/3361910
     - icon: trigpointinguk
       text: TrigpointingUK
-      href: https://trigpointing.uk/profile/4272
+      # href: https://trigpointing.uk/profile/4272
 ---
 
 
 When I'm not hiking or cycling, you'll usually find me exploring the personal data I've accumulated over many years, building apps and automations, tinkering with LEGO robotics, or trying to improve my photography.
 
-This blog is a collection of those interests .. the projects I'm working on, the things I'm learning, and whatever happens to have captured my curiosity at the time.
+This journal is an exploration of those interests .. the projects I'm working on, the things I'm learning, and whatever happens to capture my interest on the day.
 

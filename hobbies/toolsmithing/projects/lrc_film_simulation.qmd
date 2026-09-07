@@ -1,0 +1,26 @@
+---
+title: "Show Fuji Film Simulation in LrC"
+description: "A script to add film simulations to image metadata"
+date: 2026-07-20
+categories: [lightroom, photography, automation]
+---
+
+## The Problem
+
+When I imported my first Fuji RAW+JPEG images into Lightroom Classic (LrC) two things became apparent. 
+
+Firstly, only the RAW images were displayed by default. I'd taken a number of images with Fuji's much loved film simulations applied (e.g. Classic Chrome, Reala Ace, Velvia Vivid etc.). However, these simulations are only applied to the JPEG images and hence I was unable to see their effect on the image. Thankfully, this was quickly resolved by selecting a checkbox, 'Treat JPEG files next to raw files as separate photos', in Lightroom's Preferences. Now RAW and JPEG images appeared separately, side-by-side in the Library Module.
+
+Secondly, there was no way to display the film simulation applied to each JPEG or filter images by film simulation. 
+
+
+## Method
+
+After a little investigation it turned out that the film simulation is baked into the JPEG and stored in Fujufilm's private **maker-note** tags.
+However, LrC does **not** surface that maker-note field. You can see it with ExifTool (`exiftool -FilmMode *.jpg`), but inside LrC there is no "Film Simulation" column and no way to filter or build Smart Collections by it.
+
+
+
+## Result
+
+Were applicable, JPEG images now show the film simulation name above each thumbnail in Grid view. In addition, the images can be grouped and filtered by film simulation.

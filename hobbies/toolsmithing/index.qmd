@@ -1,5 +1,17 @@
 ---
 title: "Toolsmithing"
+listing:
+  - id: projects
+    contents: "projects/*.qmd"
+    sort: "date desc"
+    fields: [title, date, categories]
+    type: table
+    categories: true
+  - id: journal
+    contents: "journal/*.qmd"
+    sort: "date desc"
+    type: default
+    categories: true
 ---
 
 Building personal apps, dashboards, databases, automations & workflows
@@ -11,3 +23,12 @@ Building personal apps, dashboards, databases, automations & workflows
 - [**Resources**](resources.qmd) — useful reference stuff
 
 
+## Projects
+
+:::{#projects}
+:::
+
+## Journal
+
+:::{#journal}
+:::

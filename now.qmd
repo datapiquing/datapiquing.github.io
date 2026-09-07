@@ -5,7 +5,7 @@ title: "Now"
 *What I'm focused on right now.*
 
 - 👨‍💻 **Toolsmithing** — automating the geocoding of images from a .gpx tracklog.
+- 🤖 **Robotics** — testing my LEGO 'Colour Matrix Studio' app.
 - 📷 **Photography** — getting to grips with a new camera & editing software.
-- 🤖 **Robotics** — testing my 'Colour Matrix Studio' app.
 - 🚲 **Outdoor Pursuits** — bagging Wainwrights and planning a bikepacking trip.
 

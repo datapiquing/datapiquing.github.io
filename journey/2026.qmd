@@ -4,7 +4,7 @@ title: "2026"
 
 ## July
 
-- Started this website
+- Created this website
 - Bought a new camera (Fujifilm X100vi)
+- Began 2 steep learning curves, mastering the X100vi and Lightroom Classic (LrC)
 - Created some automations to geocode images and embed the Fuji film simulation into the EXIF of each JPEG
-- Began 2 steep learning curves, mastering the X100vi and mastering Lightroom Classic

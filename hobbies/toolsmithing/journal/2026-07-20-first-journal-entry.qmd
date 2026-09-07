@@ -1,0 +1,13 @@
+---
+title: "My first photography project"
+date: 2026-07-20
+categories: [photography]
+---
+
+Today I completed my first [photography project](../projects/lrc_film_simulation.qmd) on the new website!
+
+Unsurprisingly, it's to do with my new camera, though I didn't expect to be scripting automations this early, after returning to an old hobby that's been neglected for a decade ... I guess you can't take the developer out of me 😜
+
+Fuji's film simulations (sims) garner alot of hype and are often cited as the reason why people buy Fuji cameras. I was keen to try them on my first foray out with the X100vi. Arriving back at my Mac and importing my images into Lightroom Classic (LrC) I was a little disappointed that I couldn't see the sims applied to each image nor filter my images by the sim used. 
+
+With an itch to stratch, the automation project was conceived ... 

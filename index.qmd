@@ -10,8 +10,8 @@ A personal learning journal documenting my hobbies, projects and discoveries.
 ## Start here
 
 - [**Now**](now.qmd) — what I'm focused on at the moment
-- [**Hobbies**](hobbies/toolsmithing/index.qmd) — dashboards for each thing I'm learning
+- [**Hobbies**](hobbies/toolsmithing/index.qmd) — dashboards for each hobby I'm pursuing
 - [**Projects**](projects/index.qmd) — everything I've built, across every hobby
 - [**Journey**](journey/index.qmd) — a curated timeline of milestones
-- [**Reviews**](reviews/index.qmd) — periodic looks back
+- [**Reviews**](reviews/index.qmd) — periodic look backs
 - [**About**](about.qmd) — who I am
