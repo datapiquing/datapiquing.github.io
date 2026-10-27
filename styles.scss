@@ -22,19 +22,6 @@ figure figcaption {
   text-align: center;
 }
 
-// Journey & Reviews listings: left-justify the title with a small indent
-// (the default listing layout otherwise offsets/centres the title).
-#listing-years .quarto-post,
-#listing-reviews .quarto-post {
-  display: block;
-  padding-left: 0.5rem;
-}
-
-#listing-years .listing-title,
-#listing-reviews .listing-title {
-  margin: 0;
-}
-
 // Title-block dates (Published / Modified): subtle, single line, light grey.
 // Each item is a heading (label) + contents (date); render them inline.
 .quarto-title-meta-heading,

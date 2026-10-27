@@ -20,5 +20,5 @@ about:
 
 When I'm not hiking or cycling, you'll usually find me exploring the personal data I've accumulated over many years, building apps and automations, tinkering with LEGO robotics, or trying to improve my photography.
 
-This journal is an exploration of those interests .. the projects I'm working on, the things I'm learning, and whatever happens to capture my interest on the day.
+This blog is an exploration of those interests .. the projects I'm working on, the things I'm learning, and whatever happens to capture my interest on the day.
 

@@ -1,5 +1,0 @@
----
-title: "Robotics"
----
-
-Designing LEGO robotics systems with custom control software.
