@@ -41,12 +41,13 @@ uv run scripts/photos.py post-images <post-folder>
   - `blog/index.qmd` — listing of `blog/posts/*/index.qmd` + RSS; one folder per post with its images; `blog/posts/_metadata.yml` enables Quarto's built-in lightbox; `blog/_template/index.qmd` is the `new-post` template (not rendered)
   - `about.qmd` — trestles template
 - **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder.
-- `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. Theme/style redesign is deferred: don't restyle beyond what features need.
+- `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. `$primary` is #1a66d9 (5.3:1 on white, WCAG AA); title-block dates/categories use `$gray-600` with the theme's opacity fade removed. Theme/style redesign is deferred: don't restyle beyond what features need.
 - `_includes/` — build-time tooling, not published, wired globally in `_quarto.yml`:
   - `git-modified.lua` — sets each page's `Modified` date from `git log`; uncommitted files fall back to mtime; only refreshes on the live site after commit+push
   - `reorder-title-meta.html` — moves Published/Modified dates beneath the title on tagged pages (blog posts)
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images (download deterrent)
   - `head.html` — Google Fonts preconnect + apple-touch-icon; favicon is `images/favicon.png`
+  - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels)
 - Navbar: wordmark "Garry Sykes" is the home link; Projects, Blog, About; GitHub/Instagram/Facebook icons; search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored
 - Dependencies managed with `uv` — `pyproject.toml` / `uv.lock`

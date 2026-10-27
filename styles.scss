@@ -1,5 +1,5 @@
 /*-- scss:defaults --*/
-$primary: #2b7cff;
+$primary: #1a66d9; // 5.3:1 on white: links and white navbar text meet WCAG AA
 
 /*-- scss:rules --*/
 body {
@@ -22,7 +22,7 @@ figure figcaption {
   text-align: center;
 }
 
-// Title-block dates (Published / Modified): subtle, single line, light grey.
+// Title-block dates (Published / Modified): subtle, single line, grey (WCAG AA on white).
 // Each item is a heading (label) + contents (date); render them inline.
 .quarto-title-meta-heading,
 .quarto-title-meta-contents,
@@ -30,8 +30,18 @@ figure figcaption {
   display: inline;
   font-size: 0.8rem;
   font-weight: 400;
-  color: #999;
+  color: $gray-600;
   margin: 0;
+}
+
+// Theme fades these with opacity, which fails WCAG AA contrast.
+#title-block-header.quarto-title-block.default .quarto-title-meta-heading,
+.quarto-title .quarto-categories .quarto-category {
+  opacity: 1;
+}
+
+.quarto-title .quarto-categories .quarto-category {
+  color: $gray-600;
 }
 
 .quarto-title-meta-heading::after {
@@ -219,7 +229,7 @@ body:has(#pg-home) #title-block-header {
 
 .pg-tag-clear {
   font-size: 0.8rem;
-  color: #999;
+  color: $gray-600;
 }
 
 // Deter casual saving of photos: no drag, selection or iOS long-press menu.

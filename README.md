@@ -134,6 +134,9 @@ them), wired up globally in `_quarto.yml`:
   on pages with category tags (blog posts).
 - **`_includes/head.html`** — preconnects to Google Fonts (used by the cosmo theme) and sets the iOS
   home-screen icon. The favicon is `images/favicon.png` (`favicon:` in `_quarto.yml`).
+- **`_includes/a11y.html`** — fixes accessibility gaps in markup Quarto generates: labels the search
+  box, removes an invalid role from the mobile menu button, and tidies listing links, images and heading
+  levels for screen readers.
 
 `projects/_metadata.yml` repeats the HTML includes because directory-level `include-in-header` /
 `include-after-body` lists replace the site-wide ones.

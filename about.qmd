@@ -3,6 +3,7 @@ title: "Garry Sykes"
 about:
   template: trestles
   image: images/profile.jpg
+  image-alt: "Garry Sykes"
   image-width: 20em
   image-shape: rectangle
   links:

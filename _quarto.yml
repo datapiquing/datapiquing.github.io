@@ -75,3 +75,4 @@ format:
     include-after-body:
       - _includes/reorder-title-meta.html
       - _includes/external-links.html
+      - _includes/a11y.html
