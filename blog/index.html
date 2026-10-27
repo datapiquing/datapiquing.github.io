@@ -233,7 +233,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="lightroom,photography,automation" data-listing-date-sort="1784592000000" data-listing-file-modified-sort="1793130446124" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="209">
+<div class="quarto-post image-right" data-index="0" data-categories="lightroom,photography,automation" data-listing-date-sort="1784592000000" data-listing-file-modified-sort="1793131269529" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="209">
 <div class="thumbnail">
 <p><a href="../blog/posts/2026-07-21-lrc-film-simulation/index.html" class="no-external"></a></p><a href="../blog/posts/2026-07-21-lrc-film-simulation/index.html" class="no-external">
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -269,7 +269,7 @@ Jul 21, 2026
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="photography" data-listing-date-sort="1784505600000" data-listing-file-modified-sort="1793130446124" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="133">
+<div class="quarto-post image-right" data-index="1" data-categories="photography" data-listing-date-sort="1784505600000" data-listing-file-modified-sort="1793131269529" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="133">
 <div class="thumbnail">
 <p><a href="../blog/posts/2026-07-20-my-first-photography-project/index.html" class="no-external"></a></p><a href="../blog/posts/2026-07-20-my-first-photography-project/index.html" class="no-external">
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -339,6 +339,31 @@ No matching items
       }
     });
   });
+</script>
+<script>
+// Accessibility patches for markup Quarto generates: label the search widget,
+// drop the navbar toggler's invalid role="menu", hide the empty duplicate links
+// in blog listings from screen readers/tab order, mark listing cover images as
+// decorative (the title sits beside them) and expose listing titles as level-2
+// headings (Quarto uses h3/h5 straight after the page h1). Search is built after load.
+(() => {
+  const patch = () => {
+    document.querySelectorAll(".aa-DetachedSearchButton, .aa-Autocomplete")
+      .forEach((el) => el.hasAttribute("aria-label") || el.setAttribute("aria-label", "Search"));
+    document.querySelector(".navbar-toggler[role='menu']")?.removeAttribute("role");
+    document.querySelectorAll(".quarto-post a").forEach((a) => {
+      if (!a.textContent.trim() && !a.querySelector("img")) {
+        a.setAttribute("aria-hidden", "true");
+        a.tabIndex = -1;
+      }
+    });
+    document.querySelectorAll(".quarto-listing img:not([alt])").forEach((img) => (img.alt = ""));
+    document.querySelectorAll(".quarto-listing .listing-title").forEach((h) => h.setAttribute("aria-level", "2"));
+  };
+  const search = document.getElementById("quarto-search");
+  if (search) new MutationObserver(patch).observe(search, { childList: true, subtree: true });
+  document.addEventListener("DOMContentLoaded", patch);
+})();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -232,7 +232,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1792627200000" data-listing-file-modified-sort="1793130446154" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1792627200000" data-listing-file-modified-sort="1793131269552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
 <a href="../projects/street-photography-leeds.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -251,7 +251,7 @@ Street Photography: Leeds
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1791072000000" data-listing-file-modified-sort="1793130446154" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1791072000000" data-listing-file-modified-sort="1793131269552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
 <a href="../projects/uk-railway-stations.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -268,7 +268,7 @@ UK Railway Stations
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1789257600000" data-listing-file-modified-sort="1793130446154" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="g-col-1" data-index="2" data-listing-date-sort="1789257600000" data-listing-file-modified-sort="1793131269552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
 <a href="../projects/canazei-festival.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -287,7 +287,7 @@ Canazei Festival
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-date-sort="1786147200000" data-listing-file-modified-sort="1793130446154" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="g-col-1" data-index="3" data-listing-date-sort="1786147200000" data-listing-file-modified-sort="1793131269552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
 <a href="../projects/wharfedale-nature.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -306,7 +306,7 @@ Wharfedale Nature
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-listing-date-sort="1785196800000" data-listing-file-modified-sort="1793130446154" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="g-col-1" data-index="4" data-listing-date-sort="1785196800000" data-listing-file-modified-sort="1793131269552" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
 <a href="../projects/favourite-trees.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -365,6 +365,31 @@ No matching items
       }
     });
   });
+</script>
+<script>
+// Accessibility patches for markup Quarto generates: label the search widget,
+// drop the navbar toggler's invalid role="menu", hide the empty duplicate links
+// in blog listings from screen readers/tab order, mark listing cover images as
+// decorative (the title sits beside them) and expose listing titles as level-2
+// headings (Quarto uses h3/h5 straight after the page h1). Search is built after load.
+(() => {
+  const patch = () => {
+    document.querySelectorAll(".aa-DetachedSearchButton, .aa-Autocomplete")
+      .forEach((el) => el.hasAttribute("aria-label") || el.setAttribute("aria-label", "Search"));
+    document.querySelector(".navbar-toggler[role='menu']")?.removeAttribute("role");
+    document.querySelectorAll(".quarto-post a").forEach((a) => {
+      if (!a.textContent.trim() && !a.querySelector("img")) {
+        a.setAttribute("aria-hidden", "true");
+        a.tabIndex = -1;
+      }
+    });
+    document.querySelectorAll(".quarto-listing img:not([alt])").forEach((img) => (img.alt = ""));
+    document.querySelectorAll(".quarto-listing .listing-title").forEach((h) => h.setAttribute("aria-level", "2"));
+  };
+  const search = document.getElementById("quarto-search");
+  if (search) new MutationObserver(patch).observe(search, { childList: true, subtree: true });
+  document.addEventListener("DOMContentLoaded", patch);
+})();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
