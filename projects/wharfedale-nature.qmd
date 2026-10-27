@@ -1,0 +1,9 @@
+---
+title: "Wharfedale Nature"
+description: ""
+image: ../photos/thumb/20260710-083811-IMG_5371.webp
+date: 2026-08-08
+---
+
+::: {.pg-project data-project="wharfedale-nature"}
+:::

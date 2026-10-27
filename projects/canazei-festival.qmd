@@ -1,0 +1,9 @@
+---
+title: "Canazei Festival"
+description: ""
+image: ../photos/thumb/20260913-130606-DSCF0791.webp
+date: 2026-09-13
+---
+
+::: {.pg-project data-project="canazei-festival"}
+:::

@@ -354,6 +354,7 @@ dependencies = [
     { name = "jupyter" },
     { name = "matplotlib" },
     { name = "pandas" },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
@@ -361,6 +362,7 @@ requires-dist = [
     { name = "jupyter" },
     { name = "matplotlib" },
     { name = "pandas" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
 ]
 
 [[package]]

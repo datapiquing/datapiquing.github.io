@@ -1,0 +1,9 @@
+---
+title: "Favourite Trees"
+description: ""
+image: ../photos/thumb/20260720-202125-_DSF0274.webp
+date: 2026-07-28
+---
+
+::: {.pg-project data-project="favourite-trees"}
+:::

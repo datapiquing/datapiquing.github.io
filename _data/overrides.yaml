@@ -1,0 +1,10 @@
+# Hand-edited; never overwritten by photos.py. Run `photos.py rebuild` after editing.
+#
+# hidden:           photo ids to hide (webps stay in repo; use `remove` to delete)
+# hidden_projects:  project slugs to hide (page becomes draft; images stay on Home)
+# photos:           per-id field overrides, e.g.
+#   20260905-122917-DSCF0741:
+#     caption: "Corrected caption"
+hidden: []
+hidden_projects: []
+photos: {}
