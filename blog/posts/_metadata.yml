@@ -1,0 +1,2 @@
+# Applies to every blog post: click body images to enlarge (Quarto's built-in lightbox).
+lightbox: true

@@ -46,6 +46,7 @@ OVERRIDES = ROOT / "_data" / "overrides.yaml"
 MANIFEST = ROOT / "data" / "photos.json"
 PROJECTS_DIR = ROOT / "projects"
 POSTS_DIR = ROOT / "blog" / "posts"
+POST_TEMPLATE = ROOT / "blog" / "_template" / "index.qmd"
 
 FULL_LONG_EDGE = 1600
 FULL_QUALITY = 82
@@ -418,12 +419,14 @@ def cmd_new_post(args):
     if folder.exists():
         sys.exit(f"Already exists: {folder.relative_to(ROOT)}")
     folder.mkdir(parents=True)
-    title = args.title.replace('"', '\\"')
-    (folder / "index.qmd").write_text(
-        f'---\ntitle: "{title}"\ndate: {date}\ncategories: []\n'
-        f"image: cover.webp\ndraft: true\n---\n\n"
-        "First paragraph becomes the summary on the blog listing.\n"
-    )
+    text = POST_TEMPLATE.read_text()
+    for key, value in {
+        "title": args.title.replace('"', '\\"'),
+        "date": date,
+        "folder": folder.name,
+    }.items():
+        text = text.replace(f"{{{key}}}", value)
+    (folder / "index.qmd").write_text(text)
     print(f"Created {(folder / 'index.qmd').relative_to(ROOT)} (draft: true; remove when ready)")
 
 

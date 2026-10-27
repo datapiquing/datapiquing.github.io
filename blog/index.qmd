@@ -4,5 +4,8 @@ listing:
   contents: "posts/*/index.qmd"
   sort: "date desc"
   type: default
+  fields: [image, date, title, description, categories]
+  date-format: medium
   categories: true
+  feed: true
 ---

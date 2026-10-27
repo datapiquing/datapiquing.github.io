@@ -1,0 +1,16 @@
+---
+title: "{title}"
+date: {date}
+categories: []
+image: cover.webp     # listing thumbnail + social share image
+draft: true           # remove when ready to publish
+---
+
+The first paragraph becomes the summary on the blog listing (unless `description:` is set).
+
+<!--
+Images live in this folder. Convert LrC JPEGs from ~/Desktop/Lrc_JPEGs/blog/ with:
+  uv run scripts/photos.py post-images {folder}
+Then reference them relatively, e.g. ![Caption](my-photo.webp).
+A gallery photo can be used directly: ![Caption](/photos/full/<id>.webp)
+-->
