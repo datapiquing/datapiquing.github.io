@@ -1,27 +1,19 @@
 [
   {
-    "listing": "/reviews/index.html",
-    "items": [
-      "/reviews/2026-07.html"
-    ]
-  },
-  {
     "listing": "/projects/index.html",
     "items": [
-      "/hobbies/toolsmithing/projects/lrc_film_simulation.html"
+      "/projects/street-photography-leeds.html",
+      "/projects/uk-railway-stations.html",
+      "/projects/canazei-festival.html",
+      "/projects/wharfedale-nature.html",
+      "/projects/favourite-trees.html"
     ]
   },
   {
-    "listing": "/journey/index.html",
+    "listing": "/blog/index.html",
     "items": [
-      "/journey/2026.html"
-    ]
-  },
-  {
-    "listing": "/hobbies/toolsmithing/index.html",
-    "items": [
-      "/hobbies/toolsmithing/projects/lrc_film_simulation.html",
-      "/hobbies/toolsmithing/journal/2026-07-20-first-journal-entry.html"
+      "/blog/posts/2026-07-21-lrc-film-simulation/index.html",
+      "/blog/posts/2026-07-20-my-first-photography-project/index.html"
     ]
   }
 ]

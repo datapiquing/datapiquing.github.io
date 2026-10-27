@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Garry Sykes</title>
+<link>https://datapiquing.com/blog/</link>
+<atom:link href="https://datapiquing.com/blog/index.xml" rel="self" type="application/rss+xml"/>
+<description>Photography portfolio and blog of Garry Sykes.</description>
+<generator>quarto-1.5.56</generator>
+<lastBuildDate>Tue, 21 Jul 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Show Fuji Film Simulation in LrC</title>
+  <link>https://datapiquing.com/blog/posts/2026-07-21-lrc-film-simulation/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The Problem</h2>
+<p>When I imported my first Fuji RAW+JPEG images into Lightroom Classic (LrC) two things became apparent.</p>
+<p>Firstly, only the RAW images were displayed by default. I’d taken a number of images with Fuji’s much loved film simulations applied (e.g.&nbsp;Classic Chrome, Reala Ace, Velvia Vivid etc.). However, these simulations are only applied to the JPEG images and hence I was unable to see their effect on the image. Thankfully, this was quickly resolved by selecting a checkbox, ‘Treat JPEG files next to raw files as separate photos’, in Lightroom’s Preferences. Now RAW and JPEG images appeared separately, side-by-side in the Library Module.</p>
+<p>Secondly, there was no way to display the film simulation applied to each JPEG or filter images by film simulation.</p>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
+<p>After a little investigation it turned out that the film simulation is baked into the JPEG and stored in Fujufilm’s private <strong>maker-note</strong> tags. However, LrC does <strong>not</strong> surface that maker-note field. You can see it with ExifTool (<code>exiftool -FilmMode *.jpg</code>), but inside LrC there is no “Film Simulation” column and no way to filter or build Smart Collections by it.</p>
+</section>
+<section id="result" class="level2">
+<h2 class="anchored" data-anchor-id="result">Result</h2>
+<p>Were applicable, JPEG images now show the film simulation name above each thumbnail in Grid view. In addition, the images can be grouped and filtered by film simulation.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>lightroom</category>
+  <category>photography</category>
+  <category>automation</category>
+  <guid>https://datapiquing.com/blog/posts/2026-07-21-lrc-film-simulation/</guid>
+  <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>My first photography project</title>
+  <link>https://datapiquing.com/blog/posts/2026-07-20-my-first-photography-project/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Today I completed my first <a href="../2026-07-20-lrc-film-simulation/index.qmd">photography project</a> on the new website!</p>
+<p>Unsurprisingly, it’s to do with my new camera, though I didn’t expect to be scripting automations this early, after returning to an old hobby that’s been neglected for a decade … I guess you can’t take the developer out of me 😜</p>
+<p>Fuji’s film simulations (sims) garner alot of hype and are often cited as the reason why people buy Fuji cameras. I was keen to try them on my first foray out with the X100vi. Arriving back at my Mac and importing my images into Lightroom Classic (LrC) I was a little disappointed that I couldn’t see the sims applied to each image nor filter my images by the sim used.</p>
+<p>With an itch to stratch, the automation project was conceived …</p>
+
+
+
+ ]]></description>
+  <category>photography</category>
+  <guid>https://datapiquing.com/blog/posts/2026-07-20-my-first-photography-project/</guid>
+  <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
 
+# AI training / answer-engine crawlers: not permitted (honoured by reputable bots only).
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: anthropic-ai
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Bytespider
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+Disallow: /
+
 Sitemap: https://datapiquing.com/sitemap.xml
