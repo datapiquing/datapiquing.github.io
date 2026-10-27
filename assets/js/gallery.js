@@ -84,7 +84,7 @@ function createLightbox() {
 function thumb(p, index) {
   const a = document.createElement("a");
   a.className = "pg-item";
-  a.href = url(`photos/full/${p.id}.webp`);
+  a.href = `#photo=${p.id}`; // not the image URL, so "open in new tab" can't grab the file
   a.style.setProperty("--r", (p.w / p.h).toFixed(4));
   a.dataset.index = index;
   a.innerHTML = `<i style="padding-bottom:${((p.h / p.w) * 100).toFixed(3)}%"></i>` +

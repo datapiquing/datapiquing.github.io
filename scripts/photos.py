@@ -6,6 +6,7 @@ catalogue, and builds the published manifest the gallery pages read.
     uv run scripts/photos.py ingest [--src DIR] [--dry-run] [--no-move]
     uv run scripts/photos.py rebuild
     uv run scripts/photos.py check
+    uv run scripts/photos.py stamp
     uv run scripts/photos.py remove <id>...
     uv run scripts/photos.py remove-project <slug> [--keep-images]
     uv run scripts/photos.py new-post "<title>" [--date YYYY-MM-DD]
@@ -15,7 +16,7 @@ Files:
     _data/catalog.json    every ingested photo (script-owned, not published)
     _data/overrides.yaml  hand-edited: hidden ids/projects, per-photo field fixes
     data/photos.json      published manifest (catalog + overrides, hidden removed)
-    photos/full|thumb/    webp images, named by photo id
+    photos/full|thumb/    webp images, named by photo id (copyright XMP only)
     projects/<slug>.qmd   one page per project; image/date/draft lines are managed
 """
 
@@ -54,6 +55,9 @@ THUMB_HEIGHT = 600  # justified rows are height-constrained
 THUMB_QUALITY = 75
 POST_LONG_EDGE = 1600
 POST_QUALITY = 82
+
+COPYRIGHT_OWNER = "Garry Sykes"
+RIGHTS_URL = "https://datapiquing.com/about.html"
 
 COVER_LABEL = "Red"
 GENRE_PREFIX = "_"
@@ -153,6 +157,22 @@ def to_webp(src, dest, w, h, size, quality):
     if size != (w, h):
         cmd += ["-resize", str(size[0]), str(size[1])]
     run(cmd + [str(src), "-o", str(dest)])
+
+
+def stamp(paths):
+    """Embed copyright XMP in webps (all other metadata was stripped by cwebp)."""
+    if not paths:
+        return
+    year = dt.date.today().year
+    run([
+        "exiftool", "-q", "-overwrite_original",
+        f"-XMP-dc:Creator={COPYRIGHT_OWNER}",
+        f"-XMP-dc:Rights=© {year} {COPYRIGHT_OWNER}. All rights reserved.",
+        "-XMP-xmpRights:Marked=True",
+        f"-XMP-xmpRights:WebStatement={RIGHTS_URL}",
+        f"-XMP-plus:CopyrightOwnerName={COPYRIGHT_OWNER}",
+        *map(str, paths),
+    ])
 
 
 def move_to_completed(src_root, files):
@@ -301,7 +321,7 @@ def cmd_ingest(args):
         print(f"No JPEGs in {folder}")
         return
     catalog = load_json(CATALOG, {})
-    done, skipped = [], []
+    done, skipped, ids = [], [], []
     for meta in exiftool(files):
         f = Path(meta["SourceFile"])
         rec = to_record(meta, f)
@@ -319,11 +339,13 @@ def cmd_ingest(args):
                 fit(meta["ImageWidth"], meta["ImageHeight"], height=THUMB_HEIGHT), THUMB_QUALITY)
         catalog[rec["id"]] = rec
         done.append(f)
+        ids.append(rec["id"])
     for name in skipped:
         print(f"  skip   {name} (no DateTimeOriginal)")
     if args.dry_run:
         print("Dry run: nothing written.")
         return
+    stamp([d / f"{pid}.webp" for pid in ids for d in (FULL_DIR, THUMB_DIR)])
     write_json(CATALOG, catalog)
     rebuild()
     if not args.no_move and done:
@@ -336,6 +358,12 @@ def cmd_ingest(args):
 
 def cmd_rebuild(args):
     rebuild()
+
+
+def cmd_stamp(args):
+    files = sorted(FULL_DIR.glob("*.webp")) + sorted(THUMB_DIR.glob("*.webp")) + sorted(POSTS_DIR.glob("*/*.webp"))
+    stamp(files)
+    print(f"Stamped copyright on {len(files)} webp(s)")
 
 
 def cmd_check(args):
@@ -443,12 +471,15 @@ def cmd_post_images(args):
     if not files:
         print(f"No JPEGs in {src}")
         return
+    written = []
     for meta in exiftool(files):
         f = Path(meta["SourceFile"])
         w, h = meta["ImageWidth"], meta["ImageHeight"]
         dest = folder / f"{slugify(f.stem)}.webp"
         to_webp(f, dest, w, h, fit(w, h, long_edge=POST_LONG_EDGE), POST_QUALITY)
+        written.append(dest)
         print(f"  {f.name} -> {dest.relative_to(ROOT)}")
+    stamp(written)
     if not args.no_move:
         print(f"Moved {len(files)} source(s) to {move_to_completed(src, files)}")
 
@@ -465,6 +496,7 @@ def main():
 
     sub.add_parser("rebuild", help="regenerate manifest after editing overrides").set_defaults(func=cmd_rebuild)
     sub.add_parser("check", help="report metadata/file issues").set_defaults(func=cmd_check)
+    sub.add_parser("stamp", help="embed copyright XMP in all webps").set_defaults(func=cmd_stamp)
 
     p = sub.add_parser("remove", help="permanently delete photos")
     p.add_argument("ids", nargs="+")

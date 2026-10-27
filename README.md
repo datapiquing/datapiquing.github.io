@@ -90,6 +90,13 @@ Post images never appear in the gallery; a gallery photo can be used via `/photo
 Hidden photos are still reachable by direct URL — use *remove* for anything that must go. Photo ids are
 shown in the address bar (`#photo=<id>`) when a photo is open in the lightbox.
 
+## Image protection
+
+Photos are public (they're in the GitHub repo), so these only deter casual copying: thumbnails link to
+`#photo=<id>` rather than the image file, right-click/drag and iOS long-press saving are blocked, every
+webp carries copyright XMP (Creator, Rights, link to the About page — `photos.py stamp` re-applies it),
+captions show `© Garry Sykes`, and `robots.txt` disallows AI crawlers.
+
 `uv run scripts/photos.py check` reports missing captions/alt text, cover problems, empty project
 descriptions and orphan files.
 
@@ -108,8 +115,10 @@ them), wired up globally in `_quarto.yml`:
   touched the file), because Quarto's `last-modified` is the checkout time on CI. **Requires
   `fetch-depth: 0`** on the checkout step in `.github/workflows/publish.yml`. Uncommitted files fall back
   to mtime.
+- **`_includes/external-links.html`** — opens links to other sites in a new tab and blocks right-click /
+  drag on images.
 - **`_includes/reorder-title-meta.html`** — moves the Published/Modified dates directly beneath the title
-  on pages with category tags (blog posts). `projects/_metadata.yml` repeats it because a directory-level
+  on pages with category tags (blog posts). `projects/_metadata.yml` repeats both includes because a directory-level
   `include-after-body` replaces the site-wide one.
 
 ## Useful links

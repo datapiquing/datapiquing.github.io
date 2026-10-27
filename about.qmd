@@ -1,5 +1,5 @@
 ---
-title: "Datapiquing"
+title: "Garry Sykes"
 about:
   template: trestles
   image: images/profile.jpg
@@ -11,10 +11,10 @@ about:
       href: https://github.com/datapiquing
     - icon: strava
       text: Strava
-      # href: https://www.strava.com/athletes/3361910
-    - icon: trigpointinguk
+      href: https://www.strava.com/athletes/3361910
+    - icon: triangle
       text: TrigpointingUK
-      # href: https://trigpointing.uk/profile/4272
+      href: https://trigpointing.uk/profile/4272
 ---
 
 

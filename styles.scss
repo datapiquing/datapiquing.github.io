@@ -221,3 +221,14 @@ body:has(#pg-home) #title-block-header {
   font-size: 0.8rem;
   color: #999;
 }
+
+// Deter casual saving of photos: no drag, selection or iOS long-press menu.
+// (Right-click is blocked in _includes/external-links.html.)
+.pg-item img,
+.pswp img,
+.glightbox-container img,
+main img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}

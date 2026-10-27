@@ -1,10 +1,11 @@
 # Applies to every page in projects/: gallery script + lightbox styles.
 # Project pages are created/updated by scripts/photos.py.
-# include-after-body here replaces the site-wide list, so repeat that entry.
+# include-after-body here replaces the site-wide list, so repeat those entries.
 page-layout: full
 toc: false
 include-in-header:
   - text: <link rel="stylesheet" href="../assets/vendor/photoswipe/photoswipe.css">
 include-after-body:
   - ../_includes/reorder-title-meta.html
+  - ../_includes/external-links.html
   - text: <script type="module" src="../assets/js/gallery.js"></script>

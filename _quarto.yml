@@ -68,4 +68,6 @@ format:
     date-modified: last-modified
     date-format: medium
 
-    include-after-body: _includes/reorder-title-meta.html
+    include-after-body:
+      - _includes/reorder-title-meta.html
+      - _includes/external-links.html
