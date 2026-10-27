@@ -57,3 +57,129 @@ figure figcaption {
     text-decoration: underline;
   }
 }
+
+// --- Photo gallery (assets/js/gallery.js) ---------------------------------
+
+// Justified rows without layout JS: each item's basis/grow is proportional to
+// its aspect ratio (--r), so rows fill the width; the ::after spacer stops the
+// last row stretching.
+.pg-grid {
+  --row-h: 240px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  &::after {
+    content: "";
+    flex-grow: 999999;
+  }
+
+  @media (max-width: 576px) {
+    --row-h: 110px;
+    gap: 4px;
+  }
+}
+
+.pg-item {
+  position: relative;
+  width: calc(var(--r) * var(--row-h));
+  flex-grow: calc(var(--r) * 100);
+  background: #eee;
+  overflow: hidden;
+
+  i {
+    display: block;
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s;
+  }
+
+  &:hover img {
+    opacity: 0.85;
+  }
+}
+
+.pg-sentinel {
+  height: 1px;
+}
+
+.pg-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pg-chip {
+  border: 1px solid $primary;
+  border-radius: 999px;
+  background: transparent;
+  color: $primary;
+  padding: 0.15rem 0.75rem;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+
+  &.active {
+    background: $primary;
+    color: #fff;
+  }
+}
+
+.pg-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+// Lightbox caption panel, pinned to the bottom of the viewport.
+.pswp__pg-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 110px;
+  overflow-y: auto;
+  padding: 0.6rem 1rem 0.8rem;
+  text-align: center;
+  color: #eee;
+  font-size: 0.85rem;
+
+  p {
+    margin: 0.15rem 0;
+  }
+
+  .pg-cap-text {
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .pg-cap-meta {
+    color: #bbb;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+// Home is just the gallery: no title block / Modified date.
+body:has(#pg-home) #title-block-header {
+  display: none;
+}

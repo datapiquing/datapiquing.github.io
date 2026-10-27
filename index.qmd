@@ -1,7 +1,11 @@
 ---
-title: "Garry Sykes"
+pagetitle: "Garry Sykes"
+page-layout: full
+toc: false
 ---
 
-!["Intimidating sheep" - Pennine Way, NW of Alston, Cumbria, UK, 12 March 2024](images/sheep_gang.webp){width=100% fig-align="center"}
-
-Photography portfolio and blog. The gallery is coming soon.
+```{=html}
+<link rel="stylesheet" href="assets/vendor/photoswipe/photoswipe.css">
+<div id="pg-home" class="pg-gallery"></div>
+<script type="module" src="assets/js/gallery.js"></script>
+```
