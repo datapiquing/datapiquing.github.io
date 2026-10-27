@@ -7,6 +7,7 @@ catalogue, and builds the published manifest the gallery pages read.
     uv run scripts/photos.py rebuild
     uv run scripts/photos.py check
     uv run scripts/photos.py stamp
+    uv run scripts/photos.py thumbs
     uv run scripts/photos.py remove <id>...
     uv run scripts/photos.py remove-project <slug> [--keep-images]
     uv run scripts/photos.py new-post "<title>" [--date YYYY-MM-DD]
@@ -16,7 +17,7 @@ Files:
     _data/catalog.json    every ingested photo (script-owned, not published)
     _data/overrides.yaml  hand-edited: hidden ids/projects, per-photo field fixes
     data/photos.json      published manifest (catalog + overrides, hidden removed)
-    photos/full|thumb/    webp images, named by photo id (copyright XMP only)
+    photos/full|thumb|small/  webp images, named by photo id (copyright XMP only)
     projects/<slug>.qmd   one page per project; image/date/draft lines are managed
 """
 
@@ -42,6 +43,8 @@ COMPLETED = "completed"
 
 FULL_DIR = ROOT / "photos" / "full"
 THUMB_DIR = ROOT / "photos" / "thumb"
+SMALL_DIR = ROOT / "photos" / "small"  # phone-sized thumbnails (srcset)
+IMAGE_DIRS = (FULL_DIR, THUMB_DIR, SMALL_DIR)
 CATALOG = ROOT / "_data" / "catalog.json"
 OVERRIDES = ROOT / "_data" / "overrides.yaml"
 MANIFEST = ROOT / "data" / "photos.json"
@@ -53,6 +56,7 @@ FULL_LONG_EDGE = 1600
 FULL_QUALITY = 82
 THUMB_HEIGHT = 600  # justified rows are height-constrained
 THUMB_QUALITY = 75
+SMALL_HEIGHT = 300
 POST_LONG_EDGE = 1600
 POST_QUALITY = 82
 
@@ -337,6 +341,8 @@ def cmd_ingest(args):
                 (rec["w"], rec["h"]), FULL_QUALITY)
         to_webp(f, THUMB_DIR / f"{rec['id']}.webp", meta["ImageWidth"], meta["ImageHeight"],
                 fit(meta["ImageWidth"], meta["ImageHeight"], height=THUMB_HEIGHT), THUMB_QUALITY)
+        to_webp(f, SMALL_DIR / f"{rec['id']}.webp", meta["ImageWidth"], meta["ImageHeight"],
+                fit(meta["ImageWidth"], meta["ImageHeight"], height=SMALL_HEIGHT), THUMB_QUALITY)
         catalog[rec["id"]] = rec
         done.append(f)
         ids.append(rec["id"])
@@ -345,7 +351,7 @@ def cmd_ingest(args):
     if args.dry_run:
         print("Dry run: nothing written.")
         return
-    stamp([d / f"{pid}.webp" for pid in ids for d in (FULL_DIR, THUMB_DIR)])
+    stamp([d / f"{pid}.webp" for pid in ids for d in IMAGE_DIRS])
     write_json(CATALOG, catalog)
     rebuild()
     if not args.no_move and done:
@@ -361,9 +367,24 @@ def cmd_rebuild(args):
 
 
 def cmd_stamp(args):
-    files = sorted(FULL_DIR.glob("*.webp")) + sorted(THUMB_DIR.glob("*.webp")) + sorted(POSTS_DIR.glob("*/*.webp"))
+    files = [f for d in IMAGE_DIRS for f in sorted(d.glob("*.webp"))] + sorted(POSTS_DIR.glob("*/*.webp"))
     stamp(files)
     print(f"Stamped copyright on {len(files)} webp(s)")
+
+
+def cmd_thumbs(args):
+    """Create missing small thumbnails from the full-size webps."""
+    catalog = load_json(CATALOG, {})
+    made = []
+    for pid, rec in catalog.items():
+        dest = SMALL_DIR / f"{pid}.webp"
+        if dest.exists() or not (FULL_DIR / f"{pid}.webp").exists():
+            continue
+        to_webp(FULL_DIR / f"{pid}.webp", dest, rec["w"], rec["h"],
+                fit(rec["w"], rec["h"], height=SMALL_HEIGHT), THUMB_QUALITY)
+        made.append(dest)
+    stamp(made)
+    print(f"Created {len(made)} small thumbnail(s)")
 
 
 def cmd_check(args):
@@ -392,7 +413,7 @@ def cmd_check(args):
             issues.append(f"projects/{page.name}: no photos")
         if re.search(r'^description:\s*(""|\'\')?\s*$', text, re.M):
             issues.append(f"projects/{page.name}: empty description")
-    for d in (FULL_DIR, THUMB_DIR):
+    for d in IMAGE_DIRS:
         for f in sorted(d.glob("*.webp")) if d.exists() else []:
             if f.stem not in catalog:
                 issues.append(f"orphan file: {f.relative_to(ROOT)}")
@@ -417,7 +438,7 @@ def cmd_remove(args):
         if catalog.pop(pid, None) is None:
             print(f"  not found: {pid}")
             continue
-        for d in (FULL_DIR, THUMB_DIR):
+        for d in IMAGE_DIRS:
             (d / f"{pid}.webp").unlink(missing_ok=True)
         print(f"  removed {pid}")
     write_json(CATALOG, catalog)
@@ -436,7 +457,7 @@ def cmd_remove_project(args):
             catalog[pid]["project"] = catalog[pid]["slug"] = None
         else:
             catalog.pop(pid)
-            for d in (FULL_DIR, THUMB_DIR):
+            for d in IMAGE_DIRS:
                 (d / f"{pid}.webp").unlink(missing_ok=True)
     write_json(CATALOG, catalog)
     print(f"Removed project {args.slug} ({len(ids)} photos {'kept on Home' if args.keep_images else 'deleted'})")
@@ -497,6 +518,7 @@ def main():
     sub.add_parser("rebuild", help="regenerate manifest after editing overrides").set_defaults(func=cmd_rebuild)
     sub.add_parser("check", help="report metadata/file issues").set_defaults(func=cmd_check)
     sub.add_parser("stamp", help="embed copyright XMP in all webps").set_defaults(func=cmd_stamp)
+    sub.add_parser("thumbs", help="create missing small thumbnails").set_defaults(func=cmd_thumbs)
 
     p = sub.add_parser("remove", help="permanently delete photos")
     p.add_argument("ids", nargs="+")

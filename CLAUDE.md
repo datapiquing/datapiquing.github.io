@@ -17,6 +17,7 @@ uv run scripts/photos.py ingest           # LrC exports -> webp + manifest + pro
 uv run scripts/photos.py rebuild          # after editing _data/overrides.yaml
 uv run scripts/photos.py check            # metadata/file issues
 uv run scripts/photos.py stamp            # re-embed copyright XMP in all webps
+uv run scripts/photos.py thumbs           # create missing small thumbnails from full webps
 uv run scripts/photos.py remove <id>      # / remove-project <slug> [--keep-images]
 uv run scripts/photos.py new-post "<title>"
 uv run scripts/photos.py post-images <post-folder>
@@ -26,8 +27,8 @@ uv run scripts/photos.py post-images <post-folder>
 
 - **Deployed via GitHub Actions** — on push to `main`, the Quarto Publish workflow (Quarto 1.5.56) renders and pushes to `gh-pages`. Checkout uses `fetch-depth: 0` so the git-date filter works. No page executes Python, so CI renders everything; `freeze: auto` stays for any future executing page (render locally, commit `_freeze/`).
 - **Photo pipeline** (`scripts/photos.py`, stdlib + PyYAML, shells out to exiftool and cwebp):
-  - Source: `~/Desktop/Lrc_JPEGs/lightbox/*.jpg` (1600px LrC exports). Thumbnails are derived (600px high); LrC `thumbnail/` exports are ignored but moved with sources to `Lrc_JPEGs/completed/<date>/`.
-  - Photo id = `YYYYMMDD-HHMMSS-<filename stem>` from DateTimeOriginal → re-exports upsert; ids name `photos/full|thumb/<id>.webp`.
+  - Source: `~/Desktop/Lrc_JPEGs/lightbox/*.jpg` (1600px LrC exports). Thumbnails are derived (`thumb` 600px high, `small` 300px high for phones/1x screens, chosen via `srcset`); LrC `thumbnail/` exports are ignored but moved with sources to `Lrc_JPEGs/completed/<date>/`.
+  - Photo id = `YYYYMMDD-HHMMSS-<filename stem>` from DateTimeOriginal → re-exports upsert; ids name `photos/full|thumb|small/<id>.webp`.
   - `_data/catalog.json` (script-owned, every photo) + `_data/overrides.yaml` (hand-edited: `hidden`, `hidden_projects`, per-id field overrides) → `data/photos.json` (published manifest: `photos`, `projects`). `_data/` is not published.
   - Metadata mapping: Title = project, Caption/Description = caption, AltTextAccessibility = alt (falls back to caption), Keywords with `_` prefix = genres, other keywords = tag cloud, Label `Red` = project cover.
   - **Privacy**: GPS never written to the manifest; webps carry only copyright XMP (`stamp`, run automatically on ingest/post-images). Location shown is City/Country only.
@@ -36,7 +37,7 @@ uv run scripts/photos.py post-images <post-folder>
 - **Gallery** (`assets/js/gallery.js`, ES module): fetches `data/photos.json` (paths resolved from the module URL so any page depth works). `#pg-home` → genre chips (OR) + sort + justified grid + infinite scroll; `.pg-project[data-project]` → keyword tag cloud (AND) + grid. Lightbox is PhotoSwipe 5 vendored in `assets/vendor/photoswipe/`. Filter state in query string; `#photo=<id>` deep links. Justified rows are pure CSS (`--r` aspect ratio per item) in `styles.scss`.
 - **Sections**:
   - `index.qmd` — Home gallery (title block hidden via CSS)
-  - `projects/index.qmd` — Quarto grid listing of `projects/*.qmd`; `projects/_metadata.yml` injects gallery script/CSS (and repeats the site-wide `include-after-body` entries, since directory-level lists replace it)
+  - `projects/index.qmd` — Quarto grid listing of `projects/*.qmd`; `projects/_metadata.yml` injects gallery script/CSS (and repeats the site-wide `include-in-header`/`include-after-body` entries, since directory-level lists replace them)
   - `blog/index.qmd` — listing of `blog/posts/*/index.qmd` + RSS; one folder per post with its images; `blog/posts/_metadata.yml` enables Quarto's built-in lightbox; `blog/_template/index.qmd` is the `new-post` template (not rendered)
   - `about.qmd` — trestles template
 - **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder.
@@ -45,6 +46,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `git-modified.lua` — sets each page's `Modified` date from `git log`; uncommitted files fall back to mtime; only refreshes on the live site after commit+push
   - `reorder-title-meta.html` — moves Published/Modified dates beneath the title on tagged pages (blog posts)
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images (download deterrent)
+  - `head.html` — Google Fonts preconnect + apple-touch-icon; favicon is `images/favicon.png`
 - Navbar: wordmark "Garry Sykes" is the home link; Projects, Blog, About; GitHub/Instagram/Facebook icons; search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored
 - Dependencies managed with `uv` — `pyproject.toml` / `uv.lock`

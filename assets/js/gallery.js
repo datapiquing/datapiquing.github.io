@@ -9,6 +9,9 @@ const url = (path) => new URL(path, ROOT).href;
 
 const BATCH = 30;
 const EAGER = 8;
+// Thumbnail heights (px) from scripts/photos.py and grid row heights from styles.scss.
+const THUMB_H = { small: 300, thumb: 600 };
+const ROW_H = { phone: 110, wide: 240 };
 const COPYRIGHT = "© Garry Sykes";
 
 let manifestPromise;
@@ -81,14 +84,24 @@ function createLightbox() {
 
 // --- Grid -------------------------------------------------------------------
 
+// srcset lets phones fetch the small thumbnail; high-DPI screens still get the sharp one.
+function srcset(p) {
+  return Object.entries(THUMB_H)
+    .map(([dir, h]) => `${url(`photos/${dir}/${p.id}.webp`)} ${Math.round((p.w / p.h) * Math.min(h, p.h))}w`)
+    .join(", ");
+}
+
 function thumb(p, index) {
+  const r = p.w / p.h;
   const a = document.createElement("a");
   a.className = "pg-item";
   a.href = `#photo=${p.id}`; // not the image URL, so "open in new tab" can't grab the file
-  a.style.setProperty("--r", (p.w / p.h).toFixed(4));
+  a.style.setProperty("--r", r.toFixed(4));
   a.dataset.index = index;
   a.innerHTML = `<i style="padding-bottom:${((p.h / p.w) * 100).toFixed(3)}%"></i>` +
-    `<img src="${url(`photos/thumb/${p.id}.webp`)}" alt="${esc(p.alt)}"` +
+    `<img src="${url(`photos/thumb/${p.id}.webp`)}" srcset="${srcset(p)}"` +
+    ` sizes="(max-width: 575.98px) ${Math.round(r * ROW_H.phone)}px, ${Math.round(r * ROW_H.wide)}px"` +
+    ` alt="${esc(p.alt)}"` +
     // First rows are above the fold: load immediately for a fast first paint.
     (index < EAGER ? ` fetchpriority="${index < 3 ? "high" : "auto"}">` : ` loading="lazy">`);
   return a;
@@ -128,7 +141,7 @@ function infiniteGrid(grid, lightbox) {
   const openAt = (index) => {
     lightbox.options.dataSource = list.map((p) => ({
       src: url(`photos/full/${p.id}.webp`),
-      msrc: url(`photos/thumb/${p.id}.webp`),
+      msrc: url(`photos/small/${p.id}.webp`),
       width: p.w,
       height: p.h,
       alt: p.alt,

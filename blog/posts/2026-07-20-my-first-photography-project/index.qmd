@@ -6,7 +6,7 @@ aliases:
   - /hobbies/toolsmithing/journal/2026-07-20-first-journal-entry.html
 ---
 
-Today I completed my first [photography project](../2026-07-20-lrc-film-simulation/index.qmd) on the new website!
+Today I completed my first [photography project](../2026-07-21-lrc-film-simulation/index.qmd) on the new website!
 
 Unsurprisingly, it's to do with my new camera, though I didn't expect to be scripting automations this early, after returning to an old hobby that's been neglected for a decade ... I guess you can't take the developer out of me 😜
 

@@ -26,6 +26,7 @@ website:
   title: "Garry Sykes"
   description: "Photography portfolio and blog of Garry Sykes."
   site-url: https://datapiquing.com
+  favicon: images/favicon.png
 
   navbar:
     left:
@@ -67,6 +68,9 @@ format:
 
     date-modified: last-modified
     date-format: medium
+
+    include-in-header:
+      - _includes/head.html
 
     include-after-body:
       - _includes/reorder-title-meta.html

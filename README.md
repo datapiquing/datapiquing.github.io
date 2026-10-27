@@ -48,7 +48,7 @@ blog/
   posts/<YYYY-MM-DD-slug>/index.qmd   # one folder per post, images alongside
   _template/index.qmd  # template for new posts (not published)
 about.qmd              # about page (trestles template)
-photos/full|thumb/     # gallery webps, named by photo id
+photos/full|thumb|small/  # gallery webps, named by photo id (small = phone thumbnails)
 data/photos.json       # published photo manifest read by the gallery
 _data/                 # catalog.json + overrides.yaml (private, not published)
 scripts/photos.py      # photo pipeline
@@ -121,7 +121,7 @@ any future page that does — render it locally and commit `_freeze/`.)
 
 ## Customisations
 
-Two build-time helpers live in `_includes/` (the `_` prefix means Quarto neither renders nor publishes
+Build-time helpers live in `_includes/` (the `_` prefix means Quarto neither renders nor publishes
 them), wired up globally in `_quarto.yml`:
 
 - **`_includes/git-modified.lua`** — sets each page's `Modified` date from `git log` (the last commit that
@@ -131,8 +131,12 @@ them), wired up globally in `_quarto.yml`:
 - **`_includes/external-links.html`** — opens links to other sites in a new tab and blocks right-click /
   drag on images.
 - **`_includes/reorder-title-meta.html`** — moves the Published/Modified dates directly beneath the title
-  on pages with category tags (blog posts). `projects/_metadata.yml` repeats both includes because a directory-level
-  `include-after-body` replaces the site-wide one.
+  on pages with category tags (blog posts).
+- **`_includes/head.html`** — preconnects to Google Fonts (used by the cosmo theme) and sets the iOS
+  home-screen icon. The favicon is `images/favicon.png` (`favicon:` in `_quarto.yml`).
+
+`projects/_metadata.yml` repeats the HTML includes because directory-level `include-in-header` /
+`include-after-body` lists replace the site-wide ones.
 
 ## Useful links
 
