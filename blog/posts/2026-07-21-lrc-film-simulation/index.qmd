@@ -1,7 +1,7 @@
 ---
 title: "Show Fuji Film Simulation in LrC"
 description: "A script to add film simulations to image metadata"
-date: 2026-07-20
+date: 2026-07-21
 categories: [lightroom, photography, automation]
 aliases:
   - /hobbies/toolsmithing/projects/lrc_film_simulation.html

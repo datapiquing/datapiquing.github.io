@@ -1,5 +1,4 @@
 # Build output
-docs/
 _site/
 
 # Python
@@ -13,8 +12,8 @@ __pycache__/
 # OS
 .DS_Store
 
-# Jupyter intermediates
-*.ipynb
+# Jupyter
+.ipynb_checkpoints/
 
 # Research
 research/

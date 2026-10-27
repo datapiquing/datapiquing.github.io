@@ -1,9 +1,13 @@
 ---
 title: "UK Railway Stations"
-description: ""
+description: "I'm always up for some platform action\n"
 image: ../photos/thumb/20261004-132101-DSCF0926.webp
 date: 2026-10-04
 ---
 
+<!-- <insert text here> -->
+
 ::: {.pg-project data-project="uk-railway-stations"}
 :::
+
+<!-- <insert text here> -->

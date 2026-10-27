@@ -16,6 +16,19 @@ Also needed (Homebrew): `exiftool`, `cwebp` (`brew install webp`).
 uv run quarto preview
 ```
 
+### Preview on a phone (same Wi-Fi)
+
+```bash
+uv run quarto preview --host 0.0.0.0 --port 4200 --no-browser
+ipconfig getifaddr en0                    # Mac's LAN IP, e.g. 192.168.1.232
+```
+
+On the phone (same Wi-Fi network), open `http://<LAN IP>:4200/`. `--host 0.0.0.0` makes the server
+listen on all network interfaces instead of only `localhost`; a fixed `--port` keeps the URL stable.
+If it won't load, allow incoming connections for Quarto/Deno when macOS asks (or in System Settings →
+Network → Firewall), and check the phone isn't on a guest network or mobile data. Live reload works on
+the phone too.
+
 If `_quarto.yml` changes, re-render the whole site before previewing:
 
 ```bash
