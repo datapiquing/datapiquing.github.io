@@ -190,11 +190,10 @@ function initHome(el, manifest, lightbox) {
     });
     select.value = state.sort;
 
-    const q = new URLSearchParams();
-    if (state.genres.size) q.set("genre", [...state.genres].join(","));
-    if (state.sort !== "newest") q.set("sort", state.sort);
-    const query = q.toString().replaceAll("%2C", ",");
-    history.replaceState(null, "", (query ? `?${query}` : location.pathname) + location.hash);
+    setQuery({
+      genre: [...state.genres].join(","),
+      sort: state.sort !== "newest" && state.sort,
+    });
 
     // OR filter: a photo matches if it has any selected genre.
     const photos = manifest.photos.filter(
@@ -220,7 +219,7 @@ function initHome(el, manifest, lightbox) {
   apply();
 
   // Deep link: #photo=<id>. Clear filters if the photo is filtered out.
-  const id = new URLSearchParams(location.hash.slice(1)).get("photo");
+  const id = deepLinkId();
   if (id && !grid.open(id) && state.genres.size) {
     state.genres.clear();
     apply();
@@ -228,13 +227,88 @@ function initHome(el, manifest, lightbox) {
   }
 }
 
+// --- Project page: keyword tag cloud ----------------------------------------
+
+function initProject(el, manifest, lightbox) {
+  const slug = el.dataset.project;
+  const all = manifest.photos.filter((p) => p.slug === slug);
+  const selected = new Set(
+    (new URLSearchParams(location.search).get("tag") || "").split(",").filter(Boolean)
+  );
+
+  const counts = {};
+  all.forEach((p) => p.keywords.forEach((k) => (counts[k] = (counts[k] || 0) + 1)));
+  const tags = Object.keys(counts).sort();
+  const max = Math.max(1, ...Object.values(counts));
+
+  el.innerHTML = `
+    <div class="pg-tags" role="group" aria-label="Filter by keyword"></div>
+    <div class="pg-grid"></div>`;
+  const cloud = el.querySelector(".pg-tags");
+  const grid = infiniteGrid(el.querySelector(".pg-grid"), lightbox);
+
+  // Font size scales with how many of the project's photos use the keyword.
+  cloud.innerHTML = tags
+    .map((t) => {
+      const size = (0.8 + 0.7 * (counts[t] - 1) / Math.max(1, max - 1)).toFixed(2);
+      return `<button type="button" class="pg-tag" data-tag="${esc(t)}" style="font-size:${size}rem"` +
+        ` title="${counts[t]} photo${counts[t] > 1 ? "s" : ""}">${esc(t)}</button>`;
+    })
+    .join("") +
+    `<button type="button" class="pg-tag pg-tag-clear" hidden>clear</button>`;
+
+  const apply = () => {
+    cloud.querySelectorAll(".pg-tag[data-tag]").forEach((b) => {
+      const on = selected.has(b.dataset.tag);
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-pressed", on);
+    });
+    cloud.querySelector(".pg-tag-clear").hidden = !selected.size;
+    setQuery({ tag: [...selected].join(",") });
+    // AND filter: a photo must carry every selected keyword.
+    grid.set(all.filter((p) => [...selected].every((t) => p.keywords.includes(t))));
+  };
+
+  cloud.addEventListener("click", (e) => {
+    const b = e.target.closest(".pg-tag");
+    if (!b) return;
+    if (!b.dataset.tag) selected.clear();
+    else selected.has(b.dataset.tag) ? selected.delete(b.dataset.tag) : selected.add(b.dataset.tag);
+    apply();
+  });
+
+  apply();
+
+  const id = deepLinkId();
+  if (id && !grid.open(id) && selected.size) {
+    selected.clear();
+    apply();
+    grid.open(id);
+  }
+}
+
 // --- Boot -------------------------------------------------------------------
+
+function deepLinkId() {
+  return new URLSearchParams(location.hash.slice(1)).get("photo");
+}
+
+// Replace the query string (empty values dropped), keeping commas readable.
+function setQuery(params) {
+  const q = new URLSearchParams();
+  Object.entries(params).forEach(([k, v]) => v && q.set(k, v));
+  const query = q.toString().replaceAll("%2C", ",");
+  history.replaceState(null, "", (query ? `?${query}` : location.pathname) + location.hash);
+}
 
 async function boot() {
   const home = document.getElementById("pg-home");
-  if (!home) return;
+  const project = document.querySelector(".pg-project[data-project]");
+  if (!home && !project) return;
   const manifest = await loadManifest();
-  initHome(home, manifest, createLightbox());
+  const lightbox = createLightbox();
+  if (home) initHome(home, manifest, lightbox);
+  if (project) initProject(project, manifest, lightbox);
 }
 
 boot();

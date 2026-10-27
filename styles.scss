@@ -183,3 +183,34 @@ figure figcaption {
 body:has(#pg-home) #title-block-header {
   display: none;
 }
+
+// Project page keyword tag cloud.
+.pg-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.pg-tag {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: $primary;
+  line-height: 1.3;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.active {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+.pg-tag-clear {
+  font-size: 0.8rem;
+  color: #999;
+}

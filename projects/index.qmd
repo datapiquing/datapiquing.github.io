@@ -1,5 +1,12 @@
 ---
 title: "Projects"
+listing:
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: grid
+  sort: "date desc"
+  fields: [image, title, description]
+  image-height: 240px
+  grid-columns: 3
 ---
-
-Photography projects are coming soon.
