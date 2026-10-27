@@ -8,6 +8,7 @@ const ROOT = new URL("../../", import.meta.url);
 const url = (path) => new URL(path, ROOT).href;
 
 const BATCH = 30;
+const EAGER = 8;
 const COPYRIGHT = "© Garry Sykes";
 
 let manifestPromise;
@@ -87,7 +88,9 @@ function thumb(p, index) {
   a.style.setProperty("--r", (p.w / p.h).toFixed(4));
   a.dataset.index = index;
   a.innerHTML = `<i style="padding-bottom:${((p.h / p.w) * 100).toFixed(3)}%"></i>` +
-    `<img src="${url(`photos/thumb/${p.id}.webp`)}" alt="${esc(p.alt)}" loading="lazy">`;
+    `<img src="${url(`photos/thumb/${p.id}.webp`)}" alt="${esc(p.alt)}"` +
+    // First rows are above the fold: load immediately for a fast first paint.
+    (index < EAGER ? ` fetchpriority="${index < 3 ? "high" : "auto"}">` : ` loading="lazy">`);
   return a;
 }
 

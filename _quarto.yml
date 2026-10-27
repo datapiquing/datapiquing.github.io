@@ -40,10 +40,13 @@ website:
 
     right:
       - icon: github
+        aria-label: GitHub
         href: https://github.com/datapiquing
       - icon: instagram
+        aria-label: Instagram
         href: https://www.instagram.com/garrysykes.photo
       - icon: facebook
+        aria-label: Facebook
         href: https://www.facebook.com/profile.php?id=61588969539539
 
   page-footer:

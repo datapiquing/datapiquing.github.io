@@ -1,6 +1,6 @@
 # datapiquing.com
 
-Quarto-based personal website deployed to GitHub Pages via GitHub Actions.
+Photography portfolio and blog of Garry Sykes. Quarto website, deployed to GitHub Pages via GitHub Actions.
 
 ## Setup
 
@@ -8,147 +8,113 @@ Quarto-based personal website deployed to GitHub Pages via GitHub Actions.
 uv sync
 ```
 
+Also needed (Homebrew): `exiftool`, `cwebp` (`brew install webp`).
+
 ## Local preview
 
 ```bash
 uv run quarto preview
 ```
 
-### NOTE
-
-If the global config file '**_quarto.yml**' is changed, the site will need re-rendering before the changes take effect and can be previewed
+If `_quarto.yml` changes, re-render the whole site before previewing:
 
 ```bash
 uv run quarto render
 ```
 
-
-
 ## Structure
 
-The site is organised into **sections**, not a single blog. Journals *are* the blog.
-
 ```text
-index.qmd            # home
-now.qmd              # /now page — current focus
-about.qmd            # about (trestles template)
-journey/             # curated, hand-written timeline (one page per year)
-projects/            # global auto-listing of every project across all hobbies
-reviews/             # periodic look-backs
-hobbies/<hobby>/     # a dashboard (index.qmd) plus projects/ and journal/ subfolders
-  ├── goals.qmd roadmap.qmd skills.qmd tools.qmd resources.qmd
-  ├── projects/      # one .qmd per project
-  └── journal/       # dated journal entries
-images/              # published images
-assets/              # published static assets (fonts, downloads, …)
-_includes/           # build-time tooling (NOT published) — see Customisations
-styles.scss          # theme overrides on top of cosmo
+index.qmd              # Home: infinite-scroll photo gallery (genre filter, sort, lightbox)
+projects/
+  index.qmd            # grid of projects (cover, title, description)
+  <slug>.qmd           # one page per project — created by scripts/photos.py
+  _metadata.yml        # wires the gallery into every project page
+blog/
+  index.qmd            # post listing + RSS feed (blog/index.xml)
+  posts/<YYYY-MM-DD-slug>/index.qmd   # one folder per post, images alongside
+  _template/index.qmd  # template for new posts (not published)
+about.qmd              # about page (trestles template)
+photos/full|thumb/     # gallery webps, named by photo id
+data/photos.json       # published photo manifest read by the gallery
+_data/                 # catalog.json + overrides.yaml (private, not published)
+scripts/photos.py      # photo pipeline
+assets/js/gallery.js   # gallery, tag cloud, lightbox
+assets/vendor/         # PhotoSwipe 5 (vendored)
+_includes/             # build-time helpers (not published) — see Customisations
+styles.scss            # theme overrides on top of cosmo
 ```
 
-**Single source of truth**: a project or journal entry lives *only* under its hobby
-(`hobbies/<hobby>/projects/…` or `hobbies/<hobby>/journal/…`). Quarto *listings*
-aggregate them elsewhere (e.g. `projects/index.qmd` gathers every hobby's projects). Never
-maintain a list by hand.
+## Adding photos
 
-The **Journey** section is the exception — it's curated by hand (one page per year),
-not an auto-listing.
+1. In Lightroom Classic, set metadata on each photo:
+   - **Title** = project name (e.g. `Street Photography: Leeds`); leave blank for Home-only photos
+   - **Caption**, **Alt Text** (caption is used if alt text is empty)
+   - **Keywords**: genres prefixed with `_` (e.g. `_street`, `_nature`) become Home filter chips; other keywords form each project's tag cloud
+   - **Label `Red`** on one photo per project = the project's cover
+2. Export with the website preset (1600px long edge) to `~/Desktop/Lrc_JPEGs/lightbox/`.
+3. Ingest:
 
-## Adding a journal entry
+   ```bash
+   uv run scripts/photos.py ingest            # --dry-run to preview, --no-move to keep sources
+   ```
 
-Create a `.qmd` under the relevant hobby's `journal/` folder:
+   This converts to webp, updates `data/photos.json`, creates/updates project pages, moves the
+   JPEGs to `Lrc_JPEGs/completed/<date>/`, and prints a `check` report.
+4. For a new project, fill in `description:` in `projects/<slug>.qmd` (you can add prose below the front matter too).
+5. Commit and push.
 
-```yaml
----
-title: "Entry title"
-date: 2026-04-11
-categories: [category1, category2]
----
+Re-exporting a photo (same capture time + filename) updates it in place. New genres and projects appear automatically.
 
-Your content here...
-```
-
-It appears automatically on that hobby's dashboard.
-
-## Adding a project
-
-Create a `.qmd` under the relevant hobby's `projects/` folder:
-
-```yaml
----
-title: "Project title"
-description: "Brief description for listing and SEO"
-date: 2026-04-11
-categories: [category1, category2]
----
-
-Your content here...
-```
-
-It appears automatically on both the hobby dashboard and the global `projects/` page. For
-a project that executes Python, add `execute: echo: false` to hide the code (see
-`hobbies/woodworking/projects/coffee-table.qmd`).
-
-## Deploying (no local execution)
-
-If the page uses only inline data or static content:
+## Writing a blog post
 
 ```bash
-git add hobbies/woodworking/journal/my-entry.qmd
-git commit -m "Add journal entry"
-git push
+uv run scripts/photos.py new-post "Street photography tips"     # creates blog/posts/<today>-street-photography-tips/
+# export the post's JPEGs to ~/Desktop/Lrc_JPEGs/blog/ (name one cover.jpg), then:
+uv run scripts/photos.py post-images <today>-street-photography-tips
 ```
 
-GitHub Actions renders and deploys automatically.
+Write the post in its `index.qmd`, reference images relatively (`![Caption](my-photo.webp)`), then remove
+`draft: true` when ready. The first paragraph becomes the listing summary unless `description:` is set.
+Post images never appear in the gallery; a gallery photo can be used via `/photos/full/<id>.webp`.
 
-## Deploying (with local execution / DB queries)
+## Hiding and removing
 
-If the page executes Python or queries a local resource, the GitHub Actions runner can't
-execute it. Render locally first so Quarto saves the output to `_freeze/`:
+| Item | Hide (reversible) | Remove (permanent) |
+|---|---|---|
+| Photo | add id to `hidden:` in `_data/overrides.yaml`, then `photos.py rebuild` | `photos.py remove <id>` |
+| Project | add slug to `hidden_projects:` in `_data/overrides.yaml`, then `photos.py rebuild` (photos stay on Home) | `photos.py remove-project <slug> [--keep-images]` |
+| Blog post | `draft: true` in its front matter | delete its folder |
 
-```bash
-# 1. Render locally
-uv run quarto render hobbies/woodworking/projects/my-project.qmd
+`_data/overrides.yaml` can also correct a photo's fields without re-exporting (see comments in the file).
+Hidden photos are still reachable by direct URL — use *remove* for anything that must go. Photo ids are
+shown in the address bar (`#photo=<id>`) when a photo is open in the lightbox.
 
-# 2. Commit the source AND the frozen output
-git add hobbies/woodworking/projects/my-project.qmd \
-        _freeze/hobbies/woodworking/projects/my-project/
-git commit -m "Add project with local data"
-git push
-```
+`uv run scripts/photos.py check` reports missing captions/alt text, cover problems, empty project
+descriptions and orphan files.
 
-GitHub Actions uses the frozen output from `_freeze/` and skips re-execution.
+## Deploying
 
-## How freeze works
-
-`_quarto.yml` has `freeze: auto` which means:
-- On `quarto render`, Quarto saves execution output to `_freeze/`
-- If source hasn't changed, subsequent renders reuse frozen output
-- The `_freeze/` directory is committed to git
-- The GitHub Actions runner uses frozen output — it does not execute Python
+Commit and push to `main`; GitHub Actions renders and publishes to the `gh-pages` branch. No page
+executes Python, so nothing needs rendering locally first. (`freeze: auto` remains in `_quarto.yml` for
+any future page that does — render it locally and commit `_freeze/`.)
 
 ## Customisations
 
-Beyond `styles.scss` (theme overrides), two build-time helpers live in `_includes/`
-(the `_` prefix means Quarto neither renders nor publishes them). Both are wired up
-globally in `_quarto.yml`:
+Two build-time helpers live in `_includes/` (the `_` prefix means Quarto neither renders nor publishes
+them), wired up globally in `_quarto.yml`:
 
-- **`_includes/git-modified.lua`** — a Pandoc filter that sets each page's `Modified`
-  date from `git log` (the last commit that touched the file). Quarto's built-in
-  `date: last-modified` uses the file's mtime, which on the CI runner is the checkout
-  time (identical for every page), so the filter sources it from git instead.
-  **Requires `fetch-depth: 0`** on the checkout step in `.github/workflows/publish.yml`
-  so full history is available. Uncommitted files fall back to mtime.
-- **`_includes/reorder-title-meta.html`** — a small script (`include-after-body`) that
-  moves the Published/Modified dates to sit directly beneath the title on pages that have
-  category tags (projects, journal entries, reviews).
-
-The date shown in each page's title block is the **git commit date**, so it only updates
-on the live site once a change is committed and pushed.
+- **`_includes/git-modified.lua`** — sets each page's `Modified` date from `git log` (the last commit that
+  touched the file), because Quarto's `last-modified` is the checkout time on CI. **Requires
+  `fetch-depth: 0`** on the checkout step in `.github/workflows/publish.yml`. Uncommitted files fall back
+  to mtime.
+- **`_includes/reorder-title-meta.html`** — moves the Published/Modified dates directly beneath the title
+  on pages with category tags (blog posts). `projects/_metadata.yml` repeats it because a directory-level
+  `include-after-body` replaces the site-wide one.
 
 ## Useful links
 
 1. [Quarto: Creating a Website](https://quarto.org/docs/websites/)
-2. [HTML Theming](https://quarto.org/docs/output-formats/html-themes.html)
+2. [Quarto: Listings](https://quarto.org/docs/websites/website-listings.html)
 3. [Publish to GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)
-4. [Quarto Crash Course: YouTube](https://www.youtube.com/watch?v=_VKxTPWDhA4)
-5. [Quarto Crash Course: GitHub](https://github.com/keithgalli/quarto-crash-course)
+4. [PhotoSwipe](https://photoswipe.com/)

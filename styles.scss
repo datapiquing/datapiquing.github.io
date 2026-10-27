@@ -60,6 +60,12 @@ figure figcaption {
 
 // --- Photo gallery (assets/js/gallery.js) ---------------------------------
 
+// Reserve space so the footer doesn't jump as photos load.
+.pg-gallery,
+.pg-project {
+  min-height: 100vh;
+}
+
 // Justified rows without layout JS: each item's basis/grow is proportional to
 // its aspect ratio (--r), so rows fill the width; the ::after spacer stops the
 // last row stretching.
@@ -125,16 +131,17 @@ figure figcaption {
 }
 
 .pg-chip {
-  border: 1px solid $primary;
+  // Darker than $primary so chip text meets WCAG AA contrast.
+  border: 1px solid darken($primary, 15%);
   border-radius: 999px;
   background: transparent;
-  color: $primary;
+  color: darken($primary, 15%);
   padding: 0.15rem 0.75rem;
   font-size: 0.85rem;
   text-transform: capitalize;
 
   &.active {
-    background: $primary;
+    background: darken($primary, 15%);
     color: #fff;
   }
 }

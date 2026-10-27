@@ -4,52 +4,49 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Quarto-based personal website deployed to GitHub Pages via GitHub Actions. A **sectioned personal site** (not a blog): journeys, projects, reviews and hobby dashboards, plus about/now/home pages. Content can include executable Python. Custom domain: datapiquing.com
+Quarto website deployed to GitHub Pages via GitHub Actions: **photography portfolio + blog** of Garry Sykes. Home is a photo gallery, Projects are metadata-driven photo galleries, Blog is dated posts, plus About. Custom domain: datapiquing.com (a new domain is planned — swap `CNAME` + `site-url`).
 
 ## Commands
 
 ```bash
-# Setup
-uv sync
+uv sync                                   # setup (also needs exiftool + cwebp via Homebrew)
+uv run quarto preview                     # live preview
+uv run quarto render                      # build site
 
-# Preview locally (live reload)
-uv run quarto preview
-
-# Build static site
-uv run quarto render
-
-# Render single file
-uv run quarto render hobbies/woodworking/projects/coffee-table.qmd
+uv run scripts/photos.py ingest           # LrC exports -> webp + manifest + project pages
+uv run scripts/photos.py rebuild          # after editing _data/overrides.yaml
+uv run scripts/photos.py check            # metadata/file issues
+uv run scripts/photos.py remove <id>      # / remove-project <slug> [--keep-images]
+uv run scripts/photos.py new-post "<title>"
+uv run scripts/photos.py post-images <post-folder>
 ```
 
 ## Architecture
 
-- **Quarto website project** configured in `_quarto.yml`
-- **Deployed via GitHub Actions** — on push to `main`, the Quarto Publish workflow renders and pushes to `gh-pages` branch. GitHub Pages serves from `gh-pages`. Checkout uses `fetch-depth: 0` (full history) so the git-date filter works — see below
-- **`freeze: auto`** — Python execution output is saved to `_freeze/` and committed to git. The GitHub Actions runner uses frozen output and does not execute Python code. Pages that execute Python or query local databases must be rendered locally before pushing.
-- Content is `.qmd` files (Markdown + optional executable Python code blocks)
-- **Sections** (no `/blog` — journals are the blog):
-  - `journey/` — curated, hand-written timeline; one page per year. The one place lists are maintained manually
-  - `projects/index.qmd` — global auto-listing aggregating `hobbies/**/projects/*.qmd`
-  - `reviews/` — periodic reviews, auto-listed via `reviews/index.qmd`
-  - `hobbies/<hobby>/` — a dashboard (`index.qmd`) with named listings for its `projects/` and `journal/`, plus support pages (goals, roadmap, skills, tools, resources)
-- **Single source of truth**: a project or journal entry lives only under its hobby; listings aggregate them elsewhere. Never duplicate a page or hand-maintain a cross-section list.
-- `now.qmd` — a [/now page](https://nownownow.com); `about.qmd` — about page (trestles template, profile image from `images/`)
-- `styles.scss` — custom theme overrides on top of cosmo theme (must use Quarto SCSS layer boundaries: `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Note: cosmo styles the title-block dates via a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it
-- `_includes/` — build-time tooling, not rendered/published, wired globally in `_quarto.yml`:
-  - `git-modified.lua` — Pandoc filter setting each page's `Modified` date from `git log` (last commit touching the file). Quarto's `date: last-modified` uses mtime = checkout time on CI, so git is the accurate source; needs `fetch-depth: 0`. Uncommitted files fall back to mtime. Title-block date only refreshes on the live site after commit+push
-  - `reorder-title-meta.html` — `include-after-body` script moving Published/Modified dates directly beneath the title on tagged pages (projects, journal, reviews)
-- Navbar: wordmark `datapiquing` is the home link (no separate Home item); `date-modified: last-modified` + `date-format: medium` set globally in `_quarto.yml`
-- `_quarto.yml` `render` list globs `.qmd` per section, preventing `.md` files (CLAUDE.md, README.md) from being rendered
-- Pages use Quarto-native features: callouts, mermaid diagrams, collapsible sections, LaTeX, listings
-- Dependencies managed with `uv` — `pyproject.toml` for direct deps, `uv.lock` for reproducible installs
+- **Deployed via GitHub Actions** — on push to `main`, the Quarto Publish workflow (Quarto 1.5.56) renders and pushes to `gh-pages`. Checkout uses `fetch-depth: 0` so the git-date filter works. No page executes Python, so CI renders everything; `freeze: auto` stays for any future executing page (render locally, commit `_freeze/`).
+- **Photo pipeline** (`scripts/photos.py`, stdlib + PyYAML, shells out to exiftool and cwebp):
+  - Source: `~/Desktop/Lrc_JPEGs/lightbox/*.jpg` (1600px LrC exports). Thumbnails are derived (600px high); LrC `thumbnail/` exports are ignored but moved with sources to `Lrc_JPEGs/completed/<date>/`.
+  - Photo id = `YYYYMMDD-HHMMSS-<filename stem>` from DateTimeOriginal → re-exports upsert; ids name `photos/full|thumb/<id>.webp`.
+  - `_data/catalog.json` (script-owned, every photo) + `_data/overrides.yaml` (hand-edited: `hidden`, `hidden_projects`, per-id field overrides) → `data/photos.json` (published manifest: `photos`, `projects`). `_data/` is not published.
+  - Metadata mapping: Title = project, Caption/Description = caption, AltTextAccessibility = alt (falls back to caption), Keywords with `_` prefix = genres, other keywords = tag cloud, Label `Red` = project cover.
+  - **Privacy**: GPS never written to the manifest; webps carry no metadata. Location shown is City/Country only.
+  - Project pages `projects/<slug>.qmd` are created if missing; the script only rewrites their `image:`, `date:` and `draft:` front-matter lines — title, description and prose are the user's.
+- **Gallery** (`assets/js/gallery.js`, ES module): fetches `data/photos.json` (paths resolved from the module URL so any page depth works). `#pg-home` → genre chips (OR) + sort + justified grid + infinite scroll; `.pg-project[data-project]` → keyword tag cloud (AND) + grid. Lightbox is PhotoSwipe 5 vendored in `assets/vendor/photoswipe/`. Filter state in query string; `#photo=<id>` deep links. Justified rows are pure CSS (`--r` aspect ratio per item) in `styles.scss`.
+- **Sections**:
+  - `index.qmd` — Home gallery (title block hidden via CSS)
+  - `projects/index.qmd` — Quarto grid listing of `projects/*.qmd`; `projects/_metadata.yml` injects gallery script/CSS (and repeats the site-wide `include-after-body`, since directory-level lists replace it)
+  - `blog/index.qmd` — listing of `blog/posts/*/index.qmd` + RSS; one folder per post with its images; `blog/posts/_metadata.yml` enables Quarto's built-in lightbox; `blog/_template/index.qmd` is the `new-post` template (not rendered)
+  - `about.qmd` — trestles template
+- **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder.
+- `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. Theme/style redesign is deferred: don't restyle beyond what features need.
+- `_includes/` — build-time tooling, not published, wired globally in `_quarto.yml`:
+  - `git-modified.lua` — sets each page's `Modified` date from `git log`; uncommitted files fall back to mtime; only refreshes on the live site after commit+push
+  - `reorder-title-meta.html` — moves Published/Modified dates beneath the title on tagged pages (blog posts)
+- Navbar: wordmark "Garry Sykes" is the home link; Projects, Blog, About; GitHub/Instagram/Facebook icons; search
+- `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored
+- Dependencies managed with `uv` — `pyproject.toml` / `uv.lock`
 
 ## Workflow
 
-### Pages without local execution
-Just commit `.qmd` files and push. GitHub Actions renders and deploys.
-
-### Pages with Python / local DB queries
-1. Render locally: `uv run quarto render hobbies/<hobby>/projects/my-project.qmd`
-2. Commit both `.qmd` and the corresponding `_freeze/` changes
-3. Push — GitHub Actions uses frozen output
+- New photos: export → `photos.py ingest` → fill new projects' `description:` → commit + push
+- New post: `photos.py new-post` → `post-images` → write → remove `draft: true` → commit + push

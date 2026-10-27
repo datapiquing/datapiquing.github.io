@@ -276,6 +276,8 @@ def rebuild(quiet=False):
         if pid in ov["hidden"]:
             continue
         rec = {**rec, **ov["photos"].get(pid, {})}
+        if not rec.get("alt"):  # no alt text, caption or title: describe by keywords
+            rec["alt"] = "Photograph: " + ", ".join(rec["genres"] + rec["keywords"]) if (rec["genres"] or rec["keywords"]) else "Photograph"
         if rec.get("slug") in ov["hidden_projects"]:
             rec["project"] = rec["slug"] = None
         photos.append(rec)
