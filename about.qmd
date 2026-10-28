@@ -9,7 +9,7 @@ about:
   links:
     - icon: github
       text: Github
-      href: https://github.com/datapiquing
+      href: https://github.com/garrysykes
     - icon: strava
       text: Strava
       href: https://www.strava.com/athletes/3361910

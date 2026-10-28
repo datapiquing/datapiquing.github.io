@@ -25,7 +25,7 @@ execute:
 website:
   title: "Garry Sykes"
   description: "Photography portfolio and blog of Garry Sykes."
-  site-url: https://datapiquing.com
+  site-url: https://garrysykes.com
   favicon: images/favicon.png
 
   navbar:
@@ -42,7 +42,7 @@ website:
     right:
       - icon: github
         aria-label: GitHub
-        href: https://github.com/datapiquing
+        href: https://github.com/garrysykes
       - icon: instagram
         aria-label: Instagram
         href: https://www.instagram.com/garrysykes.photo
@@ -51,7 +51,7 @@ website:
         href: https://www.facebook.com/profile.php?id=61588969539539
 
   page-footer:
-    center: "© Garry Sykes"
+    center: "© 2026 Garry Sykes. All rights reserved."
 
   open-graph: true
   twitter-card: true
