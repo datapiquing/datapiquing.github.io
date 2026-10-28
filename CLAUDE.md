@@ -48,7 +48,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images (download deterrent)
   - `head.html` — Google Fonts preconnect + apple-touch-icon; favicon is `images/favicon.ico`; avatar sources in gitignored `images/avatar/`
   - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels)
-- Navbar: X100VI camera logo (`images/navbar-logo.png`, no title text) is the home link; Projects, Blog, About; GitHub/Instagram/Facebook icons; search
+- Navbar: "Garry Sykes" title is the home link; Gallery (home), Projects, Blog, About; Instagram/Facebook icons (GitHub commented out); search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored
 - Dependencies managed with `uv` — `pyproject.toml` / `uv.lock`
 

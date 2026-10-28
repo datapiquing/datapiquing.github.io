@@ -243,10 +243,26 @@ main img {
   -webkit-touch-callout: none;
 }
 
-// Navbar camera logo is the home link (pixel art: 2x source shown at 106x49).
-.navbar-brand .navbar-logo {
-  height: 49px;
-  max-height: 49px;
-  width: auto;
-  image-rendering: pixelated;
+// About page "Tools of the trade": moved beneath the social links by about.qmd's script.
+.about-tools {
+  margin-top: 1.5rem;
+  text-align: center;
+
+  h2 {
+    font-size: 1.1rem;
+    border-bottom: none;
+    margin-bottom: 0.75rem;
+  }
+
+  img {
+    width: 212px; // pixel art: 4x source at 2x display for sharp high-DPI scaling
+    height: auto;
+    image-rendering: pixelated;
+  }
+
+  figcaption {
+    font-size: 0.875rem;
+    color: $gray-600;
+    margin-top: 0.25rem;
+  }
 }

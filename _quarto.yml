@@ -30,10 +30,10 @@ website:
   favicon: images/favicon.ico
 
   navbar:
-    title: false
-    logo: images/navbar-logo.png
-    logo-alt: "Garry Sykes – home"
     left:
+      - text: Gallery
+        href: index.qmd
+
       - text: Projects
         href: projects/index.qmd
 
@@ -44,9 +44,9 @@ website:
         href: about.qmd
 
     right:
-      - icon: github
-        aria-label: GitHub
-        href: https://github.com/garrysykes
+      # - icon: github
+      #   aria-label: GitHub
+      #   href: https://github.com/garrysykes
       - icon: instagram
         aria-label: Instagram
         href: https://www.instagram.com/garrysykes.photo

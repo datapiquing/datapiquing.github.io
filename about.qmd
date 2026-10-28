@@ -7,21 +7,24 @@ about:
   image-width: 13.5em
   image-shape: rectangle
   links:
-    - icon: github
-      text: Github
-      href: https://github.com/garrysykes
-    - icon: strava
-      text: Strava
-      href: https://www.strava.com/athletes/3361910
+    # - icon: github
+    #   text: Github
+    #   href: https://github.com/garrysykes
+    # - icon: strava
+    #   text: Strava
+    #   href: https://www.strava.com/athletes/3361910
     - icon: instagram
       text: Instagram
       href: https://www.instagram.com/garrysykes.photo
     - icon: facebook
       text: Facebook
       href: https://www.facebook.com/profile.php?id=61588969539539
-    - icon: triangle
-      text: TrigpointingUK
-      href: https://trigpointing.uk/profile/4272
+    # - icon: triangle
+    #   text: TrigpointingUK
+    #   href: https://trigpointing.uk/profile/4272
+    - icon: envelope
+      text: Email
+      href: "#email"
 ---
 
 
@@ -29,3 +32,26 @@ Hiking, cycling, travel and curiosity provide plenty of photographic opportuniti
 
 This website brings together my images, projects and blog as I explore and develop my photography.
 
+```{=html}
+<div class="about-tools">
+  <h2>Tools of the trade</h2>
+  <figure>
+    <img src="images/x100vi.png" alt="Top-down pixel-art drawing of a black Fujifilm X100VI camera">
+    <figcaption>Fujifilm X100VI</figcaption>
+  </figure>
+</div>
+<script>
+// Trestles puts the social links in the left column; move the tools block beneath them.
+const tools = document.querySelector('.about-tools');
+document.querySelector('.about-links')?.after(tools);
+</script>
+
+<!-- Email address is stored reversed + base64 and only assembled on click, so it never appears in the page source. -->
+<script>
+document.querySelectorAll('a.about-link[href$="#email"]').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  const addr = atob('bW9jLmR1b2xjaUBxNS5zcmlhaGNfbmlyaXBzYQ==').split('').reverse().join('');
+  location.href = 'mailto:' + addr + '?subject=' + encodeURIComponent('Visitor Query: garrysykes.com');
+}));
+</script>
+```
