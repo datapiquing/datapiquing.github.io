@@ -253,13 +253,21 @@ main img {
     margin-bottom: 0.75rem;
   }
 
+  figure {
+    text-align: center;
+  }
+
   img {
-    width: 212px; // pixel art: 4x source at 2x display for sharp high-DPI scaling
+    width: 318px; // pixel art: 6x source at 3x display for sharp high-DPI scaling
+    max-width: 100%;
     height: auto;
+    display: block;
+    margin: 0 auto;
     image-rendering: pixelated;
   }
 
   figcaption {
+    text-align: center;
     font-size: 0.875rem;
     color: $gray-600;
     margin-top: 0.25rem;
