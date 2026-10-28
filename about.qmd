@@ -40,11 +40,6 @@ This website brings together my images, projects and blog as I explore and devel
     <figcaption>Fujifilm X100VI</figcaption>
   </figure>
 </div>
-<script>
-// Trestles puts the social links in the left column; move the tools block beneath them.
-const tools = document.querySelector('.about-tools');
-document.querySelector('.about-links')?.after(tools);
-</script>
 
 <!-- Email address is stored reversed + base64 and only assembled on click, so it never appears in the page source. -->
 <script>
