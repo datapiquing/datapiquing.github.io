@@ -242,3 +242,10 @@ main img {
   user-select: none;
   -webkit-touch-callout: none;
 }
+
+// Navbar avatar beside the wordmark (64px source, shown at 32px for 2x screens).
+.navbar-brand .navbar-logo {
+  height: 32px;
+  max-height: 32px;
+  width: auto;
+}

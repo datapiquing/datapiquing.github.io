@@ -2,9 +2,9 @@
 title: "Garry Sykes"
 about:
   template: trestles
-  image: images/profile.jpg
+  image: images/about-stand.png
   image-alt: "Garry Sykes"
-  image-width: 20em
+  image-width: 13.5em
   image-shape: rectangle
   links:
     - icon: github
@@ -13,13 +13,19 @@ about:
     - icon: strava
       text: Strava
       href: https://www.strava.com/athletes/3361910
+    - icon: instagram
+      text: Instagram
+      href: https://www.instagram.com/garrysykes.photo
+    - icon: facebook
+      text: Facebook
+      href: https://www.facebook.com/profile.php?id=61588969539539
     - icon: triangle
       text: TrigpointingUK
       href: https://trigpointing.uk/profile/4272
 ---
 
 
-When I'm not hiking or cycling, you'll usually find me exploring the personal data I've accumulated over many years, building apps and automations, tinkering with LEGO robotics, or trying to improve my photography.
+When I'm not out hiking or cycling, you'll usually find me building apps and automations, tinkering with LEGO robotics, or trying to improve my photography.
 
 This blog is an exploration of those interests .. the projects I'm working on, the things I'm learning, and whatever happens to capture my interest on the day.
 

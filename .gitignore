@@ -17,3 +17,6 @@ __pycache__/
 
 # Research
 research/
+
+# Avatar source exports
+images/avatar/

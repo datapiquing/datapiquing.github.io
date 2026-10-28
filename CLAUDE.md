@@ -46,7 +46,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `git-modified.lua` — sets each page's `Modified` date from `git log`; uncommitted files fall back to mtime; only refreshes on the live site after commit+push
   - `reorder-title-meta.html` — moves Published/Modified dates beneath the title on tagged pages (blog posts)
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images (download deterrent)
-  - `head.html` — Google Fonts preconnect + apple-touch-icon; favicon is `images/favicon.png`
+  - `head.html` — Google Fonts preconnect + apple-touch-icon; favicon is `images/favicon.ico`; navbar logo `images/navbar-avatar.png`; avatar sources in gitignored `images/avatar/`
   - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels)
 - Navbar: wordmark "Garry Sykes" is the home link; Projects, Blog, About; GitHub/Instagram/Facebook icons; search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored
