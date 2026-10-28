@@ -243,9 +243,10 @@ main img {
   -webkit-touch-callout: none;
 }
 
-// Navbar avatar beside the wordmark (64px source, shown at 32px for 2x screens).
+// Navbar camera logo is the home link (pixel art: 2x source shown at 106x49).
 .navbar-brand .navbar-logo {
-  height: 32px;
-  max-height: 32px;
+  height: 49px;
+  max-height: 49px;
   width: auto;
+  image-rendering: pixelated;
 }

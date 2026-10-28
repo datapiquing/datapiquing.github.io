@@ -30,8 +30,9 @@ website:
   favicon: images/favicon.ico
 
   navbar:
-    logo: images/navbar-avatar.png
-    logo-alt: ""
+    title: false
+    logo: images/navbar-logo.png
+    logo-alt: "Garry Sykes – home"
     left:
       - text: Projects
         href: projects/index.qmd
