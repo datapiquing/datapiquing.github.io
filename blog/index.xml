@@ -6,14 +6,14 @@
       version="2.0">
 <channel>
 <title>Garry Sykes</title>
-<link>https://datapiquing.com/blog/</link>
-<atom:link href="https://datapiquing.com/blog/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://garrysykes.com/blog/</link>
+<atom:link href="https://garrysykes.com/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Photography portfolio and blog of Garry Sykes.</description>
 <generator>quarto-1.5.56</generator>
 <lastBuildDate>Tue, 21 Jul 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Show Fuji Film Simulation in LrC</title>
-  <link>https://datapiquing.com/blog/posts/2026-07-21-lrc-film-simulation/</link>
+  <link>https://garrysykes.com/blog/posts/2026-07-21-lrc-film-simulation/</link>
   <description><![CDATA[ 
 
 
@@ -40,12 +40,12 @@
   <category>lightroom</category>
   <category>photography</category>
   <category>automation</category>
-  <guid>https://datapiquing.com/blog/posts/2026-07-21-lrc-film-simulation/</guid>
+  <guid>https://garrysykes.com/blog/posts/2026-07-21-lrc-film-simulation/</guid>
   <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>My first photography project</title>
-  <link>https://datapiquing.com/blog/posts/2026-07-20-my-first-photography-project/</link>
+  <link>https://garrysykes.com/blog/posts/2026-07-20-my-first-photography-project/</link>
   <description><![CDATA[ 
 
 
@@ -60,7 +60,7 @@
 
  ]]></description>
   <category>photography</category>
-  <guid>https://datapiquing.com/blog/posts/2026-07-20-my-first-photography-project/</guid>
+  <guid>https://garrysykes.com/blog/posts/2026-07-20-my-first-photography-project/</guid>
   <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
 </item>
 </channel>
