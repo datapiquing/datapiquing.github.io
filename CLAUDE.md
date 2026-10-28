@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Quarto website deployed to GitHub Pages via GitHub Actions: **photography portfolio + blog** of Garry Sykes. Home is a photo gallery, Projects are metadata-driven photo galleries, Blog is dated posts, plus About. Custom domain: datapiquing.com (a new domain is planned — swap `CNAME` + `site-url`).
+Quarto website deployed to GitHub Pages via GitHub Actions: **photography portfolio + blog** of Garry Sykes. Home is a photo gallery, Projects are metadata-driven photo galleries, Blog is dated posts, plus About. Custom domain: garrysykes.com (set in `CNAME` + `site-url`).
 
 ## Commands
 
