@@ -180,11 +180,6 @@ ul.task-list li input[type="checkbox"] {
     <figcaption>Fujifilm X100VI</figcaption>
   </figure>
 </div>
-<script>
-// Trestles puts the social links in the left column; move the tools block beneath them.
-const tools = document.querySelector('.about-tools');
-document.querySelector('.about-links')?.after(tools);
-</script>
 <!-- Email address is stored reversed + base64 and only assembled on click, so it never appears in the page source. -->
 <script>
 document.querySelectorAll('a.about-link[href$="#email"]').forEach(a => a.addEventListener('click', e => {
