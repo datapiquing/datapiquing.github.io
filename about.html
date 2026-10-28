@@ -87,8 +87,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/navbar-logo.png" alt="Garry Sykes – home" class="navbar-logo">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Garry Sykes</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -97,6 +97,10 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Gallery</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./projects/index.html"> 
 <span class="menu-text">Projects</span></a>
@@ -111,11 +115,6 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/garrysykes"> <i class="bi bi-github" role="img" aria-label="GitHub">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.instagram.com/garrysykes.photo"> <i class="bi bi-instagram" role="img" aria-label="Instagram">
 </i> 
@@ -157,14 +156,6 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </header>
     <div class="about-links">
-  <a href="https://github.com/garrysykes" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-  <a href="https://www.strava.com/athletes/3361910" class="about-link" rel="" target="">
-    <i class="bi bi-strava"></i>
-     <span class="about-link-text">Strava</span>
-  </a>
   <a href="https://www.instagram.com/garrysykes.photo" class="about-link" rel="" target="">
     <i class="bi bi-instagram"></i>
      <span class="about-link-text">Instagram</span>
@@ -173,15 +164,35 @@ ul.task-list li input[type="checkbox"] {
     <i class="bi bi-facebook"></i>
      <span class="about-link-text">Facebook</span>
   </a>
-  <a href="https://trigpointing.uk/profile/4272" class="about-link" rel="" target="">
-    <i class="bi bi-triangle"></i>
-     <span class="about-link-text">TrigpointingUK</span>
+  <a href="/#email" class="about-link" rel="" target="">
+    <i class="bi bi-envelope"></i>
+     <span class="about-link-text">Email</span>
   </a>
 </div>
   </div>
   <div class="about-contents"><main class="content" id="quarto-document-content">
 <p>Hiking, cycling, travel and curiosity provide plenty of photographic opportunities.</p>
 <p>This website brings together my images, projects and blog as I explore and develop my photography.</p>
+<div class="about-tools">
+  <h2>Tools of the trade</h2>
+  <figure class="figure">
+    <img src="images/x100vi.png" alt="Top-down pixel-art drawing of a black Fujifilm X100VI camera" class="figure-img">
+    <figcaption>Fujifilm X100VI</figcaption>
+  </figure>
+</div>
+<script>
+// Trestles puts the social links in the left column; move the tools block beneath them.
+const tools = document.querySelector('.about-tools');
+document.querySelector('.about-links')?.after(tools);
+</script>
+<!-- Email address is stored reversed + base64 and only assembled on click, so it never appears in the page source. -->
+<script>
+document.querySelectorAll('a.about-link[href$="#email"]').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  const addr = atob('bW9jLmR1b2xjaUBxNS5zcmlhaGNfbmlyaXBzYQ==').split('').reverse().join('');
+  location.href = 'mailto:' + addr + '?subject=' + encodeURIComponent('Visitor Query: garrysykes.com');
+}));
+</script>
 
 
 </main></div>

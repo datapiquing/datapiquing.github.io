@@ -1,5 +1,12 @@
 [
   {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/posts/2026-07-21-lrc-film-simulation/index.html",
+      "/blog/posts/2026-07-20-my-first-photography-project/index.html"
+    ]
+  },
+  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/street-photography-leeds.html",
@@ -7,13 +14,6 @@
       "/projects/canazei-festival.html",
       "/projects/wharfedale-nature.html",
       "/projects/favourite-trees.html"
-    ]
-  },
-  {
-    "listing": "/blog/index.html",
-    "items": [
-      "/blog/posts/2026-07-21-lrc-film-simulation/index.html",
-      "/blog/posts/2026-07-20-my-first-photography-project/index.html"
     ]
   }
 ]

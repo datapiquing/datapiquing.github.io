@@ -1,33 +1,5 @@
 [
   {
-    "objectID": "projects/index.html",
-    "href": "projects/index.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Street Photography: Leeds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUK Railway Stations\n\n\nI’m always up for some platform action\n\n\n\n\n\n\n\n\n\n\n\n\n\nCanazei Festival\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWharfedale Nature\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFavourite Trees\n\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "blog/posts/2026-07-20-my-first-photography-project/index.html",
-    "href": "blog/posts/2026-07-20-my-first-photography-project/index.html",
-    "title": "My first photography project",
-    "section": "",
-    "text": "Today I completed my first photography project on the new website!\nUnsurprisingly, it’s to do with my new camera, though I didn’t expect to be scripting automations this early, after returning to an old hobby that’s been neglected for a decade … I guess you can’t take the developer out of me 😜\nFuji’s film simulations (sims) garner alot of hype and are often cited as the reason why people buy Fuji cameras. I was keen to try them on my first foray out with the X100vi. Arriving back at my Mac and importing my images into Lightroom Classic (LrC) I was a little disappointed that I couldn’t see the sims applied to each image nor filter my images by the sim used.\nWith an itch to stratch, the automation project was conceived …"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Garry Sykes",
-    "section": "",
-    "text": "Hiking, cycling, travel and curiosity provide plenty of photographic opportunities.\nThis website brings together my images, projects and blog as I explore and develop my photography."
-  },
-  {
-    "objectID": "blog/index.html",
-    "href": "blog/index.html",
-    "title": "Blog",
-    "section": "",
-    "text": "Show Fuji Film Simulation in LrC\n\n\n\n\n\n\nlightroom\n\n\nphotography\n\n\nautomation\n\n\n\nA script to add film simulations to image metadata\n\n\n\n\n\nJul 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy first photography project\n\n\n\n\n\n\nphotography\n\n\n\n\n\n\n\n\n\nJul 20, 2026\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "blog/posts/2026-07-21-lrc-film-simulation/index.html",
     "href": "blog/posts/2026-07-21-lrc-film-simulation/index.html",
     "title": "Show Fuji Film Simulation in LrC",
@@ -54,5 +26,33 @@
     "title": "Show Fuji Film Simulation in LrC",
     "section": "Result",
     "text": "Result\nWere applicable, JPEG images now show the film simulation name above each thumbnail in Grid view. In addition, the images can be grouped and filtered by film simulation."
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Show Fuji Film Simulation in LrC\n\n\n\n\n\n\nlightroom\n\n\nphotography\n\n\nautomation\n\n\n\nA script to add film simulations to image metadata\n\n\n\n\n\nJul 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy first photography project\n\n\n\n\n\n\nphotography\n\n\n\n\n\n\n\n\n\nJul 20, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/posts/2026-07-20-my-first-photography-project/index.html",
+    "href": "blog/posts/2026-07-20-my-first-photography-project/index.html",
+    "title": "My first photography project",
+    "section": "",
+    "text": "Today I completed my first photography project on the new website!\nUnsurprisingly, it’s to do with my new camera, though I didn’t expect to be scripting automations this early, after returning to an old hobby that’s been neglected for a decade … I guess you can’t take the developer out of me 😜\nFuji’s film simulations (sims) garner alot of hype and are often cited as the reason why people buy Fuji cameras. I was keen to try them on my first foray out with the X100vi. Arriving back at my Mac and importing my images into Lightroom Classic (LrC) I was a little disappointed that I couldn’t see the sims applied to each image nor filter my images by the sim used.\nWith an itch to stratch, the automation project was conceived …"
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Street Photography: Leeds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUK Railway Stations\n\n\nI’m always up for some platform action\n\n\n\n\n\n\n\n\n\n\n\n\n\nCanazei Festival\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWharfedale Nature\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFavourite Trees\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Garry Sykes",
+    "section": "",
+    "text": "Hiking, cycling, travel and curiosity provide plenty of photographic opportunities.\nThis website brings together my images, projects and blog as I explore and develop my photography.\n\n  Tools of the trade\n  \n    \n    Fujifilm X100VI"
   }
 ]
