@@ -39,14 +39,14 @@ uv run scripts/photos.py post-images <post-folder>
   - `index.qmd` — Home gallery (title block hidden via CSS)
   - `projects/index.qmd` — Quarto grid listing of `projects/*.qmd`; `projects/_metadata.yml` injects gallery script/CSS (and repeats the site-wide `include-in-header`/`include-after-body` entries, since directory-level lists replace them)
   - `blog/index.qmd` — listing of `blog/posts/*/index.qmd` + RSS; one folder per post with its images; `blog/posts/_metadata.yml` enables Quarto's built-in lightbox; `blog/_template/index.qmd` is the `new-post` template (not rendered)
-  - `about.qmd` — trestles template
+  - `about.qmd` — trestles template; Instagram/Facebook/Email links (GitHub, Strava, TrigpointingUK commented out); Email address stored reversed+base64 in an inline script, assembled into `mailto:` + subject on click (never in page source); "Tools of the trade" X100VI pixel-art block (`.about-tools` in `styles.scss`, 6x source shown at 318px)
 - **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder.
 - `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. `$primary` is #1a66d9 (5.3:1 on white, WCAG AA); title-block dates/categories use `$gray-600` with the theme's opacity fade removed. Theme/style redesign is deferred: don't restyle beyond what features need.
 - `_includes/` — build-time tooling, not published, wired globally in `_quarto.yml`:
   - `git-modified.lua` — sets each page's `Modified` date from `git log`; uncommitted files fall back to mtime; only refreshes on the live site after commit+push
   - `reorder-title-meta.html` — moves Published/Modified dates beneath the title on tagged pages (blog posts)
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images (download deterrent)
-  - `head.html` — Google Fonts preconnect + apple-touch-icon; favicon is `images/favicon.ico`; avatar sources in gitignored `images/avatar/`
+  - `head.html` — Google Fonts preconnect + `images/apple-touch-icon.png`; favicon is `images/favicon.ico`; avatar sources in gitignored `images/avatar/`
   - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels)
 - Navbar: "Garry Sykes" title is the home link; Gallery (home), Projects, Blog, About; Instagram/Facebook icons (GitHub commented out); search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored

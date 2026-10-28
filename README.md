@@ -1,4 +1,4 @@
-# datapiquing.com
+# garrysykes.com
 
 Photography portfolio and blog of Garry Sykes. Quarto website, deployed to GitHub Pages via GitHub Actions.
 
@@ -47,7 +47,8 @@ blog/
   index.qmd            # post listing + RSS feed (blog/index.xml)
   posts/<YYYY-MM-DD-slug>/index.qmd   # one folder per post, images alongside
   _template/index.qmd  # template for new posts (not published)
-about.qmd              # about page (trestles template)
+about.qmd              # about page (trestles template): social links, obfuscated Email button, Tools of the trade
+images/                # site images: favicon.ico, apple-touch-icon, about-stand, x100vi (avatar/ = gitignored sources)
 photos/full|thumb|small/  # gallery webps, named by photo id (small = phone thumbnails)
 data/photos.json       # published photo manifest read by the gallery
 _data/                 # catalog.json + overrides.yaml (private, not published)
@@ -133,7 +134,12 @@ them), wired up globally in `_quarto.yml`:
 - **`_includes/reorder-title-meta.html`** — moves the Published/Modified dates directly beneath the title
   on pages with category tags (blog posts).
 - **`_includes/head.html`** — preconnects to Google Fonts (used by the cosmo theme) and sets the iOS
-  home-screen icon. The favicon is `images/favicon.ico` (`favicon:` in `_quarto.yml`).
+  home-screen icon (`images/apple-touch-icon.png`). The favicon is `images/favicon.ico` (`favicon:` in
+  `_quarto.yml`).
+- **About page Email button** — the address is stored reversed + base64 in a script in `about.qmd` and
+  only assembled into a `mailto:` (with subject) on click, so it never appears in the page source.
+  Hidden links (GitHub, Strava, TrigpointingUK; navbar GitHub) are commented out in `about.qmd` /
+  `_quarto.yml` — uncomment to restore.
 - **`_includes/a11y.html`** — fixes accessibility gaps in markup Quarto generates: labels the search
   box, removes an invalid role from the mobile menu button, and tidies listing links, images and heading
   levels for screen readers.
