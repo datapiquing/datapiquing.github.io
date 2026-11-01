@@ -1,5 +1,6 @@
 ---
 title: "My first photography project"
+description: "My first photography project on the new website."  # TODO: rewrite
 date: 2026-07-20
 categories: [photography]
 aliases:

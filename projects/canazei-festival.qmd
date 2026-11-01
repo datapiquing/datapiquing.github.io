@@ -1,6 +1,6 @@
 ---
 title: "Canazei Festival"
-description: ""
+description: "Photographs from the Canazei festival."  # TODO: rewrite
 image: ../photos/thumb/20260913-130606-DSCF0791.webp
 date: 2026-09-13
 ---

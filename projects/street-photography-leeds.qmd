@@ -1,6 +1,6 @@
 ---
 title: "Street Photography: Leeds"
-description: ""
+description: "Street photography in Leeds."  # TODO: rewrite
 image: ../photos/thumb/20261022-101110-DSCF1120.webp
 date: 2026-10-22
 ---

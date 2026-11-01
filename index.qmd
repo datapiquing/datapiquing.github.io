@@ -7,6 +7,33 @@ toc: false
 
 ```{=html}
 <link rel="stylesheet" href="assets/vendor/photoswipe/photoswipe.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://garrysykes.com/#website",
+      "url": "https://garrysykes.com/",
+      "name": "Garry Sykes",
+      "author": { "@id": "https://garrysykes.com/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://garrysykes.com/#person",
+      "name": "Garry Sykes",
+      "jobTitle": "Photographer",
+      "url": "https://garrysykes.com/",
+      "image": "https://garrysykes.com/images/about-stand.png",
+      "sameAs": [
+        "https://www.instagram.com/garrysykes.photo",
+        "https://www.facebook.com/profile.php?id=61588969539539"
+      ]
+    }
+  ]
+}
+</script>
+<h1 class="visually-hidden">Garry Sykes – Photography</h1>
 <div id="pg-home" class="pg-gallery"></div>
 <script type="module" src="assets/js/gallery.js"></script>
 ```

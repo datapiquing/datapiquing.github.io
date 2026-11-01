@@ -1,5 +1,7 @@
 ---
 title: "Garry Sykes"
+pagetitle: "About"
+description: "About Garry Sykes, photographer: street, nature and travel photography."  # TODO: rewrite
 about:
   template: trestles
   image: images/about-stand.png
@@ -28,9 +30,8 @@ about:
 ---
 
 
-Hiking, cycling, travel and curiosity provide plenty of photographic opportunities.
-
-This website brings together my images, projects and blog as I explore and develop my photography.
+# Hi!
+I'm a photography enthusiast based in Ilkley, UK
 
 ```{=html}
 <div class="about-tools">

@@ -18,6 +18,21 @@
     document.querySelectorAll(".quarto-listing img:not([alt])").forEach((img) => (img.alt = ""));
     document.querySelectorAll(".quarto-listing .listing-title").forEach((h) => h.setAttribute("aria-level", "2"));
   };
+  // Quarto marks a nav item active only on its exact page; also mark it on
+  // pages inside its section (blog posts, project pages). Gallery (site root) excluded.
+  const markSection = () => {
+    const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
+    document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin) return;
+      const dir = url.pathname.replace(/index\.html$/, "");
+      if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  };
+  document.addEventListener("DOMContentLoaded", markSection);
   const search = document.getElementById("quarto-search");
   if (search) new MutationObserver(patch).observe(search, { childList: true, subtree: true });
   document.addEventListener("DOMContentLoaded", patch);

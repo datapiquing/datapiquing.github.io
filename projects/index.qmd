@@ -1,5 +1,6 @@
 ---
 title: "Projects"
+description: "Photography projects by Garry Sykes."  # TODO: rewrite
 listing:
   contents:
     - "*.qmd"

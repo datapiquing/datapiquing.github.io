@@ -53,6 +53,8 @@ function createLightbox() {
   const lightbox = new PhotoSwipeLightbox({
     pswpModule: () => import("../vendor/photoswipe/photoswipe.esm.min.js"),
     bgOpacity: 1,
+    // Respect the OS "reduce motion" setting: no zoom/fade on open/close.
+    ...(matchMedia("(prefers-reduced-motion: reduce)").matches && { showHideAnimationType: "none" }),
     paddingFn: (viewport) => {
       const side = viewport.x > 800 ? 70 : 0;
       return { top: 20, bottom: 110, left: side, right: side };

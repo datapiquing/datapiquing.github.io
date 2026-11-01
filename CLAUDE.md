@@ -25,7 +25,7 @@ uv run scripts/photos.py post-images <post-folder>
 
 ## Architecture
 
-- **Deployed via GitHub Actions** — on push to `main`, the Quarto Publish workflow (Quarto 1.5.56) renders and pushes to `gh-pages`. Checkout uses `fetch-depth: 0` so the git-date filter works. No page executes Python, so CI renders everything; `freeze: auto` stays for any future executing page (render locally, commit `_freeze/`).
+- **Deployed via GitHub Actions** — on push to `main`, the Quarto Publish workflow (Quarto 1.5.56) renders and pushes to `gh-pages`. No page executes Python, so CI renders everything; `freeze: auto` stays for any future executing page (render locally, commit `_freeze/`).
 - **Photo pipeline** (`scripts/photos.py`, stdlib + PyYAML, shells out to exiftool and cwebp):
   - Source: `~/Desktop/Lrc_JPEGs/lightbox/*.jpg` (1600px LrC exports). Thumbnails are derived (`thumb` 600px high, `small` 300px high for phones/1x screens, chosen via `srcset`); LrC `thumbnail/` exports are ignored but moved with sources to `Lrc_JPEGs/completed/<date>/`.
   - Photo id = `YYYYMMDD-HHMMSS-<filename stem>` from DateTimeOriginal → re-exports upsert; ids name `photos/full|thumb|small/<id>.webp`.
@@ -41,13 +41,15 @@ uv run scripts/photos.py post-images <post-folder>
   - `blog/index.qmd` — listing of `blog/posts/*/index.qmd` + RSS; one folder per post with its images; `blog/posts/_metadata.yml` enables Quarto's built-in lightbox; `blog/_template/index.qmd` is the `new-post` template (not rendered)
   - `about.qmd` — trestles template; Instagram/Facebook/Email links (GitHub, Strava, TrigpointingUK commented out); Email address stored reversed+base64 in an inline script, assembled into `mailto:` + subject on click (never in page source); "Tools of the trade" X100VI pixel-art block (`.about-tools` in `styles.scss`, 6x source shown at 318px)
 - **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder.
-- `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. `$primary` is #1a66d9 (5.3:1 on white, WCAG AA); title-block dates/categories use `$gray-600` with the theme's opacity fade removed. Theme/style redesign is deferred: don't restyle beyond what features need.
+- `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. `$primary` is #1a66d9 (5.3:1 on white, WCAG AA); title-block dates/categories use `$gray-600` with the theme's opacity fade removed. Fonts: Inter (`$web-font-path`). Navbar: white (`$navbar-bg`), grey lowercase menu left, bold name absolutely centred at ≥992px, social + search right, active item `$primary`; gallery chips/tags neutral greys. `html { overflow-y: scroll }` keeps the name in the same place on short and long pages. Dates: no Modified anywhere; Published shown only on blog posts (project pages keep `date:` for listing sort, hidden via `body:has(.pg-project)`).
 - `_includes/` — build-time tooling, not published, wired globally in `_quarto.yml`:
-  - `git-modified.lua` — sets each page's `Modified` date from `git log`; uncommitted files fall back to mtime; only refreshes on the live site after commit+push
-  - `reorder-title-meta.html` — moves Published/Modified dates beneath the title on tagged pages (blog posts)
+  - `canonical.lua` — adds `<link rel="canonical">` (garrysykes.com, `.html` form matching sitemap)
+  - `skip-link.html` — "Skip to content" link (include-before-body; repeated in `projects/_metadata.yml`)
+  - `reorder-title-meta.html` — moves the Published date beneath the title on tagged pages (blog posts)
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images (download deterrent)
   - `head.html` — Google Fonts preconnect + `images/apple-touch-icon.png`; favicon is `images/favicon.ico`; avatar sources in gitignored `images/avatar/`
-  - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels)
+  - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels); also marks the section's nav item active on sub-pages (blog posts, project pages), which Quarto doesn't
+- **SEO**: home has a visually-hidden h1 + Person/WebSite JSON-LD in `index.qmd`; page `description:` = meta description (placeholders marked `# TODO: rewrite`); default share image TODO in `_quarto.yml`. a11y styles (focus ring, reduced motion, skip link) at top of `styles.scss` rules
 - Navbar: "Garry Sykes" title is the home link; Gallery (home), Projects, Blog, About; Instagram/Facebook icons (GitHub commented out); search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored
 - Dependencies managed with `uv` — `pyproject.toml` / `uv.lock`

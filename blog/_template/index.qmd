@@ -1,6 +1,7 @@
 ---
 title: "{title}"
 date: {date}
+description: ""     # search/share summary (1-2 sentences)
 categories: []
 image: cover.webp     # listing thumbnail + social share image
 draft: true           # remove when ready to publish

@@ -6,6 +6,8 @@ toc: false
 include-in-header:
   - ../_includes/head.html
   - text: <link rel="stylesheet" href="../assets/vendor/photoswipe/photoswipe.css">
+include-before-body:
+  - ../_includes/skip-link.html
 include-after-body:
   - ../_includes/reorder-title-meta.html
   - ../_includes/external-links.html

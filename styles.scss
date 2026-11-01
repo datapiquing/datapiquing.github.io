@@ -1,7 +1,103 @@
 /*-- scss:defaults --*/
-$primary: #1a66d9; // 5.3:1 on white: links and white navbar text meet WCAG AA
+$primary: #1a66d9; // 5.3:1 on white: links and active nav item meet WCAG AA
+
+// Inter replaces Cosmo's Source Sans Pro import.
+$web-font-path: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap";
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+// White navbar so photos carry the colour; grey items, active in $primary.
+$navbar-bg: #fff;
+$navbar-fg: #6c757d; // $gray-600, 4.7:1 on white
+$navbar-hl: $primary;
 
 /*-- scss:rules --*/
+
+// Always reserve the scrollbar so the viewport width (and the centred name)
+// is identical on short pages and long gallery pages.
+html {
+  overflow-y: scroll;
+}
+
+// --- Accessibility ---------------------------------------------------------
+
+// Skip link (_includes/skip-link.html): hidden until focused with Tab.
+.skip-link:focus {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: $primary;
+  border: 2px solid $primary;
+}
+
+// Clear keyboard focus ring (Bootstrap's is faint on the white navbar).
+a:focus-visible,
+button:focus-visible,
+.pg-item:focus-visible {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// --- Navbar: menu left (lowercase), name centred, social + search right ---
+
+#quarto-header {
+  border-bottom: 1px solid $gray-200;
+  box-shadow: none;
+}
+
+.navbar .navbar-title {
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  color: $gray-900;
+}
+
+.navbar .navbar-nav .nav-link {
+  text-transform: lowercase;
+  font-size: 0.9rem;
+  color: $gray-600;
+
+  &:hover,
+  &:focus {
+    color: $gray-900;
+  }
+
+  &.active {
+    color: $primary;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-container {
+    position: relative;
+  }
+
+  // Absolutely centred so left/right widths don't shift the name.
+  .navbar-brand-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #quarto-search {
+    order: 99; // after social icons
+  }
+}
+
 body {
   font-size: 1.05rem;
 }
@@ -48,13 +144,18 @@ figure figcaption {
   content: ":\00a0";
 }
 
-// About page (trestles): centre the Modified date under the name.
-// Selector deliberately mirrors (and outweighs) the theme's high-specificity
-// `#title-block-header.quarto-title-block.default .quarto-title-meta` grid rule.
-.quarto-about-trestles #title-block-header.quarto-title-block.default .quarto-title-meta {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+// Page descriptions: used for search/share (<meta name="description">) and
+// read by screen readers, but not shown under page titles or on Projects cards.
+// Blog listing summaries stay visible.
+#title-block-header .description,
+.quarto-grid-item .listing-description {
+  @include visually-hidden;
+}
+
+// Published date only on blog posts: project pages keep `date:` for listing
+// sort order but don't show it.
+body:has(.pg-project) #title-block-header .quarto-title-meta {
+  display: none;
 }
 
 // Listing titles are links — give them a clear affordance.
@@ -141,17 +242,18 @@ figure figcaption {
 }
 
 .pg-chip {
-  // Darker than $primary so chip text meets WCAG AA contrast.
-  border: 1px solid darken($primary, 15%);
+  // Neutral so the UI doesn't compete with the photos.
+  border: 1px solid $gray-800;
   border-radius: 999px;
   background: transparent;
-  color: darken($primary, 15%);
+  color: $gray-800;
   padding: 0.15rem 0.75rem;
   font-size: 0.85rem;
   text-transform: capitalize;
 
   &.active {
-    background: darken($primary, 15%);
+    background: $gray-900;
+    border-color: $gray-900;
     color: #fff;
   }
 }
@@ -214,7 +316,7 @@ body:has(#pg-home) #title-block-header {
   border: 0;
   background: none;
   padding: 0;
-  color: $primary;
+  color: $gray-800;
   line-height: 1.3;
 
   &:hover {

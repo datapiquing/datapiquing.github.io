@@ -1,5 +1,6 @@
 ---
 title: "Blog"
+description: "Photography notes and stories by Garry Sykes."  # TODO: rewrite
 listing:
   contents: "posts/*/index.qmd"
   sort: "date desc"

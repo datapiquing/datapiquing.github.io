@@ -18,7 +18,7 @@ project:
 lang: en
 
 filters:
-  - _includes/git-modified.lua
+  - _includes/canonical.lua
 
 execute:
   freeze: auto
@@ -57,6 +57,7 @@ website:
   page-footer:
     center: "© 2026 Garry Sykes. All rights reserved."
 
+  # TODO: default share image (1200x630 JPEG) -> open-graph: {image: images/share.jpg}
   open-graph: true
   twitter-card: true
 
@@ -66,15 +67,15 @@ format:
       - cosmo
       - styles.scss
 
-    toc: true
-    code-copy: true
     code-overflow: wrap
 
-    date-modified: last-modified
     date-format: medium
 
     include-in-header:
       - _includes/head.html
+
+    include-before-body:
+      - _includes/skip-link.html
 
     include-after-body:
       - _includes/reorder-title-meta.html
