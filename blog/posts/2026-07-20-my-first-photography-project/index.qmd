@@ -5,6 +5,7 @@ date: 2026-07-20
 categories: [photography]
 aliases:
   - /hobbies/toolsmithing/journal/2026-07-20-first-journal-entry.html
+draft: true
 ---
 
 Today I completed my first [photography project](../2026-07-21-lrc-film-simulation/index.qmd) on the new website!

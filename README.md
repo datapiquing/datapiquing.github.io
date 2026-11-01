@@ -50,8 +50,9 @@ blog/
 about.qmd              # about page (trestles template): social links, obfuscated Email button, Tools of the trade
 images/                # site images: favicon.ico, apple-touch-icon, about-stand, x100vi (avatar/ = gitignored sources)
 photos/full|thumb|small/  # gallery webps, named by photo id (small = phone thumbnails)
-data/photos.json       # published photo manifest read by the gallery
-_data/                 # catalog.json + overrides.yaml (private, not published)
+data/photos.json       # published manifest the gallery reads (built from _data/, hidden photos removed)
+_data/catalog.json     # master catalogue of every ingested photo (script-owned; don't edit)
+_data/overrides.yaml   # hand-edited: hidden photos/projects, per-photo field fixes
 scripts/photos.py      # photo pipeline
 assets/js/gallery.js   # gallery, tag cloud, lightbox
 assets/vendor/         # PhotoSwipe 5 (vendored)
@@ -73,14 +74,47 @@ styles.scss            # theme overrides on top of cosmo — see Look and feel
    uv run scripts/photos.py ingest            # --dry-run to preview, --no-move to keep sources
    ```
 
-   This converts to webp, updates `data/photos.json`, creates/updates project pages, moves the
-   JPEGs to `Lrc_JPEGs/completed/<date>/`, and prints a `check` report.
+   This converts to webp, adds/updates the photos in `_data/catalog.json`, rebuilds the published
+   manifest `data/photos.json`, creates/updates project pages, moves the JPEGs to
+   `Lrc_JPEGs/completed/<date>/`, and prints a `check` report.
 4. For a new project, fill in `description:` in `projects/<slug>.qmd` (you can add prose below the front matter too).
    The description is used for search results and share previews; it's hidden on the page by default
    (see [Descriptions](#descriptions)).
 5. Commit and push.
 
 Re-exporting a photo (same capture time + filename) updates it in place. New genres and projects appear automatically.
+
+### Photo data files
+
+| File | What | Edited by |
+|---|---|---|
+| `_data/catalog.json` | every ingested photo's metadata (master copy) | `photos.py` only |
+| `_data/overrides.yaml` | hidden photos/projects, per-photo field corrections | you, then `photos.py rebuild` |
+| `data/photos.json` | what the website reads: catalog + overrides, hidden photos removed, plus project list | `photos.py` only |
+
+`_data/` isn't part of the website, but it is in the public GitHub repo (no GPS or other location
+beyond City/Country is stored).
+
+## Starting over (new curated set)
+
+To clear the gallery of **all** photos and projects before ingesting a newly curated set:
+
+```bash
+uv run scripts/photos.py reset --dry-run      # show what would be removed
+uv run scripts/photos.py reset                # asks you to type 'reset' to confirm (--yes skips)
+uv run scripts/photos.py reset --keep-pages   # keep project pages as drafts instead of deleting them
+```
+
+`reset` deletes every webp in `photos/full|thumb|small/`, empties `_data/catalog.json` and
+`data/photos.json`, resets `_data/overrides.yaml` to its template, and deletes the project pages
+(`projects/*.qmd` except `index.qmd`). With `--keep-pages` the pages are kept as `draft: true` — if the
+new set re-uses a project name (Lightroom **Title**), ingest republishes that page with its existing
+description and prose; unused ones stay hidden until you delete them. It warns if a blog post uses
+gallery photos (`/photos/...`), since those images would break.
+
+Not touched: Lightroom sources in `~/Desktop/Lrc_JPEGs/completed/`, blog posts and their images, site
+images. Then: export the new set → `photos.py ingest` → fill in descriptions → commit + push. Until you
+push, `git restore .` undoes a reset; after pushing, old photos remain in git history.
 
 ## Writing a blog post
 
@@ -102,6 +136,7 @@ Post images never appear in the gallery; a gallery photo can be used via `/photo
 | Photo | add id to `hidden:` in `_data/overrides.yaml`, then `photos.py rebuild` | `photos.py remove <id>` |
 | Project | add slug to `hidden_projects:` in `_data/overrides.yaml`, then `photos.py rebuild` (photos stay on Home) | `photos.py remove-project <slug> [--keep-images]` |
 | Blog post | `draft: true` in its front matter | delete its folder |
+| Everything in the gallery | — | `photos.py reset [--keep-pages]` (see [Starting over](#starting-over-new-curated-set)) |
 
 `_data/overrides.yaml` can also correct a photo's fields without re-exporting (see comments in the file).
 Hidden photos are still reachable by direct URL — use *remove* for anything that must go. Photo ids are
@@ -111,7 +146,7 @@ shown in the address bar (`#photo=<id>`) when a photo is open in the lightbox.
 
 Photos are public (they're in the GitHub repo), so these only deter casual copying: thumbnails link to
 `#photo=<id>` rather than the image file, right-click/drag and iOS long-press saving are blocked, every
-webp carries copyright XMP (Creator, Rights, link to the About page — `photos.py stamp` re-applies it),
+webp carries copyright XMP (Creator, Rights, link to garrysykes.com/about.html — `photos.py stamp` re-applies it),
 captions show `© Garry Sykes`, and `robots.txt` disallows AI crawlers.
 
 `uv run scripts/photos.py check` reports missing captions/alt text, cover problems, empty project

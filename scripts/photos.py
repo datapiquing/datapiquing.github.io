@@ -10,6 +10,7 @@ catalogue, and builds the published manifest the gallery pages read.
     uv run scripts/photos.py thumbs
     uv run scripts/photos.py remove <id>...
     uv run scripts/photos.py remove-project <slug> [--keep-images]
+    uv run scripts/photos.py reset [--dry-run] [--yes] [--keep-pages]
     uv run scripts/photos.py new-post "<title>" [--date YYYY-MM-DD]
     uv run scripts/photos.py post-images <post-folder> [--src DIR] [--no-move]
 
@@ -61,7 +62,7 @@ POST_LONG_EDGE = 1600
 POST_QUALITY = 82
 
 COPYRIGHT_OWNER = "Garry Sykes"
-RIGHTS_URL = "https://datapiquing.com/about.html"
+RIGHTS_URL = "https://garrysykes.com/about.html"
 
 COVER_LABEL = "Red"
 GENRE_PREFIX = "_"
@@ -464,6 +465,45 @@ def cmd_remove_project(args):
     rebuild()
 
 
+def cmd_reset(args):
+    """Delete ALL gallery photos and projects so a new curated set can be ingested."""
+    catalog = load_json(CATALOG, {})
+    ov = load_overrides()
+    webps = [f for d in IMAGE_DIRS if d.exists() for f in sorted(d.glob("*.webp"))]
+    pages = [p for p in sorted(PROJECTS_DIR.glob("*.qmd")) if p.stem != "index"]
+    n_ov = len(ov["hidden"]) + len(ov["hidden_projects"]) + len(ov["photos"])
+    print("Reset will:")
+    print(f"  delete {len(webps)} webp(s) in photos/full|thumb|small/")
+    print(f"  empty  {CATALOG.relative_to(ROOT)} ({len(catalog)} photos)")
+    print(f"  reset  {OVERRIDES.relative_to(ROOT)} ({n_ov} entries)")
+    verb = "draft " if args.keep_pages else "delete"
+    print(f"  {verb} {len(pages)} project page(s): {', '.join(p.stem for p in pages) or '-'}")
+    print(f"  empty  {MANIFEST.relative_to(ROOT)}")
+    refs = [p for p in sorted(POSTS_DIR.glob("*/index.qmd")) if "/photos/" in p.read_text()]
+    for p in refs:
+        print(f"  ! {p.relative_to(ROOT)} uses gallery photos (/photos/...): its images will break")
+    print("Untouched: Lightroom sources, blog posts and their images, site images.")
+    if args.dry_run:
+        print("Dry run: nothing changed.")
+        return
+    if not args.yes and input("Type 'reset' to continue: ").strip() != "reset":
+        sys.exit("Aborted.")
+    for f in webps:
+        f.unlink()
+    write_json(CATALOG, {})
+    OVERRIDES.write_text(OVERRIDES_TEMPLATE)
+    for page in pages:
+        if args.keep_pages:
+            page.write_text(set_front_matter(page.read_text(), "draft", "true"))
+        else:
+            page.unlink()
+    rebuild()
+    print("\nNext: export the new set to ~/Desktop/Lrc_JPEGs/lightbox/, run `photos.py ingest`,")
+    print("fill in project descriptions, then commit + push.")
+    if args.keep_pages:
+        print("Kept pages stay drafts unless the new set re-uses their project name.")
+
+
 def cmd_new_post(args):
     date = args.date or dt.date.today().isoformat()
     folder = POSTS_DIR / f"{date}-{slugify(args.title)}"
@@ -528,6 +568,13 @@ def main():
     p.add_argument("slug")
     p.add_argument("--keep-images", action="store_true", help="keep photos on Home")
     p.set_defaults(func=cmd_remove_project)
+
+    p = sub.add_parser("reset", help="delete ALL gallery photos/projects (fresh start)")
+    p.add_argument("--dry-run", action="store_true", help="show what would be removed")
+    p.add_argument("--yes", action="store_true", help="skip the confirmation prompt")
+    p.add_argument("--keep-pages", action="store_true",
+                   help="keep project pages as drafts (re-used names republish on ingest)")
+    p.set_defaults(func=cmd_reset)
 
     p = sub.add_parser("new-post", help="scaffold a dated blog post folder")
     p.add_argument("title")

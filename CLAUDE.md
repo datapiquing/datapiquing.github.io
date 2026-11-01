@@ -19,6 +19,7 @@ uv run scripts/photos.py check            # metadata/file issues
 uv run scripts/photos.py stamp            # re-embed copyright XMP in all webps
 uv run scripts/photos.py thumbs           # create missing small thumbnails from full webps
 uv run scripts/photos.py remove <id>      # / remove-project <slug> [--keep-images]
+uv run scripts/photos.py reset            # delete ALL gallery photos/projects [--dry-run] [--yes] [--keep-pages]
 uv run scripts/photos.py new-post "<title>"
 uv run scripts/photos.py post-images <post-folder>
 ```
@@ -29,7 +30,7 @@ uv run scripts/photos.py post-images <post-folder>
 - **Photo pipeline** (`scripts/photos.py`, stdlib + PyYAML, shells out to exiftool and cwebp):
   - Source: `~/Desktop/Lrc_JPEGs/lightbox/*.jpg` (1600px LrC exports). Thumbnails are derived (`thumb` 600px high, `small` 300px high for phones/1x screens, chosen via `srcset`); LrC `thumbnail/` exports are ignored but moved with sources to `Lrc_JPEGs/completed/<date>/`.
   - Photo id = `YYYYMMDD-HHMMSS-<filename stem>` from DateTimeOriginal → re-exports upsert; ids name `photos/full|thumb|small/<id>.webp`.
-  - `_data/catalog.json` (script-owned, every photo) + `_data/overrides.yaml` (hand-edited: `hidden`, `hidden_projects`, per-id field overrides) → `data/photos.json` (published manifest: `photos`, `projects`). `_data/` is not published.
+  - `_data/catalog.json` (script-owned, every photo) + `_data/overrides.yaml` (hand-edited: `hidden`, `hidden_projects`, per-id field overrides) → `data/photos.json` (published manifest: `photos`, `projects`). `_data/` is not published on the site but is in the public repo.
   - Metadata mapping: Title = project, Caption/Description = caption, AltTextAccessibility = alt (falls back to caption), Keywords with `_` prefix = genres, other keywords = tag cloud, Label `Red` = project cover.
   - **Privacy**: GPS never written to the manifest; webps carry only copyright XMP (`stamp`, run automatically on ingest/post-images). Location shown is City/Country only.
   - **Download deterrence**: thumbnails link to `#photo=<id>` not the file; right-click/drag blocked (`_includes/external-links.html`); `-webkit-touch-callout`/`user-drag` disabled in `styles.scss`; AI crawlers disallowed in `robots.txt`.
@@ -40,7 +41,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `projects/index.qmd` — Quarto grid listing of `projects/*.qmd`; `projects/_metadata.yml` injects gallery script/CSS (and repeats the site-wide `include-in-header`/`include-after-body` entries, since directory-level lists replace them)
   - `blog/index.qmd` — listing of `blog/posts/*/index.qmd` + RSS; one folder per post with its images; `blog/posts/_metadata.yml` enables Quarto's built-in lightbox; `blog/_template/index.qmd` is the `new-post` template (not rendered)
   - `about.qmd` — trestles template; Instagram/Facebook/Email links (GitHub, Strava, TrigpointingUK commented out); Email address stored reversed+base64 in an inline script, assembled into `mailto:` + subject on click (never in page source); "Tools of the trade" X100VI pixel-art block (`.about-tools` in `styles.scss`, 6x source shown at 318px)
-- **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder.
+- **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder. `photos.py reset` wipes all gallery webps, catalog, overrides (to template), manifest and project pages (`--keep-pages` → drafts; a re-used project name republishes on ingest); blog posts untouched.
 - `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. `$primary` is #1a66d9 (5.3:1 on white, WCAG AA); title-block dates/categories use `$gray-600` with the theme's opacity fade removed. Fonts: Inter (`$web-font-path`). Navbar: white (`$navbar-bg`), grey lowercase menu left, bold name absolutely centred at ≥992px, social + search right, active item `$primary`; gallery chips/tags neutral greys. `html { overflow-y: scroll }` keeps the name in the same place on short and long pages. Dates: no Modified anywhere; Published shown only on blog posts (project pages keep `date:` for listing sort, hidden via `body:has(.pg-project)`).
 - `_includes/` — build-time tooling, not published, wired globally in `_quarto.yml`:
   - `canonical.lua` — adds `<link rel="canonical">` (garrysykes.com, `.html` form matching sitemap)
