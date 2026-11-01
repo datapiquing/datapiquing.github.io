@@ -172,13 +172,15 @@ function infiniteGrid(grid, lightbox) {
 function initHome(el, manifest, lightbox) {
   const params = new URLSearchParams(location.search);
   const state = {
-    genres: new Set((params.get("genre") || "").split(",").filter(Boolean)),
+    // Single-select; "" = All. Old comma-separated links keep their first genre.
+    genre: (params.get("genre") || "").split(",")[0],
     sort: params.get("sort") === "oldest" ? "oldest" : "newest",
   };
 
   const counts = {};
   manifest.photos.forEach((p) => p.genres.forEach((g) => (counts[g] = (counts[g] || 0) + 1)));
   const genres = Object.keys(counts).sort();
+  if (!counts[state.genre]) state.genre = "";
 
   el.innerHTML = `
     <div class="pg-controls">
@@ -202,21 +204,18 @@ function initHome(el, manifest, lightbox) {
 
   const apply = () => {
     chips.querySelectorAll(".pg-chip").forEach((b) => {
-      const on = b.dataset.genre ? state.genres.has(b.dataset.genre) : state.genres.size === 0;
+      const on = b.dataset.genre === state.genre;
       b.classList.toggle("active", on);
       b.setAttribute("aria-pressed", on);
     });
     select.value = state.sort;
 
     setQuery({
-      genre: [...state.genres].join(","),
+      genre: state.genre,
       sort: state.sort !== "newest" && state.sort,
     });
 
-    // OR filter: a photo matches if it has any selected genre.
-    const photos = manifest.photos.filter(
-      (p) => !state.genres.size || p.genres.some((g) => state.genres.has(g))
-    );
+    const photos = manifest.photos.filter((p) => !state.genre || p.genres.includes(state.genre));
     if (state.sort === "oldest") photos.reverse(); // manifest is newest-first
     grid.set(photos);
   };
@@ -224,9 +223,7 @@ function initHome(el, manifest, lightbox) {
   chips.addEventListener("click", (e) => {
     const b = e.target.closest(".pg-chip");
     if (!b) return;
-    const g = b.dataset.genre;
-    if (!g) state.genres.clear();
-    else state.genres.has(g) ? state.genres.delete(g) : state.genres.add(g);
+    state.genre = b.dataset.genre;
     apply();
   });
   select.addEventListener("change", () => {
@@ -238,8 +235,8 @@ function initHome(el, manifest, lightbox) {
 
   // Deep link: #photo=<id>. Clear filters if the photo is filtered out.
   const id = deepLinkId();
-  if (id && !grid.open(id) && state.genres.size) {
-    state.genres.clear();
+  if (id && !grid.open(id) && state.genre) {
+    state.genre = "";
     apply();
     grid.open(id);
   }
