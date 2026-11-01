@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="A collection of my favourite trees.">
 
 <title>Favourite Trees – Garry Sykes</title>
 <style>
@@ -72,12 +73,15 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/vendor/photoswipe/photoswipe.css">
+<link rel="canonical" href="https://garrysykes.com/projects/favourite-trees.html">
 
 
 <meta property="og:title" content="Favourite Trees – Garry Sykes">
+<meta property="og:description" content="A collection of my favourite trees.">
 <meta property="og:image" content="https://garrysykes.com/photos/thumb/20260720-202125-_DSF0274.webp">
 <meta property="og:site_name" content="Garry Sykes">
 <meta name="twitter:title" content="Favourite Trees – Garry Sykes">
+<meta name="twitter:description" content="A collection of my favourite trees.">
 <meta name="twitter:image" content="https://garrysykes.com/photos/thumb/20260720-202125-_DSF0274.webp">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -141,12 +145,19 @@ ul.task-list li input[type="checkbox"] {
     
 <!-- main -->
 <main class="content column-page" id="quarto-document-content">
+<!-- Keyboard users: first Tab stop jumps past the navbar to the page content. -->
+<a class="visually-hidden-focusable skip-link" href="#quarto-document-content">Skip to content</a>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Favourite Trees</h1>
 </div>
 
+<div>
+  <div class="description">
+    A collection of my favourite trees.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta column-page">
@@ -159,12 +170,6 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">Oct 27, 2026</p>
-    </div>
-  </div>
     
   </div>
   
@@ -236,6 +241,21 @@ ul.task-list li input[type="checkbox"] {
     document.querySelectorAll(".quarto-listing img:not([alt])").forEach((img) => (img.alt = ""));
     document.querySelectorAll(".quarto-listing .listing-title").forEach((h) => h.setAttribute("aria-level", "2"));
   };
+  // Quarto marks a nav item active only on its exact page; also mark it on
+  // pages inside its section (blog posts, project pages). Gallery (site root) excluded.
+  const markSection = () => {
+    const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
+    document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin) return;
+      const dir = url.pathname.replace(/index\.html$/, "");
+      if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  };
+  document.addEventListener("DOMContentLoaded", markSection);
   const search = document.getElementById("quarto-search");
   if (search) new MutationObserver(patch).observe(search, { childList: true, subtree: true });
   document.addEventListener("DOMContentLoaded", patch);

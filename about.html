@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="About Garry Sykes, photographer: street, nature and travel photography.">
 
-<title>Garry Sykes</title>
+<title>About – Garry Sykes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,13 +71,14 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+<link rel="canonical" href="https://garrysykes.com/about.html">
 
 
-<meta property="og:title" content="Garry Sykes">
-<meta property="og:description" content="Photography portfolio and blog of Garry Sykes.">
+<meta property="og:title" content="About">
+<meta property="og:description" content="About Garry Sykes, photographer: street, nature and travel photography.">
 <meta property="og:site_name" content="Garry Sykes">
-<meta name="twitter:title" content="Garry Sykes">
-<meta name="twitter:description" content="Photography portfolio and blog of Garry Sykes.">
+<meta name="twitter:title" content="About">
+<meta name="twitter:description" content="About Garry Sykes, photographer: street, nature and travel photography.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -146,13 +148,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title">
 <h1 class="title">Garry Sykes</h1>
 </div>
-<div class="quarto-title-meta">
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">Oct 28, 2026</p>
-    </div>
+<div>
+  <div class="description">
+    About Garry Sykes, photographer: street, nature and travel photography.
   </div>
+</div>
+<div class="quarto-title-meta">
   </div>
 </header>
     <div class="about-links">
@@ -171,10 +172,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
   <div class="about-contents"><main class="content" id="quarto-document-content">
-<p>Hiking, cycling, travel and curiosity provide plenty of photographic opportunities.</p>
-<p>This website brings together my images, projects and blog as I explore and develop my photography.</p>
+<!-- Keyboard users: first Tab stop jumps past the navbar to the page content. -->
+<a class="visually-hidden-focusable skip-link" href="#quarto-document-content">Skip to content</a>
+<section id="hi" class="level1">
+<h1>Hi!</h1>
+<p>I’m a photography enthusiast based in Ilkley, UK</p>
 <div class="about-tools">
-  <h2>Tools of the trade</h2>
+  <h2 data-anchor-id="hi">Tools of the trade</h2>
   <figure class="figure">
     <img src="images/x100vi.png" alt="Top-down pixel-art drawing of a black Fujifilm X100VI camera" class="figure-img">
     <figcaption>Fujifilm X100VI</figcaption>
@@ -190,6 +194,7 @@ document.querySelectorAll('a.about-link[href$="#email"]').forEach(a => a.addEven
 </script>
 
 
+</section>
 </main></div>
 </div>
  <!-- /main -->
@@ -249,6 +254,21 @@ document.querySelectorAll('a.about-link[href$="#email"]').forEach(a => a.addEven
     document.querySelectorAll(".quarto-listing img:not([alt])").forEach((img) => (img.alt = ""));
     document.querySelectorAll(".quarto-listing .listing-title").forEach((h) => h.setAttribute("aria-level", "2"));
   };
+  // Quarto marks a nav item active only on its exact page; also mark it on
+  // pages inside its section (blog posts, project pages). Gallery (site root) excluded.
+  const markSection = () => {
+    const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
+    document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin) return;
+      const dir = url.pathname.replace(/index\.html$/, "");
+      if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  };
+  document.addEventListener("DOMContentLoaded", markSection);
   const search = document.getElementById("quarto-search");
   if (search) new MutationObserver(patch).observe(search, { childList: true, subtree: true });
   document.addEventListener("DOMContentLoaded", patch);

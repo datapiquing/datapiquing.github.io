@@ -1,17 +1,45 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Garry Sykes – Photography",
+    "section": "",
+    "text": "Skip to content\n\n\n\n\n\n\nGarry Sykes – Photography"
+  },
+  {
+    "objectID": "projects/wharfedale-nature.html",
+    "href": "projects/wharfedale-nature.html",
+    "title": "Wharfedale Nature",
+    "section": "",
+    "text": "Skip to content"
+  },
+  {
+    "objectID": "projects/street-photography-leeds.html",
+    "href": "projects/street-photography-leeds.html",
+    "title": "Street Photography: Leeds",
+    "section": "",
+    "text": "Skip to content"
+  },
+  {
+    "objectID": "projects/favourite-trees.html",
+    "href": "projects/favourite-trees.html",
+    "title": "Favourite Trees",
+    "section": "",
+    "text": "Skip to content"
+  },
+  {
     "objectID": "blog/posts/2026-07-21-lrc-film-simulation/index.html",
     "href": "blog/posts/2026-07-21-lrc-film-simulation/index.html",
     "title": "Show Fuji Film Simulation in LrC",
     "section": "",
-    "text": "When I imported my first Fuji RAW+JPEG images into Lightroom Classic (LrC) two things became apparent.\nFirstly, only the RAW images were displayed by default. I’d taken a number of images with Fuji’s much loved film simulations applied (e.g. Classic Chrome, Reala Ace, Velvia Vivid etc.). However, these simulations are only applied to the JPEG images and hence I was unable to see their effect on the image. Thankfully, this was quickly resolved by selecting a checkbox, ‘Treat JPEG files next to raw files as separate photos’, in Lightroom’s Preferences. Now RAW and JPEG images appeared separately, side-by-side in the Library Module.\nSecondly, there was no way to display the film simulation applied to each JPEG or filter images by film simulation."
+    "text": "Skip to content"
   },
   {
     "objectID": "blog/posts/2026-07-21-lrc-film-simulation/index.html#the-problem",
     "href": "blog/posts/2026-07-21-lrc-film-simulation/index.html#the-problem",
     "title": "Show Fuji Film Simulation in LrC",
-    "section": "",
-    "text": "When I imported my first Fuji RAW+JPEG images into Lightroom Classic (LrC) two things became apparent.\nFirstly, only the RAW images were displayed by default. I’d taken a number of images with Fuji’s much loved film simulations applied (e.g. Classic Chrome, Reala Ace, Velvia Vivid etc.). However, these simulations are only applied to the JPEG images and hence I was unable to see their effect on the image. Thankfully, this was quickly resolved by selecting a checkbox, ‘Treat JPEG files next to raw files as separate photos’, in Lightroom’s Preferences. Now RAW and JPEG images appeared separately, side-by-side in the Library Module.\nSecondly, there was no way to display the film simulation applied to each JPEG or filter images by film simulation."
+    "section": "The Problem",
+    "text": "The Problem\nWhen I imported my first Fuji RAW+JPEG images into Lightroom Classic (LrC) two things became apparent.\nFirstly, only the RAW images were displayed by default. I’d taken a number of images with Fuji’s much loved film simulations applied (e.g. Classic Chrome, Reala Ace, Velvia Vivid etc.). However, these simulations are only applied to the JPEG images and hence I was unable to see their effect on the image. Thankfully, this was quickly resolved by selecting a checkbox, ‘Treat JPEG files next to raw files as separate photos’, in Lightroom’s Preferences. Now RAW and JPEG images appeared separately, side-by-side in the Library Module.\nSecondly, there was no way to display the film simulation applied to each JPEG or filter images by film simulation."
   },
   {
     "objectID": "blog/posts/2026-07-21-lrc-film-simulation/index.html#method",
@@ -32,27 +60,41 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Show Fuji Film Simulation in LrC\n\n\n\n\n\n\nlightroom\n\n\nphotography\n\n\nautomation\n\n\n\nA script to add film simulations to image metadata\n\n\n\n\n\nJul 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy first photography project\n\n\n\n\n\n\nphotography\n\n\n\n\n\n\n\n\n\nJul 20, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "Skip to content\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow Fuji Film Simulation in LrC\n\n\n\n\n\n\nlightroom\n\n\nphotography\n\n\nautomation\n\n\n\nA script to add film simulations to image metadata\n\n\n\n\n\nJul 21, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nMy first photography project\n\n\n\n\n\n\nphotography\n\n\n\nMy first photography project on the new website.\n\n\n\n\n\nJul 20, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog/posts/2026-07-20-my-first-photography-project/index.html",
     "href": "blog/posts/2026-07-20-my-first-photography-project/index.html",
     "title": "My first photography project",
     "section": "",
-    "text": "Today I completed my first photography project on the new website!\nUnsurprisingly, it’s to do with my new camera, though I didn’t expect to be scripting automations this early, after returning to an old hobby that’s been neglected for a decade … I guess you can’t take the developer out of me 😜\nFuji’s film simulations (sims) garner alot of hype and are often cited as the reason why people buy Fuji cameras. I was keen to try them on my first foray out with the X100vi. Arriving back at my Mac and importing my images into Lightroom Classic (LrC) I was a little disappointed that I couldn’t see the sims applied to each image nor filter my images by the sim used.\nWith an itch to stratch, the automation project was conceived …"
+    "text": "Skip to content\n\n\n\n\nToday I completed my first photography project on the new website!\nUnsurprisingly, it’s to do with my new camera, though I didn’t expect to be scripting automations this early, after returning to an old hobby that’s been neglected for a decade … I guess you can’t take the developer out of me 😜\nFuji’s film simulations (sims) garner alot of hype and are often cited as the reason why people buy Fuji cameras. I was keen to try them on my first foray out with the X100vi. Arriving back at my Mac and importing my images into Lightroom Classic (LrC) I was a little disappointed that I couldn’t see the sims applied to each image nor filter my images by the sim used.\nWith an itch to stratch, the automation project was conceived …"
+  },
+  {
+    "objectID": "projects/canazei-festival.html",
+    "href": "projects/canazei-festival.html",
+    "title": "Canazei Festival",
+    "section": "",
+    "text": "Skip to content"
   },
   {
     "objectID": "projects/index.html",
     "href": "projects/index.html",
     "title": "Projects",
     "section": "",
-    "text": "Street Photography: Leeds\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUK Railway Stations\n\n\nI’m always up for some platform action\n\n\n\n\n\n\n\n\n\n\n\n\n\nCanazei Festival\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWharfedale Nature\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFavourite Trees\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Skip to content\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStreet Photography: Leeds\n\n\nStreet photography in Leeds.\n\n\n\n\n\n\n\n\n\n\n\n\n\nUK Railway Stations\n\n\nI’m always up for some platform action\n\n\n\n\n\n\n\n\n\n\n\n\n\nCanazei Festival\n\n\nPhotographs from the Canazei festival.\n\n\n\n\n\n\n\n\n\n\n\n\n\nWharfedale Nature\n\n\nNature photography in Wharfedale.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFavourite Trees\n\n\nA collection of my favourite trees.\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/uk-railway-stations.html",
+    "href": "projects/uk-railway-stations.html",
+    "title": "UK Railway Stations",
+    "section": "",
+    "text": "Skip to content"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Garry Sykes",
     "section": "",
-    "text": "Hiking, cycling, travel and curiosity provide plenty of photographic opportunities.\nThis website brings together my images, projects and blog as I explore and develop my photography.\n\n  Tools of the trade\n  \n    \n    Fujifilm X100VI"
+    "text": "Skip to content\n\nHi!\nI’m a photography enthusiast based in Ilkley, UK\n\n  Tools of the trade\n  \n    \n    Fujifilm X100VI"
   }
 ]

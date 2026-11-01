@@ -14,4 +14,4 @@ User-agent: Applebot-Extended
 User-agent: meta-externalagent
 Disallow: /
 
-Sitemap: https://datapiquing.com/sitemap.xml
+Sitemap: https://garrysykes.com/sitemap.xml

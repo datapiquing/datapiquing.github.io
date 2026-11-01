@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="My first photography project on the new website.">
 
 <title>My first photography project – Garry Sykes</title>
 <style>
@@ -71,17 +72,18 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="apple-touch-icon" href="../../../images/apple-touch-icon.png">
+<link rel="canonical" href="https://garrysykes.com/blog/posts/2026-07-20-my-first-photography-project/index.html">
 
 
 <meta property="og:title" content="My first photography project – Garry Sykes">
-<meta property="og:description" content="Photography portfolio and blog of Garry Sykes.">
+<meta property="og:description" content="My first photography project on the new website.">
 <meta property="og:site_name" content="Garry Sykes">
 <meta name="twitter:title" content="My first photography project – Garry Sykes">
-<meta name="twitter:description" content="Photography portfolio and blog of Garry Sykes.">
+<meta name="twitter:description" content="My first photography project on the new website.">
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -137,11 +139,11 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
+<!-- Keyboard users: first Tab stop jumps past the navbar to the page content. -->
+<a class="visually-hidden-focusable skip-link" href="#quarto-document-content">Skip to content</a>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -151,6 +153,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
   </div>
 
+<div>
+  <div class="description">
+    My first photography project on the new website.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -163,12 +170,6 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">Oct 27, 2026</p>
-    </div>
-  </div>
     
   </div>
   
@@ -241,6 +242,21 @@ ul.task-list li input[type="checkbox"] {
     document.querySelectorAll(".quarto-listing img:not([alt])").forEach((img) => (img.alt = ""));
     document.querySelectorAll(".quarto-listing .listing-title").forEach((h) => h.setAttribute("aria-level", "2"));
   };
+  // Quarto marks a nav item active only on its exact page; also mark it on
+  // pages inside its section (blog posts, project pages). Gallery (site root) excluded.
+  const markSection = () => {
+    const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
+    document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin) return;
+      const dir = url.pathname.replace(/index\.html$/, "");
+      if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  };
+  document.addEventListener("DOMContentLoaded", markSection);
   const search = document.getElementById("quarto-search");
   if (search) new MutationObserver(patch).observe(search, { childList: true, subtree: true });
   document.addEventListener("DOMContentLoaded", patch);

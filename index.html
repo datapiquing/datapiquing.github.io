@@ -72,6 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+<link rel="canonical" href="https://garrysykes.com/index.html">
 
 
 <meta property="og:title" content="Garry Sykes">
@@ -141,37 +142,40 @@ ul.task-list li input[type="checkbox"] {
     
 <!-- main -->
 <main class="content column-page" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-</div>
-
-<div>
-  <div class="description">
-    Photography portfolio and blog of Garry Sykes.
-  </div>
-</div>
+<!-- Keyboard users: first Tab stop jumps past the navbar to the page content. -->
+<a class="visually-hidden-focusable skip-link" href="#quarto-document-content">Skip to content</a>
 
 
-<div class="quarto-title-meta column-page">
-
-    
-  
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">Oct 27, 2026</p>
-    </div>
-  </div>
-    
-  </div>
-  
-
-
-</header>
 
 
 <link rel="stylesheet" href="assets/vendor/photoswipe/photoswipe.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://garrysykes.com/#website",
+      "url": "https://garrysykes.com/",
+      "name": "Garry Sykes",
+      "author": { "@id": "https://garrysykes.com/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://garrysykes.com/#person",
+      "name": "Garry Sykes",
+      "jobTitle": "Photographer",
+      "url": "https://garrysykes.com/",
+      "image": "https://garrysykes.com/images/about-stand.png",
+      "sameAs": [
+        "https://www.instagram.com/garrysykes.photo",
+        "https://www.facebook.com/profile.php?id=61588969539539"
+      ]
+    }
+  ]
+}
+</script>
+<h1 class="visually-hidden">Garry Sykes – Photography</h1>
 <div id="pg-home" class="pg-gallery"></div>
 <script type="module" src="assets/js/gallery.js"></script>
 
@@ -234,6 +238,21 @@ ul.task-list li input[type="checkbox"] {
     document.querySelectorAll(".quarto-listing img:not([alt])").forEach((img) => (img.alt = ""));
     document.querySelectorAll(".quarto-listing .listing-title").forEach((h) => h.setAttribute("aria-level", "2"));
   };
+  // Quarto marks a nav item active only on its exact page; also mark it on
+  // pages inside its section (blog posts, project pages). Gallery (site root) excluded.
+  const markSection = () => {
+    const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
+    document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin) return;
+      const dir = url.pathname.replace(/index\.html$/, "");
+      if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  };
+  document.addEventListener("DOMContentLoaded", markSection);
   const search = document.getElementById("quarto-search");
   if (search) new MutationObserver(patch).observe(search, { childList: true, subtree: true });
   document.addEventListener("DOMContentLoaded", patch);
