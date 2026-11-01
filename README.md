@@ -42,7 +42,7 @@ index.qmd              # Home: infinite-scroll photo gallery (genre filter, sort
 projects/
   index.qmd            # grid of projects (cover, title, description)
   <slug>.qmd           # one page per project — created by scripts/photos.py
-  _metadata.yml        # wires the gallery into every project page
+  _metadata.yml        # wires the gallery (and skip link) into every project page
 blog/
   index.qmd            # post listing + RSS feed (blog/index.xml)
   posts/<YYYY-MM-DD-slug>/index.qmd   # one folder per post, images alongside
@@ -56,7 +56,7 @@ scripts/photos.py      # photo pipeline
 assets/js/gallery.js   # gallery, tag cloud, lightbox
 assets/vendor/         # PhotoSwipe 5 (vendored)
 _includes/             # build-time helpers (not published) — see Customisations
-styles.scss            # theme overrides on top of cosmo
+styles.scss            # theme overrides on top of cosmo — see Look and feel
 ```
 
 ## Adding photos
@@ -76,6 +76,8 @@ styles.scss            # theme overrides on top of cosmo
    This converts to webp, updates `data/photos.json`, creates/updates project pages, moves the
    JPEGs to `Lrc_JPEGs/completed/<date>/`, and prints a `check` report.
 4. For a new project, fill in `description:` in `projects/<slug>.qmd` (you can add prose below the front matter too).
+   The description is used for search results and share previews; it's hidden on the page by default
+   (see [Descriptions](#descriptions)).
 5. Commit and push.
 
 Re-exporting a photo (same capture time + filename) updates it in place. New genres and projects appear automatically.
@@ -89,7 +91,8 @@ uv run scripts/photos.py post-images <today>-street-photography-tips
 ```
 
 Write the post in its `index.qmd`, reference images relatively (`![Caption](my-photo.webp)`), then remove
-`draft: true` when ready. The first paragraph becomes the listing summary unless `description:` is set.
+`draft: true` when ready. The first paragraph becomes the listing summary unless `description:` is set;
+fill in `description:` anyway (1–2 sentences) — it's the search-result and share-preview text.
 Post images never appear in the gallery; a gallery photo can be used via `/photos/full/<id>.webp`.
 
 ## Hiding and removing
@@ -120,20 +123,73 @@ Commit and push to `main`; GitHub Actions renders and publishes to the `gh-pages
 executes Python, so nothing needs rendering locally first. (`freeze: auto` remains in `_quarto.yml` for
 any future page that does — render it locally and commit `_freeze/`.)
 
+## Look and feel
+
+All in `styles.scss` (theme overrides on cosmo; keep the `/*-- scss:defaults --*/` and
+`/*-- scss:rules --*/` markers).
+
+- **Font**: Inter, loaded from Google Fonts via `$web-font-path`.
+- **Navbar**: white with a thin grey rule. Menu items left (lowercase, grey), name bold and centred,
+  social + search icons right. The current section's item is blue (`$primary`, #1a66d9) — including on
+  blog posts and project pages, which `_includes/a11y.html` marks because Quarto only highlights exact pages.
+- **Gallery chips/tags**: neutral greys so the UI doesn't compete with the photos.
+- **Scrollbar**: `html { overflow-y: scroll }` always reserves it, so the centred name sits in the same
+  place on short pages and long gallery pages.
+- **Dates**: no Modified dates anywhere. Published shows only on blog posts; project pages keep `date:`
+  (the Projects grid sorts by it) but it's hidden by the `body:has(.pg-project)` rule.
+
+### Descriptions
+
+Each page's `description:` front matter becomes its `<meta name="description">` (search results,
+share previews). Placeholders are marked `# TODO: rewrite`. By default descriptions are **hidden on
+screen** (still read by screen readers) by this rule in `styles.scss`:
+
+```scss
+#title-block-header .description,
+.quarto-grid-item .listing-description {
+  @include visually-hidden;
+}
+```
+
+- First line = the description under the title at the top of every page (project pages, About,
+  Projects, Blog, blog posts).
+- Second line = the description beneath each project's image on the Projects grid.
+
+To show them:
+
+| Show description… | Change |
+|---|---|
+| Beneath project images **and** on project pages | delete the whole rule |
+| Beneath project images only | delete the first line (and its trailing comma) |
+| At the top of project pages only | change the first line to `body:has(.pg-project) #title-block-header .description` |
+| On project pages and beneath project images, but not other pages | change the first line as above **and** delete the second line (and the comma before it) |
+
+Then `uv run quarto preview` to check, and commit + push. Blog listing summaries are always visible.
+
+## SEO and accessibility
+
+- `robots.txt` points to `https://garrysykes.com/sitemap.xml` (Quarto generates the sitemap from `site-url`).
+- Every page gets a `<link rel="canonical">` to its garrysykes.com URL (`_includes/canonical.lua`).
+- Home has a visually-hidden `<h1>` and Person/WebSite structured data (JSON-LD) in `index.qmd` —
+  update the `sameAs` links there if social profiles change.
+- Share previews: project pages use their cover; a site-wide default image is a TODO in `_quarto.yml`
+  (`open-graph: {image: images/share.jpg}`, ideally a 1200×630 JPEG).
+- Keyboard: "Skip to content" link on the first Tab (`_includes/skip-link.html`) and a visible blue focus ring.
+- Reduced motion: transitions and lightbox zoom are disabled when the OS "reduce motion" setting is on.
+- Photo alt text comes from Lightroom (Alt Text, falling back to Caption); `photos.py check` flags gaps.
+
 ## Customisations
 
 Build-time helpers live in `_includes/` (the `_` prefix means Quarto neither renders nor publishes
 them), wired up globally in `_quarto.yml`:
 
-- **`_includes/git-modified.lua`** — sets each page's `Modified` date from `git log` (the last commit that
-  touched the file), because Quarto's `last-modified` is the checkout time on CI. **Requires
-  `fetch-depth: 0`** on the checkout step in `.github/workflows/publish.yml`. Uncommitted files fall back
-  to mtime.
+- **`_includes/canonical.lua`** — adds a canonical link to every page (`.html` form, matching the sitemap).
+- **`_includes/skip-link.html`** — "Skip to content" link (`include-before-body`).
 - **`_includes/external-links.html`** — opens links to other sites in a new tab and blocks right-click /
   drag on images.
-- **`_includes/reorder-title-meta.html`** — moves the Published/Modified dates directly beneath the title
-  on pages with category tags (blog posts).
-- **`_includes/head.html`** — preconnects to Google Fonts (used by the cosmo theme) and sets the iOS
+- **`_includes/reorder-title-meta.html`** — moves the Published date directly beneath the title on pages
+  with category tags (blog posts).
+- **`_includes/head.html`** — preconnects to Google Fonts (Inter) and sets the iOS
   home-screen icon (`images/apple-touch-icon.png`). The favicon is `images/favicon.ico` (`favicon:` in
   `_quarto.yml`).
 - **About page Email button** — the address is stored reversed + base64 in a script in `about.qmd` and
@@ -141,11 +197,11 @@ them), wired up globally in `_quarto.yml`:
   Hidden links (GitHub, Strava, TrigpointingUK; navbar GitHub) are commented out in `about.qmd` /
   `_quarto.yml` — uncomment to restore.
 - **`_includes/a11y.html`** — fixes accessibility gaps in markup Quarto generates: labels the search
-  box, removes an invalid role from the mobile menu button, and tidies listing links, images and heading
-  levels for screen readers.
+  box, removes an invalid role from the mobile menu button, tidies listing links, images and heading
+  levels for screen readers, and highlights the current section in the navbar on sub-pages.
 
 `projects/_metadata.yml` repeats the HTML includes because directory-level `include-in-header` /
-`include-after-body` lists replace the site-wide ones.
+`include-before-body` / `include-after-body` lists replace the site-wide ones.
 
 ## Useful links
 
