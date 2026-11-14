@@ -11,6 +11,7 @@ Quarto website deployed to GitHub Pages via GitHub Actions: **photography portfo
 ```bash
 uv sync                                   # setup (also needs exiftool + cwebp via Homebrew)
 uv run quarto preview                     # live preview
+uv run quarto preview --profile drafts    # preview with draft posts fully rendered (_quarto-drafts.yml)
 uv run quarto render                      # build site
 
 uv run scripts/photos.py ingest           # LrC exports -> webp + manifest + project pages
@@ -58,4 +59,4 @@ uv run scripts/photos.py post-images <post-folder>
 ## Workflow
 
 - New photos: export → `photos.py ingest` → fill new projects' `description:` → commit + push
-- New post: `photos.py new-post` → `post-images` → write → remove `draft: true` → commit + push
+- New post: `photos.py new-post` → `post-images` → write (preview with `--profile drafts`; plain preview/render writes drafts as blank placeholders, which also leaves their listing entry without image/summary) → remove `draft: true` → commit + push

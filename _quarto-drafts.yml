@@ -1,0 +1,3 @@
+# Local preview with drafts rendered in full: uv run quarto preview --profile drafts
+website:
+  draft-mode: visible

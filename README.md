@@ -14,7 +14,16 @@ Also needed (Homebrew): `exiftool`, `cwebp` (`brew install webp`).
 
 ```bash
 uv run quarto preview
+uv run quarto preview --profile drafts    # also render draft posts in full
 ```
+
+### Previewing drafts
+
+A normal preview or render writes each `draft: true` post as a blank placeholder page, so drafts never
+reach the live site. A placeholder can then stick in preview: the post opens blank and its blog-list
+entry has no image or summary. Use `--profile drafts` (`_quarto-drafts.yml`, `draft-mode: visible`)
+to render drafts in full; it's local only, so CI and the published site are unaffected. In the blog
+list, drafts show a red **Draft** pill and a faded row.
 
 ### Preview on a phone (same Wi-Fi)
 
@@ -124,6 +133,7 @@ uv run scripts/photos.py new-post "Street photography tips"     # creates blog/p
 uv run scripts/photos.py post-images <today>-street-photography-tips
 ```
 
+Preview with `uv run quarto preview --profile drafts` (see [Previewing drafts](#previewing-drafts)).
 Write the post in its `index.qmd`, reference images relatively (`![Caption](my-photo.webp)`), then remove
 `draft: true` when ready. The first paragraph becomes the listing summary unless `description:` is set;
 fill in `description:` anyway (1–2 sentences) — it's the search-result and share-preview text.
