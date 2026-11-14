@@ -170,9 +170,13 @@ body:has(.pg-project) #title-block-header .quarto-title-meta {
 }
 
 // Draft posts in blog listing (preview only — drafts aren't rendered).
-// `draft` in the listing's fields outputs .listing-draft containing "true";
-// swap the text for a pill and fade the row.
-.quarto-post:has(.listing-draft) {
+// `draft` in the listing's fields outputs .listing-draft ("true", or blank for
+// draft: false); blog/index.qmd adds .is-draft only for "true". Pill + faded row.
+.quarto-listing .listing-draft {
+  display: none;
+}
+
+.quarto-post.is-draft {
   opacity: 0.55;
   transition: opacity 0.15s;
 
@@ -182,7 +186,7 @@ body:has(.pg-project) #title-block-header .quarto-title-meta {
   }
 }
 
-.quarto-listing .listing-draft {
+.quarto-post.is-draft .listing-draft {
   display: inline-block;
   font-size: 0;
   margin-top: 0.35rem;

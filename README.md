@@ -135,7 +135,7 @@ uv run scripts/photos.py post-images <today>-street-photography-tips
 
 Preview with `uv run quarto preview --profile drafts` (see [Previewing drafts](#previewing-drafts)).
 Write the post in its `index.qmd`, reference images relatively (`![Caption](my-photo.webp)`), then remove
-`draft: true` when ready. The first paragraph becomes the listing summary unless `description:` is set;
+`draft: true` (or set it to `false`) when ready. The first paragraph becomes the listing summary unless `description:` is set;
 fill in `description:` anyway (1–2 sentences) — it's the search-result and share-preview text.
 Post images never appear in the gallery; a gallery photo can be used via `/photos/full/<id>.webp`.
 

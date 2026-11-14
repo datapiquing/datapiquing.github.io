@@ -10,3 +10,16 @@ listing:
   categories: true
   feed: true
 ---
+
+```{=html}
+<script>
+  // `draft` in listing fields emits .listing-draft for any post with a draft key
+  // ("true", or blank for draft: false). Only real drafts get .is-draft (pill + fade).
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".quarto-post .listing-draft").forEach((el) => {
+      if (el.textContent.trim() === "true") el.closest(".quarto-post").classList.add("is-draft");
+      else el.remove();
+    });
+  });
+</script>
+```
