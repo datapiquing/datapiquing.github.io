@@ -233,13 +233,23 @@ window.Quarto = {
 </header>
 
 
+<script>
+  // `draft` in listing fields emits .listing-draft for any post with a draft key
+  // ("true", or blank for draft: false). Only real drafts get .is-draft (pill + fade).
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".quarto-post .listing-draft").forEach((el) => {
+      if (el.textContent.trim() === "true") el.closest(".quarto-post").classList.add("is-draft");
+      else el.remove();
+    });
+  });
+</script>
 
 
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="" data-listing-date-sort="1794614400000" data-listing-file-modified-sort="1794688773156" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="231">
+<div class="quarto-post image-right" data-index="0" data-categories="" data-listing-date-sort="1794614400000" data-listing-file-modified-sort="1794688996238" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="231">
 <div class="thumbnail">
 <p><a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external"></a></p><a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external">
 <p><img loading="lazy" src="../blog/posts/2026-11-14-i-blame-the-camera/cover.webp" class="thumbnail-image"></p>
