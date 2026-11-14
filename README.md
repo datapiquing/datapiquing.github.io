@@ -155,7 +155,8 @@ shown in the address bar (`#photo=<id>`) when a photo is open in the lightbox.
 ## Image protection
 
 Photos are public (they're in the GitHub repo), so these only deter casual copying: thumbnails link to
-`#photo=<id>` rather than the image file, right-click/drag and iOS long-press saving are blocked, every
+`#photo=<id>` rather than the image file, right-click/drag and iOS long-press saving are blocked (blog images too, including opening
+the lightbox link in a new tab), every
 webp carries copyright XMP (Creator, Rights, link to garrysykes.com/about.html — `photos.py stamp` re-applies it),
 captions show `© Garry Sykes`, and `robots.txt` disallows AI crawlers.
 
@@ -231,7 +232,7 @@ them), wired up globally in `_quarto.yml`:
 - **`_includes/canonical.lua`** — adds a canonical link to every page (`.html` form, matching the sitemap).
 - **`_includes/skip-link.html`** — "Skip to content" link (`include-before-body`).
 - **`_includes/external-links.html`** — opens links to other sites in a new tab and blocks right-click /
-  drag on images.
+  drag on images and middle/Cmd-click on blog lightbox links.
 - **`_includes/reorder-title-meta.html`** — moves the Published date directly beneath the title on pages
   with category tags (blog posts).
 - **`_includes/head.html`** — preconnects to Google Fonts (Inter) and sets the iOS

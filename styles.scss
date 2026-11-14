@@ -370,7 +370,8 @@ body:has(#pg-home) #title-block-header {
 .pg-item img,
 .pswp img,
 .glightbox-container img,
-main img {
+main img,
+a.lightbox {
   -webkit-user-drag: none;
   user-select: none;
   -webkit-touch-callout: none;

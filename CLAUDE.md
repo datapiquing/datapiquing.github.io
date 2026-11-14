@@ -34,7 +34,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `_data/catalog.json` (script-owned, every photo) + `_data/overrides.yaml` (hand-edited: `hidden`, `hidden_projects`, per-id field overrides) → `data/photos.json` (published manifest: `photos`, `projects`). `_data/` is not published on the site but is in the public repo.
   - Metadata mapping: Title = project, Caption/Description = caption, AltTextAccessibility = alt (falls back to caption), Keywords with `_` prefix = genres, other keywords = tag cloud, Label `Red` = project cover.
   - **Privacy**: GPS never written to the manifest; webps carry only copyright XMP (`stamp`, run automatically on ingest/post-images). Location shown is City/Country only.
-  - **Download deterrence**: thumbnails link to `#photo=<id>` not the file; right-click/drag blocked (`_includes/external-links.html`); `-webkit-touch-callout`/`user-drag` disabled in `styles.scss`; AI crawlers disallowed in `robots.txt`.
+  - **Download deterrence**: thumbnails link to `#photo=<id>` not the file; right-click/drag blocked, plus middle/Cmd/Ctrl/Shift-click on blog lightbox links (`a.lightbox`, which href the file) (`_includes/external-links.html`); `-webkit-touch-callout`/`user-drag` disabled in `styles.scss`; AI crawlers disallowed in `robots.txt`.
   - Project pages `projects/<slug>.qmd` are created if missing; the script only rewrites their `image:`, `date:` and `draft:` front-matter lines — title, description and prose are the user's.
 - **Gallery** (`assets/js/gallery.js`, ES module): fetches `data/photos.json` (paths resolved from the module URL so any page depth works). `#pg-home` → genre chips (single-select + All) + sort + justified grid + infinite scroll; `.pg-project[data-project]` → keyword tag cloud (AND) + grid. Lightbox is PhotoSwipe 5 vendored in `assets/vendor/photoswipe/`. Filter state in query string; `#photo=<id>` deep links. Justified rows are pure CSS (`--r` aspect ratio per item) in `styles.scss`.
 - **Sections**:
@@ -48,7 +48,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `canonical.lua` — adds `<link rel="canonical">` (garrysykes.com, `.html` form matching sitemap)
   - `skip-link.html` — "Skip to content" link (include-before-body; repeated in `projects/_metadata.yml`)
   - `reorder-title-meta.html` — moves the Published date beneath the title on tagged pages (blog posts)
-  - `external-links.html` — external links open in a new tab; blocks right-click/drag on images (download deterrent)
+  - `external-links.html` — external links open in a new tab; blocks right-click/drag on images and open-in-new-tab on blog lightbox links (download deterrent)
   - `head.html` — Google Fonts preconnect + `images/apple-touch-icon.png`; favicon is `images/favicon.ico`; avatar sources in gitignored `images/avatar/`
   - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels); also marks the section's nav item active on sub-pages (blog posts, project pages), which Quarto doesn't
 - **SEO**: home has a visually-hidden h1 + Person/WebSite JSON-LD in `index.qmd`; page `description:` = meta description (placeholders marked `# TODO: rewrite`); default share image TODO in `_quarto.yml`. a11y styles (focus ring, reduced motion, skip link) at top of `styles.scss` rules
