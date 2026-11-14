@@ -169,6 +169,37 @@ body:has(.pg-project) #title-block-header .quarto-title-meta {
   }
 }
 
+// Draft posts in blog listing (preview only — drafts aren't rendered).
+// `draft` in the listing's fields outputs .listing-draft containing "true";
+// swap the text for a pill and fade the row.
+.quarto-post:has(.listing-draft) {
+  opacity: 0.55;
+  transition: opacity 0.15s;
+
+  &:hover,
+  &:focus-within {
+    opacity: 1;
+  }
+}
+
+.quarto-listing .listing-draft {
+  display: inline-block;
+  font-size: 0;
+  margin-top: 0.35rem;
+
+  &::before {
+    content: "Draft";
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #b02a37;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+}
+
 // --- Photo gallery (assets/js/gallery.js) ---------------------------------
 
 // Reserve space so the footer doesn't jump as photos load.

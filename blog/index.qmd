@@ -5,7 +5,7 @@ listing:
   contents: "posts/*/index.qmd"
   sort: "date desc"
   type: default
-  fields: [image, date, title, description, categories]
+  fields: [image, date, title, description, categories, draft]  # draft: badge in preview only (drafts excluded from render)
   date-format: medium
   categories: true
   feed: true
