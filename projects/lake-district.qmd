@@ -1,0 +1,9 @@
+---
+title: "Lake District"
+description: ""
+image: ../photos/thumb/20261007-125532-DSCF0959.webp
+date: 2026-11-02
+---
+
+::: {.pg-project data-project="lake-district"}
+:::
