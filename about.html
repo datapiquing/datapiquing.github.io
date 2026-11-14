@@ -225,14 +225,26 @@ document.querySelectorAll('a.about-link[href$="#email"]').forEach(a => a.addEven
   });
 
   // Deter casual image saving: no right-click menu or drag on photos
-  // (gallery, PhotoSwipe, blog lightbox and in-page images).
+  // (gallery, PhotoSwipe, blog lightbox links/slides and in-page images).
   ["contextmenu", "dragstart"].forEach(function (type) {
     document.addEventListener(type, function (e) {
-      if (e.target.closest && e.target.closest("img, .pg-item, .pswp__img, .gslide-image")) {
+      if (e.target.closest && e.target.closest("img, a.lightbox, .pg-item, .pswp__img, .gslide-image")) {
         e.preventDefault();
       }
     });
   });
+
+  // Blog lightbox links point straight at the image file: block middle-click
+  // and Cmd/Ctrl/Shift-click "open in new tab/window" (plain click still opens
+  // the lightbox).
+  document.addEventListener("auxclick", function (e) {
+    if (e.target.closest && e.target.closest("a.lightbox")) e.preventDefault();
+  });
+  document.addEventListener("click", function (e) {
+    if ((e.metaKey || e.ctrlKey || e.shiftKey) && e.target.closest && e.target.closest("a.lightbox")) {
+      e.preventDefault();
+    }
+  }, true);
 </script>
 <script>
 // Accessibility patches for markup Quarto generates: label the search widget,
