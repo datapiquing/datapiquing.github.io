@@ -10,6 +10,50 @@
 <atom:link href="https://garrysykes.com/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Photography notes and stories by Garry Sykes.</description>
 <generator>quarto-1.5.56</generator>
-<lastBuildDate>Sat, 14 Nov 2026 20:38:25 GMT</lastBuildDate>
+<lastBuildDate>Sat, 14 Nov 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>I blame the camera…</title>
+  <link>https://garrysykes.com/blog/posts/2026-11-14-i-blame-the-camera/</link>
+  <description><![CDATA[ 
+<!-- Keyboard users: first Tab stop jumps past the navbar to the page content. -->
+Skip to content
+
+
+
+
+<p>No more excuses. I’ve bought a ‘proper’ camera.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../../images/x100vi.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Fujifilm X100VI"><img src="https://garrysykes.com/images/x100vi.png" class="img-fluid figure-img" alt="Fujifilm X100VI"></a></p>
+<figcaption>Fujifilm X100VI</figcaption>
+</figure>
+</div>
+<p>After years of happy snapping, I’ve finally taken the plunge, hoping that a little more creative control will help raise my game.</p>
+<p>I’ve been carrying a camera around with me since my early teens (I’m retired now!), but I’ve never really taken photography too seriously. There’s something about spotting, or anticipating, that ‘decisive moment’ that gives me a real buzz. Capturing it in an image is the icing on the cake.</p>
+<p>Until now, photography has largely been something I’ve done alongside other activities – hiking, cycling and travelling, for example. As a result, family, landscapes, wildlife and the great outdoors have always featured heavily in my pictures.</p>
+<p>More recently, my curiosity has been piqued by street photography and the clever ways it captures and documents everyday life.</p>
+<p>I’m really looking forward to exploring all these genres, developing my technical and creative skills and, above all, having fun along the way.</p>
+<p>I hope you enjoy following my photographic journey as I explore new subjects, develop my interests and gradually discover my own style.</p>
+<p>Feel free to have a browse and offer any thoughts or advice. I’m always keen to learn (and constructive criticism is welcome, however painful 😜.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="sheep-gang.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="A tough crowd to crack"><img src="https://garrysykes.com/blog/posts/2026-11-14-i-blame-the-camera/sheep-gang.webp" class="img-fluid figure-img" alt="A tough crowd to crack"></a></p>
+<figcaption>A tough crowd to crack</figcaption>
+</figure>
+</div>
+<!--
+Images live in this folder. Convert LrC JPEGs from ~/Desktop/Lrc_JPEGs/blog/ with:
+  uv run scripts/photos.py post-images 2026-11-14-i-blame-the-camera
+Then reference them relatively, e.g. ![Caption](my-photo.webp).
+A gallery photo can be used directly: ![Caption](/photos/full/<id>.webp)
+-->
+
+
+
+ ]]></description>
+  <guid>https://garrysykes.com/blog/posts/2026-11-14-i-blame-the-camera/</guid>
+  <pubDate>Sat, 14 Nov 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://garrysykes.com/blog/posts/2026-11-14-i-blame-the-camera/cover.webp" medium="image" type="image/webp"/>
+</item>
 </channel>
 </rss>

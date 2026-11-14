@@ -1,10 +1,15 @@
 [
   {
     "listing": "/projects/index.html",
-    "items": []
+    "items": [
+      "/projects/street-photography-leeds.html",
+      "/projects/lake-district.html"
+    ]
   },
   {
     "listing": "/blog/index.html",
-    "items": []
+    "items": [
+      "/blog/posts/2026-11-14-i-blame-the-camera/index.html"
+    ]
   }
 ]
