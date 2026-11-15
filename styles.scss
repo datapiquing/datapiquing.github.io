@@ -144,6 +144,12 @@ figure figcaption {
   content: ":\00a0";
 }
 
+// Cosmo lays meta out as a 2-column grid, squeezing the date into half the
+// width (wraps on phones). One full-width line instead.
+#title-block-header.quarto-title-block.default .quarto-title-meta {
+  display: block;
+}
+
 // Page descriptions: used for search/share (<meta name="description">) and
 // read by screen readers, but not shown under page titles or on Projects cards.
 // Blog listing summaries stay visible.
