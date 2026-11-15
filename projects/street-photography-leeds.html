@@ -131,6 +131,11 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../#email"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -233,6 +238,19 @@ ul.task-list li input[type="checkbox"] {
     }
   }, true);
 </script>
+<!-- Email links (navbar envelope icon, any link ending "#email"; Quarto
+     rewrites navbar "#email" to e.g. "../#email"): the address is
+     stored reversed + base64 and only assembled on click, so it never appears
+     in the page source. -->
+<script>
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href$="#email"]');
+    if (!a) return;
+    e.preventDefault();
+    var addr = atob("bW9jLmR1b2xjaUBxNS5zcmlhaGNfbmlyaXBzYQ==").split("").reverse().join("");
+    location.href = "mailto:" + addr + "?subject=" + encodeURIComponent("Visitor Query: garrysykes.com");
+  });
+</script>
 <script>
 // Accessibility patches for markup Quarto generates: label the search widget,
 // drop the navbar toggler's invalid role="menu", hide the empty duplicate links
@@ -259,6 +277,7 @@ ul.task-list li input[type="checkbox"] {
     const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
     document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
       const url = new URL(a.href, location.href);
+      if (url.hash) return; // action links like #email, not sections
       if (url.origin !== location.origin) return;
       const dir = url.pathname.replace(/index\.html$/, "");
       if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {

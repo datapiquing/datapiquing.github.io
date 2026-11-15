@@ -189,6 +189,11 @@ window.Quarto = {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../#email"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -236,7 +241,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1794441600000" data-listing-file-modified-sort="1794751317721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1794441600000" data-listing-file-modified-sort="1794756495353" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
 <a href="../projects/street-photography-leeds.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -253,7 +258,7 @@ Candid street photography in Leeds, Yorkshire: everyday moments, hard light and 
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1793577600000" data-listing-file-modified-sort="1794751317721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1793577600000" data-listing-file-modified-sort="1794756495353" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="3">
 <a href="../projects/lake-district-national-park.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -323,6 +328,19 @@ No matching items
     }
   }, true);
 </script>
+<!-- Email links (navbar envelope icon, any link ending "#email"; Quarto
+     rewrites navbar "#email" to e.g. "../#email"): the address is
+     stored reversed + base64 and only assembled on click, so it never appears
+     in the page source. -->
+<script>
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href$="#email"]');
+    if (!a) return;
+    e.preventDefault();
+    var addr = atob("bW9jLmR1b2xjaUBxNS5zcmlhaGNfbmlyaXBzYQ==").split("").reverse().join("");
+    location.href = "mailto:" + addr + "?subject=" + encodeURIComponent("Visitor Query: garrysykes.com");
+  });
+</script>
 <script>
 // Accessibility patches for markup Quarto generates: label the search widget,
 // drop the navbar toggler's invalid role="menu", hide the empty duplicate links
@@ -349,6 +367,7 @@ No matching items
     const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
     document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
       const url = new URL(a.href, location.href);
+      if (url.hash) return; // action links like #email, not sections
       if (url.origin !== location.origin) return;
       const dir = url.pathname.replace(/index\.html$/, "");
       if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {

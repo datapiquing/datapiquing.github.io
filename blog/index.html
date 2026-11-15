@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-draft',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -137,12 +137,10 @@ window.Quarto = {
 
 <link rel="alternate" type="application/rss+xml" title="Garry Sykes" href="index.xml" data-external="1"><meta property="og:title" content="Blog – Garry Sykes">
 <meta property="og:description" content="Photography notes and stories by Garry Sykes.">
-<meta property="og:image" content="https://garrysykes.com/blog/posts/2026-11-14-i-blame-the-camera/cover.webp">
 <meta property="og:site_name" content="Garry Sykes">
 <meta name="twitter:title" content="Blog – Garry Sykes">
 <meta name="twitter:description" content="Photography notes and stories by Garry Sykes.">
-<meta name="twitter:image" content="https://garrysykes.com/blog/posts/2026-11-14-i-blame-the-camera/cover.webp">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -190,6 +188,11 @@ window.Quarto = {
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../#email"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -203,7 +206,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <!-- Keyboard users: first Tab stop jumps past the navbar to the page content. -->
@@ -249,37 +252,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="" data-listing-date-sort="1794614400000" data-listing-file-modified-sort="1794751317712" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="231">
-<div class="thumbnail">
-<p><a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external"></a></p><a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external">
-<p><img loading="lazy" src="../blog/posts/2026-11-14-i-blame-the-camera/cover.webp" class="thumbnail-image"></p>
-</a><p><a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external">I blame the camera…</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
 
-</div>
-<div class="listing-description">
-<a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external">No more excuses. I’ve bought a ‘proper’ camera.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="../blog/posts/2026-11-14-i-blame-the-camera/index.html" class="no-external">
-<div class="listing-date">
-Nov 14, 2026
-</div>
-<div class="metadata-value listing-draft">
-&nbsp;
-</div>
-</a>
-</div>
-</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
@@ -333,6 +306,19 @@ No matching items
     }
   }, true);
 </script>
+<!-- Email links (navbar envelope icon, any link ending "#email"; Quarto
+     rewrites navbar "#email" to e.g. "../#email"): the address is
+     stored reversed + base64 and only assembled on click, so it never appears
+     in the page source. -->
+<script>
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href$="#email"]');
+    if (!a) return;
+    e.preventDefault();
+    var addr = atob("bW9jLmR1b2xjaUBxNS5zcmlhaGNfbmlyaXBzYQ==").split("").reverse().join("");
+    location.href = "mailto:" + addr + "?subject=" + encodeURIComponent("Visitor Query: garrysykes.com");
+  });
+</script>
 <script>
 // Accessibility patches for markup Quarto generates: label the search widget,
 // drop the navbar toggler's invalid role="menu", hide the empty duplicate links
@@ -359,6 +345,7 @@ No matching items
     const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
     document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
       const url = new URL(a.href, location.href);
+      if (url.hash) return; // action links like #email, not sections
       if (url.origin !== location.origin) return;
       const dir = url.pathname.replace(/index\.html$/, "");
       if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {
