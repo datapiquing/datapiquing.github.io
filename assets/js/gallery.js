@@ -266,9 +266,10 @@ function initProject(el, manifest, lightbox) {
   const cloud = el.querySelector(".pg-tags");
   const grid = infiniteGrid(el.querySelector(".pg-grid"), lightbox);
 
-  // "all" first (always visible), then tags sized by share of photos (--s: 0..1),
-  // then an inline "+N more" / "less" toggle.
+  // "show:" label + "all" first (always visible), then tags sized by share of
+  // photos (--s: 0..1), then an inline "+N more" / "less" toggle.
   cloud.innerHTML =
+    `<span class="pg-tags-label" aria-hidden="true">show:</span>` +
     `<button type="button" class="pg-tag pg-tag-all" data-tag="">all</button>` +
     tags
       .map((t) => {

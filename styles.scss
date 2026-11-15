@@ -375,6 +375,13 @@ body:has(#pg-home) #title-block-header {
   font-size: 0.9rem;
 }
 
+// Muted lead-in so the cloud reads as a filter, not decoration.
+.pg-tags-label {
+  font-size: 0.8rem;
+  color: $gray-600;
+  margin-right: -0.4rem; // sit closer to "all" than the tag gap
+}
+
 // Inline at the end of the cloud: "+N more" when collapsed, "less" when open.
 .pg-tags-toggle {
   border: 0;
