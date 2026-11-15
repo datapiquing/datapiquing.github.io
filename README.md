@@ -133,6 +133,13 @@ uv run scripts/photos.py new-post "Street photography tips"     # creates blog/p
 uv run scripts/photos.py post-images <today>-street-photography-tips
 ```
 
+To date a post other than today (e.g. writing up an earlier trip), add `--date YYYY-MM-DD`. It sets
+both the folder prefix and the post's `date:`; invalid dates are rejected before anything is created.
+
+```bash
+uv run scripts/photos.py new-post "Street photography tips" --date 2026-10-03   # blog/posts/2026-10-03-street-photography-tips/
+```
+
 Preview with `uv run quarto preview --profile drafts` (see [Previewing drafts](#previewing-drafts)).
 Write the post in its `index.qmd`, reference images relatively (`![Caption](my-photo.webp)`), then remove
 `draft: true` (or set it to `false`) when ready. The first paragraph becomes the listing summary unless `description:` is set;
