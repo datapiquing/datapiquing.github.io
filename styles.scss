@@ -154,7 +154,8 @@ figure figcaption {
 
 // Published date only on blog posts: project pages keep `date:` for listing
 // sort order but don't show it.
-body:has(.pg-project) #title-block-header .quarto-title-meta {
+// Must out-rank cosmo's `#title-block-header.quarto-title-block.default .quarto-title-meta`.
+body:has(.pg-project) #title-block-header.quarto-title-block.default .quarto-title-meta {
   display: none;
 }
 
@@ -370,29 +371,26 @@ body:has(#pg-home) #title-block-header {
   }
 }
 
-.pg-tag-clear {
-  font-size: 0.8rem;
-  color: $gray-600;
+.pg-tag-all {
+  font-size: 0.9rem;
 }
 
-// Collapsed: ~2 rows of the largest tag size; "more…" reveals the rest.
-.pg-tags.collapsed {
-  max-height: 4rem;
-  overflow: hidden;
-}
-
+// Inline at the end of the cloud: "+N more" when collapsed, "less" when open.
 .pg-tags-toggle {
-  display: block;
   border: 0;
   background: none;
   padding: 0;
-  margin: -0.6rem 0 1rem;
   font-size: 0.8rem;
   color: $gray-600;
+  white-space: nowrap;
 
   &:hover {
     text-decoration: underline;
   }
+}
+
+.pg-tags [hidden] {
+  display: none;
 }
 
 // Deter casual saving of photos: no drag, selection or iOS long-press menu.

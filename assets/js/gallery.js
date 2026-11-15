@@ -253,7 +253,7 @@ function initProject(el, manifest, lightbox) {
   const counts = {};
   all.forEach((p) => p.keywords.forEach((k) => (counts[k] = (counts[k] || 0) + 1)));
   // Drop near-universal keywords (e.g. the city on every photo): they filter nothing.
-  // Biggest first, so the collapsed rows show the most useful tags.
+  // Biggest first, so collapsed rows show the most useful tags.
   const tags = Object.keys(counts)
     .filter((k) => all.length < 3 || counts[k] < all.length * 0.9)
     .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
@@ -261,69 +261,91 @@ function initProject(el, manifest, lightbox) {
   const max = Math.max(1, ...tags.map((t) => counts[t]));
 
   el.innerHTML = `
-    <div class="pg-tags collapsed" role="group" aria-label="Filter by keyword"></div>
-    <button type="button" class="pg-tags-toggle" aria-expanded="false" hidden>more…</button>
+    <div class="pg-tags" role="group" aria-label="Filter by keyword"></div>
     <div class="pg-grid"></div>`;
   const cloud = el.querySelector(".pg-tags");
-  const toggle = el.querySelector(".pg-tags-toggle");
   const grid = infiniteGrid(el.querySelector(".pg-grid"), lightbox);
 
-  // Font size scales with how many of the project's photos use the keyword (--s: 0..1).
-  cloud.innerHTML = tags
-    .map((t) => {
-      const s = ((counts[t] - 1) / Math.max(1, max - 1)).toFixed(2);
-      return `<button type="button" class="pg-tag" data-tag="${esc(t)}" style="--s:${s}"` +
-        ` title="${counts[t]} photo${counts[t] > 1 ? "s" : ""}">${esc(t)}</button>`;
-    })
-    .join("") +
-    `<button type="button" class="pg-tag pg-tag-clear" hidden>clear</button>`;
+  // "all" first (always visible), then tags sized by share of photos (--s: 0..1),
+  // then an inline "+N more" / "less" toggle.
+  cloud.innerHTML =
+    `<button type="button" class="pg-tag pg-tag-all" data-tag="">all</button>` +
+    tags
+      .map((t) => {
+        const s = ((counts[t] - 1) / Math.max(1, max - 1)).toFixed(2);
+        return `<button type="button" class="pg-tag" data-tag="${esc(t)}" style="--s:${s}"` +
+          ` title="${counts[t]} photo${counts[t] > 1 ? "s" : ""}">${esc(t)}</button>`;
+      })
+      .join("") +
+    `<button type="button" class="pg-tags-toggle" aria-expanded="false" hidden></button>`;
+  const toggle = cloud.querySelector(".pg-tags-toggle");
+  const tagButtons = [...cloud.querySelectorAll(".pg-tag:not(.pg-tag-all)")];
+  let expanded = false;
 
-  const setExpanded = (open) => {
-    cloud.classList.toggle("collapsed", !open);
-    toggle.setAttribute("aria-expanded", open);
-    toggle.textContent = open ? "less" : "more…";
+  // Number of wrapped rows among visible items (flex lines never overlap).
+  const rows = () => {
+    let n = 0, bottom = -Infinity;
+    for (const c of cloud.children) {
+      if (c.hidden) continue;
+      const r = c.getBoundingClientRect();
+      if (r.top >= bottom - 1) { n++; bottom = r.bottom; }
+      else bottom = Math.max(bottom, r.bottom);
+    }
+    return n;
   };
-  // Only offer the toggle when the collapsed cloud actually clips something.
-  const updateToggle = () => {
-    const open = !cloud.classList.contains("collapsed");
-    cloud.classList.add("collapsed");
-    const clips = cloud.scrollHeight > cloud.clientHeight + 1;
-    cloud.classList.toggle("collapsed", !open);
-    toggle.hidden = !clips;
-    if (!clips) setExpanded(false);
+
+  // Collapsed: hide whole tags from the tail (never the selected one) until
+  // everything, including the toggle, fits in 2 rows.
+  const ROWS = 2;
+  const layout = () => {
+    tagButtons.forEach((b) => (b.hidden = false));
+    toggle.hidden = true;
+    if (rows() <= ROWS) return;
+    toggle.hidden = false;
+    toggle.setAttribute("aria-expanded", expanded);
+    if (expanded) {
+      toggle.textContent = "less";
+      return;
+    }
+    let hidden = 0;
+    toggle.textContent = "+1 more";
+    for (let i = tagButtons.length - 1; i >= 0 && rows() > ROWS; i--) {
+      if (tagButtons[i].dataset.tag === tag) continue;
+      tagButtons[i].hidden = true;
+      toggle.textContent = `+${++hidden} more`;
+    }
   };
 
   const apply = () => {
-    cloud.querySelectorAll(".pg-tag[data-tag]").forEach((b) => {
+    cloud.querySelectorAll(".pg-tag").forEach((b) => {
       const on = b.dataset.tag === tag;
       b.classList.toggle("active", on);
       b.setAttribute("aria-pressed", on);
     });
-    cloud.querySelector(".pg-tag-clear").hidden = !tag;
+    layout();
     setQuery({ tag });
     grid.set(all.filter((p) => !tag || p.keywords.includes(tag)));
   };
 
   cloud.addEventListener("click", (e) => {
+    if (e.target.closest(".pg-tags-toggle")) {
+      expanded = !expanded;
+      layout();
+      return;
+    }
     const b = e.target.closest(".pg-tag");
     if (!b) return;
     tag = b.dataset.tag && b.dataset.tag !== tag ? b.dataset.tag : "";
     apply();
   });
-  toggle.addEventListener("click", () => setExpanded(cloud.classList.contains("collapsed")));
   let raf = 0;
   addEventListener("resize", () => {
     cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(updateToggle);
+    raf = requestAnimationFrame(layout);
   });
+  document.fonts?.ready.then(layout); // web font changes tag widths
 
   apply();
-  updateToggle();
-  // A deep-linked tag hidden below the fold: start expanded so it's visible.
-  const active = cloud.querySelector(".pg-tag.active");
-  if (active && active.offsetTop + active.offsetHeight > cloud.offsetTop + cloud.clientHeight) {
-    setExpanded(true);
-  }
 
   const id = deepLinkId();
   if (id && !grid.open(id) && tag) {
