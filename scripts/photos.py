@@ -506,6 +506,10 @@ def cmd_reset(args):
 
 def cmd_new_post(args):
     date = args.date or dt.date.today().isoformat()
+    try:
+        date = dt.date.fromisoformat(date).isoformat()  # also normalises e.g. 20261003
+    except ValueError:
+        sys.exit(f"Invalid --date '{args.date}': use YYYY-MM-DD")
     folder = POSTS_DIR / f"{date}-{slugify(args.title)}"
     if folder.exists():
         sys.exit(f"Already exists: {folder.relative_to(ROOT)}")
