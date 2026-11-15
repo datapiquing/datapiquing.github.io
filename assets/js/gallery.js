@@ -253,12 +253,10 @@ function initProject(el, manifest, lightbox) {
   const counts = {};
   all.forEach((p) => p.keywords.forEach((k) => (counts[k] = (counts[k] || 0) + 1)));
   // Drop near-universal keywords (e.g. the city on every photo): they filter nothing.
-  // Biggest first, so collapsed rows show the most useful tags.
   const tags = Object.keys(counts)
     .filter((k) => all.length < 3 || counts[k] < all.length * 0.9)
-    .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+    .sort((a, b) => a.localeCompare(b));
   if (!tags.includes(tag)) tag = "";
-  const max = Math.max(1, ...tags.map((t) => counts[t]));
 
   el.innerHTML = `
     <div class="pg-tags" role="group" aria-label="Filter by keyword"></div>
@@ -266,17 +264,16 @@ function initProject(el, manifest, lightbox) {
   const cloud = el.querySelector(".pg-tags");
   const grid = infiniteGrid(el.querySelector(".pg-grid"), lightbox);
 
-  // "show:" label + "all" first (always visible), then tags sized by share of
-  // photos (--s: 0..1), then an inline "+N more" / "less" toggle.
+  // "show:" label + "all" first (always visible), then A-Z tags with photo
+  // counts, then an inline "+N more" / "less" toggle.
   cloud.innerHTML =
     `<span class="pg-tags-label" aria-hidden="true">show:</span>` +
     `<button type="button" class="pg-tag pg-tag-all" data-tag="">all</button>` +
     tags
-      .map((t) => {
-        const s = ((counts[t] - 1) / Math.max(1, max - 1)).toFixed(2);
-        return `<button type="button" class="pg-tag" data-tag="${esc(t)}" style="--s:${s}"` +
-          ` title="${counts[t]} photo${counts[t] > 1 ? "s" : ""}">${esc(t)}</button>`;
-      })
+      .map((t) =>
+        `<button type="button" class="pg-tag" data-tag="${esc(t)}">${esc(t)}` +
+        ` <span class="pg-tag-count">(${counts[t]})</span></button>`
+      )
       .join("") +
     `<button type="button" class="pg-tags-toggle" aria-expanded="false" hidden></button>`;
   const toggle = cloud.querySelector(".pg-tags-toggle");
@@ -296,9 +293,10 @@ function initProject(el, manifest, lightbox) {
   };
 
   // Collapsed: hide whole tags from the tail (never the selected one) until
-  // everything, including the toggle, fits in 2 rows.
-  const ROWS = 2;
+  // everything, including the toggle, fits in 2 rows (3 on phones).
+  const phone = matchMedia("(max-width: 575.98px)");
   const layout = () => {
+    const ROWS = phone.matches ? 3 : 2;
     tagButtons.forEach((b) => (b.hidden = false));
     toggle.hidden = true;
     if (rows() <= ROWS) return;
