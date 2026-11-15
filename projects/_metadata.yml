@@ -11,5 +11,6 @@ include-before-body:
 include-after-body:
   - ../_includes/reorder-title-meta.html
   - ../_includes/external-links.html
+  - ../_includes/email-link.html
   - ../_includes/a11y.html
   - text: <script type="module" src="../assets/js/gallery.js"></script>

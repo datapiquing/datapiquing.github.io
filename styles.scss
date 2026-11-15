@@ -417,6 +417,15 @@ a.lightbox {
   -webkit-touch-callout: none;
 }
 
+// About: location (front-matter `subtitle:`) under the name, small and grey
+// rather than Bootstrap's large `.lead`.
+.quarto-about-trestles .quarto-title .subtitle {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: $gray-600;
+  margin-top: 0.25rem;
+}
+
 // About page "Tools of the trade", beneath the About text.
 .about-tools {
   margin-top: 1.5rem;

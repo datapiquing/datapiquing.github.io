@@ -21,7 +21,7 @@ uv run scripts/photos.py stamp            # re-embed copyright XMP in all webps
 uv run scripts/photos.py thumbs           # create missing small thumbnails from full webps
 uv run scripts/photos.py remove <id>      # / remove-project <slug> [--keep-images]
 uv run scripts/photos.py reset            # delete ALL gallery photos/projects [--dry-run] [--yes] [--keep-pages]
-uv run scripts/photos.py new-post "<title>"
+uv run scripts/photos.py new-post "<title>" [--date YYYY-MM-DD]   # default today; sets folder prefix + date:
 uv run scripts/photos.py post-images <post-folder>
 ```
 
@@ -41,7 +41,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `index.qmd` — Home gallery (title block hidden via CSS)
   - `projects/index.qmd` — Quarto grid listing of `projects/*.qmd`; `projects/_metadata.yml` injects gallery script/CSS (and repeats the site-wide `include-in-header`/`include-after-body` entries, since directory-level lists replace them)
   - `blog/index.qmd` — listing of `blog/posts/*/index.qmd` + RSS; `draft` in listing `fields` → `.listing-draft` ("true", or blank for `draft: false`); inline script adds `.is-draft` only for "true" → red pill + faded row in preview (`styles.scss`); one folder per post with its images; `blog/posts/_metadata.yml` enables Quarto's built-in lightbox; `blog/_template/index.qmd` is the `new-post` template (not rendered)
-  - `about.qmd` — trestles template; Instagram/Facebook/Email links (GitHub, Strava, TrigpointingUK commented out); Email address stored reversed+base64 in an inline script, assembled into `mailto:` + subject on click (never in page source); "Tools of the trade" X100VI pixel-art block (`.about-tools` in `styles.scss`, 6x source shown at 318px)
+  - `about.qmd` — trestles template; `subtitle:` = location under name (small grey, `styles.scss`); `about.links` commented out (social/email live in navbar); intro text + `images/sheep-gang.webp`; "Tools of the trade" X100VI pixel-art block (`.about-tools` in `styles.scss`, 6x source shown at 318px)
 - **Hide vs remove**: hide via `_data/overrides.yaml` + `rebuild` (photos/projects) or `draft: true` (posts); remove via `photos.py remove` / `remove-project` or deleting a post folder. `photos.py reset` wipes all gallery webps, catalog, overrides (to template), manifest and project pages (`--keep-pages` → drafts; a re-used project name republishes on ingest); blog posts untouched.
 - `styles.scss` — theme overrides on cosmo (must keep `/*-- scss:defaults --*/`, `/*-- scss:rules --*/`). Cosmo styles title-block dates with a high-specificity `#title-block-header.quarto-title-block.default …` selector — class-only overrides lose to it. `$primary` is #1a66d9 (5.3:1 on white, WCAG AA); title-block dates/categories use `$gray-600` with the theme's opacity fade removed. Fonts: Inter (`$web-font-path`). Navbar: white (`$navbar-bg`), grey lowercase menu left, bold name absolutely centred at ≥992px, social + search right, active item `$primary`; gallery chips/tags neutral greys. `html { overflow-y: scroll }` keeps the name in the same place on short and long pages. Dates: no Modified anywhere; Published shown only on blog posts (project pages keep `date:` for listing sort, hidden via `body:has(.pg-project)`).
 - `_includes/` — build-time tooling, not published, wired globally in `_quarto.yml`:
@@ -50,10 +50,11 @@ uv run scripts/photos.py post-images <post-folder>
   - `reorder-title-meta.html` — moves the Published date beneath the title on tagged pages (blog posts)
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images and open-in-new-tab on blog lightbox links (download deterrent)
   - `head.html` — Google Fonts preconnect + `images/apple-touch-icon.png`; favicon is `images/favicon.ico`; avatar sources in gitignored `images/avatar/`
+  - `email-link.html` — navbar envelope `#email` (Quarto rewrites to `../#email`, so match `href$="#email"`): address stored reversed+base64, assembled into `mailto:` + subject on click (never in page source)
   - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels); also marks the section's nav item active on sub-pages (blog posts, project pages), which Quarto doesn't
 - **Search index**: `scripts/search-index.ts` (`post-render`, Quarto's Deno) tidies `search.json`: strips skip-link "Skip to content" + listing "No matching items", gives text-less pages (JS galleries) their `description:`, drops entries for deleted pages. Drafts aren't indexed (Quarto).
 - **SEO**: home has a visually-hidden h1 + Person/WebSite JSON-LD in `index.qmd`; page `description:` = meta description (placeholders marked `# TODO: rewrite`); default share image TODO in `_quarto.yml`. a11y styles (focus ring, reduced motion, skip link) at top of `styles.scss` rules
-- Navbar: "Garry Sykes" title is the home link; Gallery (home), Projects, Blog, About; Instagram/Facebook icons (GitHub commented out); search
+- Navbar: "Garry Sykes" title is the home link; Gallery (home), Projects, Blog, About; Instagram/Facebook/Email icons (GitHub commented out); search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored
 - Dependencies managed with `uv` — `pyproject.toml` / `uv.lock`
 

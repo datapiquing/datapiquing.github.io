@@ -56,6 +56,9 @@ website:
       - icon: facebook
         aria-label: Facebook
         href: https://www.facebook.com/profile.php?id=61588969539539
+      - icon: envelope
+        aria-label: Email
+        href: "#email"
 
   page-footer:
     center: "© 2026 Garry Sykes. All rights reserved."
@@ -83,4 +86,5 @@ format:
     include-after-body:
       - _includes/reorder-title-meta.html
       - _includes/external-links.html
+      - _includes/email-link.html
       - _includes/a11y.html

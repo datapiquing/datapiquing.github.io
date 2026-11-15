@@ -24,6 +24,7 @@
     const root = new URL(document.querySelector(".navbar-brand")?.href || "/", location.href).pathname.replace(/index\.html$/, "");
     document.querySelectorAll(".navbar-nav .nav-link[href]").forEach((a) => {
       const url = new URL(a.href, location.href);
+      if (url.hash) return; // action links like #email, not sections
       if (url.origin !== location.origin) return;
       const dir = url.pathname.replace(/index\.html$/, "");
       if (dir !== root && dir.endsWith("/") && location.pathname.startsWith(dir)) {

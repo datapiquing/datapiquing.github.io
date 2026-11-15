@@ -1,0 +1,13 @@
+<!-- Email links (navbar envelope icon, any link ending "#email"; Quarto
+     rewrites navbar "#email" to e.g. "../#email"): the address is
+     stored reversed + base64 and only assembled on click, so it never appears
+     in the page source. -->
+<script>
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href$="#email"]');
+    if (!a) return;
+    e.preventDefault();
+    var addr = atob("bW9jLmR1b2xjaUBxNS5zcmlhaGNfbmlyaXBzYQ==").split("").reverse().join("");
+    location.href = "mailto:" + addr + "?subject=" + encodeURIComponent("Visitor Query: garrysykes.com");
+  });
+</script>
