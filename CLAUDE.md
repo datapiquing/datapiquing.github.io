@@ -51,6 +51,7 @@ uv run scripts/photos.py post-images <post-folder>
   - `external-links.html` — external links open in a new tab; blocks right-click/drag on images and open-in-new-tab on blog lightbox links (download deterrent)
   - `head.html` — Google Fonts preconnect + `images/apple-touch-icon.png`; favicon is `images/favicon.ico`; avatar sources in gitignored `images/avatar/`
   - `a11y.html` — patches Quarto-generated markup for accessibility (search labels, navbar toggler role, listing links/images/heading levels); also marks the section's nav item active on sub-pages (blog posts, project pages), which Quarto doesn't
+- **Search index**: `scripts/search-index.ts` (`post-render`, Quarto's Deno) tidies `search.json`: strips skip-link "Skip to content" + listing "No matching items", gives text-less pages (JS galleries) their `description:`, drops entries for deleted pages. Drafts aren't indexed (Quarto).
 - **SEO**: home has a visually-hidden h1 + Person/WebSite JSON-LD in `index.qmd`; page `description:` = meta description (placeholders marked `# TODO: rewrite`); default share image TODO in `_quarto.yml`. a11y styles (focus ring, reduced motion, skip link) at top of `styles.scss` rules
 - Navbar: "Garry Sykes" title is the home link; Gallery (home), Projects, Blog, About; Instagram/Facebook icons (GitHub commented out); search
 - `_quarto.yml` `render` list globs `.qmd` per section so `.md` files (CLAUDE.md, README.md) aren't rendered; `research/` is excluded and gitignored

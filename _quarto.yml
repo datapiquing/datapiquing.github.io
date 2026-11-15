@@ -7,6 +7,9 @@ project:
     - "projects/**/*.qmd"
     - "!research/**"
 
+  # Tidy search.json: drop "Skip to content", use descriptions for gallery pages.
+  post-render: scripts/search-index.ts
+
   resources:
     - robots.txt
     - images/
