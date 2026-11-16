@@ -5,5 +5,7 @@ image: ../photos/thumb/20261007-125532-DSCF0959.webp
 date: 2026-11-02
 ---
 
+Landscapes from the Lake District fells: views from the summits, trig points and Wainwrights I've conquered.
+
 ::: {.pg-project data-project="lake-district-national-park"}
 :::
