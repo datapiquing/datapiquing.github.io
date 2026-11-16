@@ -417,6 +417,25 @@ a.lightbox {
   -webkit-touch-callout: none;
 }
 
+// Blog: small grey RSS link beside the "Blog" heading (moved there by blog/index.qmd).
+.quarto-title:has(> .blog-rss) {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.blog-rss {
+  font-size: 0.8rem;
+  color: $gray-600;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: $gray-800;
+    text-decoration: underline;
+  }
+}
+
 // About: location (front-matter `subtitle:`) under the name, small and grey
 // rather than Bootstrap's large `.lead`.
 .quarto-about-trestles .quarto-title .subtitle {

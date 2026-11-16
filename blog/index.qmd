@@ -12,10 +12,15 @@ listing:
 ---
 
 ```{=html}
+<a class="blog-rss" href="index.xml" title="Subscribe via RSS"><i class="bi bi-rss" aria-hidden="true"></i> RSS</a>
 <script>
   // `draft` in listing fields emits .listing-draft for any post with a draft key
   // ("true", or blank for draft: false). Only real drafts get .is-draft (pill + fade).
   document.addEventListener("DOMContentLoaded", () => {
+    // RSS link sits beside the "Blog" heading (stays above the list without JS).
+    const rss = document.querySelector(".blog-rss");
+    const h1 = document.querySelector("#title-block-header h1.title");
+    if (rss && h1) h1.insertAdjacentElement("afterend", rss);
     document.querySelectorAll(".quarto-post .listing-draft").forEach((el) => {
       if (el.textContent.trim() === "true") el.closest(".quarto-post").classList.add("is-draft");
       else el.remove();
