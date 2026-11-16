@@ -221,7 +221,9 @@ body:has(.pg-project) #title-block-header.quarto-title-block.default .quarto-tit
 
 // Justified rows without layout JS: each item's basis/grow is proportional to
 // its aspect ratio (--r), so rows fill the width; the ::after spacer stops the
-// last row stretching.
+// last row stretching. gallery.js (fitLastRow) then adds .pg-fit/.pg-last so
+// last-row items grow up to a typical row height (--cap-h) and the spacer
+// takes only what's left.
 .pg-grid {
   --row-h: 240px;
   display: flex;
@@ -231,6 +233,10 @@ body:has(.pg-project) #title-block-header.quarto-title-block.default .quarto-tit
   &::after {
     content: "";
     flex-grow: 999999;
+  }
+
+  &.pg-fit::after {
+    flex-grow: 0.0001;
   }
 
   @media (max-width: 576px) {
@@ -261,6 +267,10 @@ body:has(.pg-project) #title-block-header.quarto-title-block.default .quarto-tit
 
   &:hover img {
     opacity: 0.85;
+  }
+
+  &.pg-last {
+    max-width: calc(var(--r) * var(--cap-h));
   }
 }
 

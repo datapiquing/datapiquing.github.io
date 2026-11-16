@@ -109,6 +109,31 @@ function thumb(p, index) {
   return a;
 }
 
+// The CSS spacer stops the last row stretching, which leaves it at the base
+// row height while full rows stretch taller (on phones a full row is often one
+// photo at ~2x height). Let last-row items grow, but only up to a typical
+// (median) row height, so the final row matches the rest without ballooning.
+function fitLastRow(grid) {
+  const items = [...grid.querySelectorAll(".pg-item")];
+  items.forEach((a) => a.classList.remove("pg-last"));
+  grid.classList.remove("pg-fit");
+  if (!items.length) return;
+  const lastTop = items.at(-1).offsetTop;
+  const last = items.filter((a) => a.offsetTop === lastTop);
+  const heights = [];
+  let top = null;
+  for (const a of items) {
+    if (a.offsetTop === lastTop) break;
+    if (a.offsetTop !== top) heights.push(a.offsetHeight), (top = a.offsetTop);
+  }
+  heights.sort((x, y) => x - y);
+  const rowH = parseFloat(getComputedStyle(grid).getPropertyValue("--row-h")) || 0;
+  const cap = heights.length ? heights[heights.length >> 1] : rowH * 2;
+  grid.style.setProperty("--cap-h", `${cap}px`);
+  last.forEach((a) => a.classList.add("pg-last"));
+  grid.classList.add("pg-fit");
+}
+
 // Renders `photos` into `grid` in batches as the user scrolls; returns a
 // function that replaces the list (used by filters/sort).
 function infiniteGrid(grid, lightbox) {
@@ -128,7 +153,13 @@ function infiniteGrid(grid, lightbox) {
       shown = Math.min(shown + BATCH, list.length);
       if (!nearBottom()) break;
     }
+    fitLastRow(grid);
   };
+  let raf = 0;
+  addEventListener("resize", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => fitLastRow(grid));
+  });
   new IntersectionObserver((entries) => entries[0].isIntersecting && more(), {
     rootMargin: "800px",
   }).observe(sentinel);
