@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-date','listing-title','listing-description','listing-categories','listing-draft',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -103,6 +103,9 @@ ul.task-list li input[type="checkbox"] {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+<!-- RSS autodiscovery on every page (Quarto only adds it to the Blog listing),
+     so feed readers find the blog from any URL on the site. -->
+<link rel="alternate" type="application/rss+xml" title="Garry Sykes" href="../blog/index.xml">
 <link rel="canonical" href="https://garrysykes.com/blog/index.html">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -137,10 +140,12 @@ window.Quarto = {
 
 <link rel="alternate" type="application/rss+xml" title="Garry Sykes" href="index.xml" data-external="1"><meta property="og:title" content="Blog – Garry Sykes">
 <meta property="og:description" content="Photography notes and stories by Garry Sykes.">
+<meta property="og:image" content="https://garrysykes.com/blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/cover.webp">
 <meta property="og:site_name" content="Garry Sykes">
 <meta name="twitter:title" content="Blog – Garry Sykes">
 <meta name="twitter:description" content="Photography notes and stories by Garry Sykes.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://garrysykes.com/blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/cover.webp">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed">
@@ -206,7 +211,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="competition">competition <span class="quarto-category-count">(1)</span></div><div class="category" data-category="street photography">street photography <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <!-- Keyboard users: first Tab stop jumps past the navbar to the page content. -->
@@ -236,10 +241,15 @@ window.Quarto = {
 </header>
 
 
+<a class="blog-rss" href="index.xml" title="Subscribe via RSS"><i class="bi bi-rss" aria-hidden="true"></i> RSS</a>
 <script>
   // `draft` in listing fields emits .listing-draft for any post with a draft key
   // ("true", or blank for draft: false). Only real drafts get .is-draft (pill + fade).
   document.addEventListener("DOMContentLoaded", () => {
+    // RSS link sits beside the "Blog" heading (stays above the list without JS).
+    const rss = document.querySelector(".blog-rss");
+    const h1 = document.querySelector("#title-block-header h1.title");
+    if (rss && h1) h1.insertAdjacentElement("afterend", rss);
     document.querySelectorAll(".quarto-post .listing-draft").forEach((el) => {
       if (el.textContent.trim() === "true") el.closest(".quarto-post").classList.add("is-draft");
       else el.remove();
@@ -252,7 +262,69 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-
+<div class="quarto-post image-right" data-index="0" data-categories="street photography,competition" data-listing-date-sort="1794528000000" data-listing-file-modified-sort="1794858868541" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="430">
+<div class="thumbnail">
+<p><a href="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html" class="no-external"></a></p><a href="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html" class="no-external">
+<p><img loading="lazy" src="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/cover.webp" class="thumbnail-image"></p>
+</a><p><a href="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html" class="no-external">Quality Street - I Won a Photo Competition 🏆</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('street photography'); return false;">
+street photography
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('competition'); return false;">
+competition
+</div>
+</div>
+<div class="listing-description">
+<a href="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html" class="no-external">Four months after buying a Fujifilm X100VI, I won The School of Photography’s October ‘Near and Far’ competition with a street photo from Leeds.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html" class="no-external">
+<div class="listing-date">
+Nov 13, 2026
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="street photography" data-listing-date-sort="1792195200000" data-listing-file-modified-sort="1794858868540" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="209">
+<div class="thumbnail">
+<p><a href="../blog/posts/2026-10-17-i-play-the-street-life/index.html" class="no-external"></a></p><a href="../blog/posts/2026-10-17-i-play-the-street-life/index.html" class="no-external">
+<p><img loading="lazy" src="../blog/posts/2026-10-17-i-play-the-street-life/cover.webp" class="thumbnail-image"></p>
+</a><p><a href="../blog/posts/2026-10-17-i-play-the-street-life/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../blog/posts/2026-10-17-i-play-the-street-life/index.html" class="no-external">I Play the Street Life …</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../blog/posts/2026-10-17-i-play-the-street-life/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('street photography'); return false;">
+street photography
+</div>
+</div>
+<div class="listing-description">
+<a href="../blog/posts/2026-10-17-i-play-the-street-life/index.html" class="no-external">Why I swap my quiet village for the energy of the city: what draws me to street photography, from chasing light and shadow to the decisive moment.</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../blog/posts/2026-10-17-i-play-the-street-life/index.html" class="no-external">
+<div class="listing-date">
+Oct 17, 2026
+</div>
+</a>
+</div>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items

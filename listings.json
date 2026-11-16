@@ -8,6 +8,9 @@
   },
   {
     "listing": "/blog/index.html",
-    "items": []
+    "items": [
+      "/blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.html",
+      "/blog/posts/2026-10-17-i-play-the-street-life/index.html"
+    ]
   }
 ]
