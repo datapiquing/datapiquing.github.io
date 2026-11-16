@@ -5,7 +5,7 @@ image: ../photos/thumb/20260905-122917-DSCF0741.webp
 date: 2026-11-12
 ---
 
-Candid street photography in Leeds, Yorkshire: everyday moments, hard light and long shadows, chance juxtapositions and the characters of the city centre.
+Candid street photography in Leeds, West Yorkshire.
 
 ::: {.pg-project data-project="street-photography-leeds"}
 :::
