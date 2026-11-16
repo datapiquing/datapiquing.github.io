@@ -140,6 +140,21 @@ both the folder prefix and the post's `date:`; invalid dates are rejected before
 uv run scripts/photos.py new-post "Street photography tips" --date 2026-10-03   # blog/posts/2026-10-03-street-photography-tips/
 ```
 
+**Titles containing `!`:** in zsh, `!` inside double quotes triggers history expansion, so the shell
+hangs at a `dquote>` prompt (Ctrl+C to escape). Use single quotes instead. Punctuation is dropped
+from the folder name but kept in the title:
+
+```bash
+uv run scripts/photos.py new-post 'Quality Street - I Won a Photo Competition!' --date 2026-11-13
+```
+
+If the title also has an apostrophe, put the `!` in its own single quotes (`"\!"` would leave a
+backslash in the title):
+
+```bash
+uv run scripts/photos.py new-post "I'm a Winner"'!'
+```
+
 Preview with `uv run quarto preview --profile drafts` (see [Previewing drafts](#previewing-drafts)).
 Write the post in its `index.qmd`, reference images relatively (`![Caption](my-photo.webp)`), then remove
 `draft: true` (or set it to `false`) when ready. The first paragraph becomes the listing summary unless `description:` is set;
