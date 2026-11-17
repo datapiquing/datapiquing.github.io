@@ -19,6 +19,7 @@ Files:
     _data/overrides.yaml  hand-edited: hidden ids/projects, per-photo field fixes
     data/photos.json      published manifest (catalog + overrides, hidden removed)
     photos/full|thumb|small/  webp images, named by photo id (copyright XMP only)
+    photos/share/             project cover share-card JPEGs (1200x630, made on rebuild)
     projects/<slug>.qmd   one page per project; image/date/draft lines are managed
 """
 
@@ -29,6 +30,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import yaml
@@ -45,6 +47,7 @@ COMPLETED = "completed"
 FULL_DIR = ROOT / "photos" / "full"
 THUMB_DIR = ROOT / "photos" / "thumb"
 SMALL_DIR = ROOT / "photos" / "small"  # phone-sized thumbnails (srcset)
+SHARE_DIR = ROOT / "photos" / "share"  # project cover share-card JPEGs, <cover id>.jpg
 IMAGE_DIRS = (FULL_DIR, THUMB_DIR, SMALL_DIR)
 CATALOG = ROOT / "_data" / "catalog.json"
 OVERRIDES = ROOT / "_data" / "overrides.yaml"
@@ -60,6 +63,8 @@ THUMB_QUALITY = 75
 SMALL_HEIGHT = 300
 POST_LONG_EDGE = 1600
 POST_QUALITY = 82
+SHARE_SIZE = (1200, 630)  # Open Graph 1.91:1
+SHARE_QUALITY = 85
 
 COPYRIGHT_OWNER = "Garry Sykes"
 RIGHTS_URL = "https://garrysykes.com/about.html"
@@ -178,6 +183,42 @@ def stamp(paths):
         f"-XMP-plus:CopyrightOwnerName={COPYRIGHT_OWNER}",
         *map(str, paths),
     ])
+
+
+def make_share_image(pid):
+    """Centre-crop a full webp to a 1.91:1 share-card JPEG (JPEG: some apps skip webp)."""
+    dest = SHARE_DIR / f"{pid}.jpg"
+    if dest.exists():
+        return dest
+    SHARE_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        png = Path(tmp) / "full.png"
+        run(["dwebp", "-quiet", str(FULL_DIR / f"{pid}.webp"), "-o", str(png)])
+        w, h = (int(x) for x in re.findall(r"pixel(?:Width|Height): (\d+)",
+                run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(png)])))
+        tw, th = SHARE_SIZE
+        cw, ch = (w, round(w * th / tw)) if w * th / tw <= h else (round(h * tw / th), h)
+        run(["sips", "-c", str(ch), str(cw), str(png)])  # crops centred
+        size = (tw, th) if cw >= tw else (cw, ch)  # never upscale
+        run(["sips", "-z", str(size[1]), str(size[0]), "-s", "format", "jpeg",
+             "-s", "formatOptions", str(SHARE_QUALITY), str(png), "--out", str(dest)])
+    run(["exiftool", "-q", "-overwrite_original", "-all=", str(dest)])
+    stamp([dest])
+    return dest
+
+
+def sync_share_images(projects):
+    """One share JPEG per project cover; delete ones no longer used. Records size in the manifest."""
+    keep = set()
+    for proj in projects:
+        dest = make_share_image(proj["cover"])
+        keep.add(dest.name)
+        out = run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(dest)])
+        w, h = (int(x) for x in re.findall(r"pixel(?:Width|Height): (\d+)", out))
+        proj["share"] = {"file": f"photos/share/{dest.name}", "w": w, "h": h}
+    for f in SHARE_DIR.glob("*.jpg") if SHARE_DIR.exists() else []:
+        if f.name not in keep:
+            f.unlink()
 
 
 def move_to_completed(src_root, files):
@@ -308,6 +349,7 @@ def rebuild(quiet=False):
         photos.append(rec)
     photos.sort(key=lambda p: p["taken"], reverse=True)
     projects = build_projects(photos)
+    sync_share_images(projects)
     write_json(MANIFEST, {"photos": photos, "projects": projects})
     created = sync_project_pages(projects, catalog, ov["hidden_projects"])
     if not quiet:
