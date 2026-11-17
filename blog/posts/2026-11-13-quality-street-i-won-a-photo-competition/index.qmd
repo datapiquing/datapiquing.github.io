@@ -8,7 +8,7 @@ image: cover.webp     # listing thumbnail + social share image
 
 Who’d have thought, eh?
 
-Just four months into my photographic journey and I’ve won a competition with a street photograph I captured in Leeds, UK.
+Just four months into my photographic journey and I’ve won a competition with a street photograph I captured in [Leeds](../../../projects/street-photography-leeds.qmd), UK.
 
 ![Jumping a red ...](/photos/full/20261017-090102-DSCF0996.webp)
 
@@ -26,7 +26,7 @@ I chose the latter and enrolled at [The School of Photography](https://www.thesc
 
 So far, I’ve completed the Beginners, Lightroom and Street Photography courses, and I’ve thoroughly enjoyed them. Going back to basics has meant abandoning all the fancy 'in-camera' JPEG wizardry for now and concentrating instead on shooting RAW, getting to grips with the exposure triangle, composition and post-processing.
 
-TSOP also hosts a monthly photo competition, where their 5000+ members can submit entries based on a specified theme. October’s theme was ‘**Near and Far**’, and my winning entry is shown above.
+TSOP also hosts a monthly photo competition, where their 5000+ members can submit entries based on a specified theme. October’s theme was ‘**Near and Far**’, and my winning entry is shown above (you can also [see it in the Leeds gallery](../../../projects/street-photography-leeds.qmd#photo=20261017-090102-DSCF0996)).
 
 The shortlisted entries were amazing, and the result was nail-bitingly close. I WON BY JUST TWO POINTS 🎉
 

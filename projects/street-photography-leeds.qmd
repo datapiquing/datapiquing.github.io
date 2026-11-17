@@ -5,7 +5,7 @@ image: ../photos/thumb/20260905-122917-DSCF0741.webp
 date: 2026-11-12
 ---
 
-Candid street photography in Leeds, West Yorkshire.
+Candid street photography in Leeds, West Yorkshire. One of these won a [photo competition](../blog/posts/2026-11-13-quality-street-i-won-a-photo-competition/index.qmd).
 
 ::: {.pg-project data-project="street-photography-leeds"}
 :::
