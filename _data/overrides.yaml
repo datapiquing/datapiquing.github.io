@@ -7,7 +7,4 @@
 #     caption: "Corrected caption"
 hidden: []
 hidden_projects: []
-photos:
-  20260905-122917-DSCF0741:  # typo fix; also correct Caption/Alt Text in LrC, then remove this
-    caption: "Urban camouflage ..."
-    alt: "Urban camouflage ..."
+photos: {}

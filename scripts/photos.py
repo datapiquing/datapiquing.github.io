@@ -187,10 +187,12 @@ def stamp(paths):
 
 
 def make_share_image(pid):
-    """Project cover share JPEG in photos/share/ (kept if already made)."""
+    """Project cover share JPEG in photos/share/, remade when the cover is re-ingested."""
     dest = SHARE_DIR / f"{pid}.jpg"
-    if not dest.exists():
-        share_jpeg(FULL_DIR / f"{pid}.webp", dest)
+    src = FULL_DIR / f"{pid}.webp"
+    if is_stale(dest, src):
+        share_jpeg(src, dest)
+        print(f"  share image: {dest.relative_to(ROOT)}")
     return dest
 
 
