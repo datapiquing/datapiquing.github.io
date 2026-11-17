@@ -8,7 +8,9 @@ project:
     - "!research/**"
 
   # Tidy search.json: drop "Skip to content", use descriptions for gallery pages.
-  post-render: scripts/search-index.ts
+  post-render:
+    - scripts/search-index.ts
+    - scripts/sitemap.ts
 
   resources:
     - robots.txt
