@@ -9,6 +9,11 @@
 <link>https://garrysykes.com/blog/</link>
 <atom:link href="https://garrysykes.com/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Photography notes and stories by Garry Sykes.</description>
+<image>
+<url>https://garrysykes.com/images/share.jpg</url>
+<title>Garry Sykes</title>
+<link>https://garrysykes.com/blog/</link>
+</image>
 <generator>quarto-1.5.56</generator>
 <lastBuildDate>Fri, 13 Nov 2026 00:00:00 GMT</lastBuildDate>
 <item>
