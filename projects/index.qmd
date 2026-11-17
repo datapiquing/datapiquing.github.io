@@ -1,6 +1,6 @@
 ---
 title: "Projects"
-description: "Photography projects by Garry Sykes."  # TODO: rewrite
+description: "Photo projects by enthusiast photographer Garry Sykes: curated galleries of street and landscape photography, each on a single theme or place."
 listing:
   contents:
     - "*.qmd"

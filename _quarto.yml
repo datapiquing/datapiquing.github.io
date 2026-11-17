@@ -26,6 +26,7 @@ lang: en
 
 filters:
   - _includes/canonical.lua
+  - _includes/structured-data.lua
 
 execute:
   freeze: auto

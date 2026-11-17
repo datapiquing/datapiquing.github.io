@@ -1,6 +1,6 @@
 ---
 title: "My first photography project"
-description: "My first photography project on the new website."  # TODO: rewrite
+description: "My first project on the new website: a script that brings Fujifilm film simulation names into Lightroom Classic, so I can see and filter by them."
 date: 2026-07-20
 categories: [photography]
 aliases:

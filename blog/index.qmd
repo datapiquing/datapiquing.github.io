@@ -1,6 +1,6 @@
 ---
 title: "Blog"
-description: "Photography notes and stories by Garry Sykes."  # TODO: rewrite
+description: "Stories from behind the camera by Garry Sykes: street and landscape photography, competitions, the Fujifilm X100VI and the odd Lightroom script."
 listing:
   contents: "posts/*/index.qmd"
   sort: "date desc"

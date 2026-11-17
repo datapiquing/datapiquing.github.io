@@ -2,7 +2,7 @@
 title: "Garry Sykes"
 subtitle: "Ilkley, UK"
 pagetitle: "About"
-description: "About Garry Sykes, photographer: street, nature and travel photography."  # TODO: rewrite
+description: "Enthusiast photographer Garry Sykes, based in Ilkley, on taking up a Fujifilm X100VI and exploring street, landscape and outdoor photography."
 about:
   template: trestles
   image: images/about-stand.png

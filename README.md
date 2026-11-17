@@ -212,7 +212,7 @@ All in `styles.scss` (theme overrides on cosmo; keep the `/*-- scss:defaults --*
 ### Descriptions
 
 Each page's `description:` front matter becomes its `<meta name="description">` (search results,
-share previews). Placeholders are marked `# TODO: rewrite`. By default descriptions are **hidden on
+share previews); aim for 140–155 characters. By default descriptions are **hidden on
 screen** (still read by screen readers) by this rule in `styles.scss`:
 
 ```scss
@@ -245,6 +245,9 @@ Then `uv run quarto preview` to check, and commit + push. Blog listing summaries
   `/blog/posts/<slug>/`); `scripts/sitemap.ts` rewrites the sitemap to match.
 - Home has a visually-hidden `<h1>` and Person/WebSite structured data (JSON-LD) in `index.qmd` —
   update the `sameAs` links there if social profiles change.
+- Blog posts get BlogPosting and project pages ImageGallery structured data (title, description,
+  date, share image, author) from `_includes/structured-data.lua`. Check a page with Google's
+  [Rich Results Test](https://search.google.com/test/rich-results).
 - Share previews: see [Share images](#share-images).
 - Keyboard: "Skip to content" link on the first Tab (`_includes/skip-link.html`) and a visible blue focus ring.
 - Reduced motion: transitions and lightbox zoom are disabled when the OS "reduce motion" setting is on.
