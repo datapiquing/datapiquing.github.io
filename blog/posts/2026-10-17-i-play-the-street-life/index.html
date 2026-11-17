@@ -78,6 +78,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- RSS autodiscovery on every page (Quarto only adds it to the Blog listing),
      so feed readers find the blog from any URL on the site. -->
 <link rel="alternate" type="application/rss+xml" title="Garry Sykes" href="../../../blog/index.xml">
+<!-- GoatCounter analytics: cookie-free, no personal data, so no consent banner.
+     Skips localhost (preview) by default. Dashboard: https://garrysykes.goatcounter.com -->
+<script data-goatcounter="https://garrysykes.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 <link rel="canonical" href="https://garrysykes.com/blog/posts/2026-10-17-i-play-the-street-life/index.html">
 
 
@@ -753,7 +756,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

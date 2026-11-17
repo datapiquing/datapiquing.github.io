@@ -71,6 +71,7 @@ function createLightbox() {
           const p = pswp.currSlide.data.photo;
           el.innerHTML = captionHTML(p);
           history.replaceState(null, "", `#photo=${p.id}`);
+          countPhoto(p);
         });
       },
     });
@@ -82,6 +83,19 @@ function createLightbox() {
 
   lightbox.init();
   return lightbox;
+}
+
+// GoatCounter event per photo viewed in the lightbox (open or swipe), once
+// per page load. Script loads async from _includes/head.html; skip if absent.
+const counted = new Set();
+function countPhoto(p) {
+  if (counted.has(p.id) || !window.goatcounter?.count) return;
+  counted.add(p.id);
+  window.goatcounter.count({
+    path: `photo/${p.id}`,
+    title: [p.project, p.caption].filter(Boolean).join(" — ") || p.id,
+    event: true,
+  });
 }
 
 // --- Grid -------------------------------------------------------------------
