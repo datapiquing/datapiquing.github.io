@@ -65,7 +65,8 @@ website:
   page-footer:
     center: "© 2026 Garry Sykes. All rights reserved."
 
-  # TODO: default share image (1200x630 JPEG) -> open-graph: {image: images/share.jpg}
+  # Default share image (1200x630 JPEG: Skiddaw from High Rigg) for pages without their own image:.
+  image: /images/share.jpg
   open-graph: true
   twitter-card: true
 
