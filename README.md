@@ -8,7 +8,8 @@ Photography portfolio and blog of Garry Sykes. Quarto website, deployed to GitHu
 uv sync
 ```
 
-Also needed (Homebrew): `exiftool`, `cwebp` (`brew install webp`).
+Also needed (Homebrew): `exiftool`, `cwebp` + `dwebp` (`brew install webp`). Share images also use
+macOS's built-in `sips`.
 
 ## Local preview
 
@@ -54,11 +55,12 @@ projects/
   _metadata.yml        # wires the gallery (and skip link) into every project page
 blog/
   index.qmd            # post listing + RSS feed (blog/index.xml)
-  posts/<YYYY-MM-DD-slug>/index.qmd   # one folder per post, images alongside
+  posts/<YYYY-MM-DD-slug>/index.qmd   # one folder per post, images alongside (+ share.jpg)
   _template/index.qmd  # template for new posts (not published)
 about.qmd              # about page (trestles template): social links, obfuscated Email button, Tools of the trade
-images/                # site images: favicon.ico, apple-touch-icon, about-stand, x100vi (avatar/ = gitignored sources)
+images/                # site images: favicon.ico, apple-touch-icon, about-stand, x100vi, share.jpg (avatar/ = gitignored sources)
 photos/full|thumb|small/  # gallery webps, named by photo id (small = phone thumbnails)
+photos/share/          # project share-card JPEGs, named by cover photo id
 data/photos.json       # published manifest the gallery reads (built from _data/, hidden photos removed)
 _data/catalog.json     # master catalogue of every ingested photo (script-owned; don't edit)
 _data/overrides.yaml   # hand-edited: hidden photos/projects, per-photo field fixes
@@ -84,7 +86,7 @@ styles.scss            # theme overrides on top of cosmo — see Look and feel
    ```
 
    This converts to webp, adds/updates the photos in `_data/catalog.json`, rebuilds the published
-   manifest `data/photos.json`, creates/updates project pages, moves the JPEGs to
+   manifest `data/photos.json`, creates/updates project pages and their [share images](#share-images), moves the JPEGs to
    `Lrc_JPEGs/completed/<date>/`, and prints a `check` report.
 4. For a new project, fill in `description:` in `projects/<slug>.qmd` (you can add prose below the front matter too).
    The description is used for search results and share previews; it's hidden on the page by default
@@ -129,7 +131,7 @@ push, `git restore .` undoes a reset; after pushing, old photos remain in git hi
 
 ```bash
 uv run scripts/photos.py new-post "Street photography tips"     # creates blog/posts/<today>-street-photography-tips/
-# export the post's JPEGs to ~/Desktop/Lrc_JPEGs/blog/ (name one cover.jpg), then:
+# export the post's JPEGs to ~/Desktop/Lrc_JPEGs/blog/ (name one cover.jpg, at least 1200px wide), then:
 uv run scripts/photos.py post-images <today>-street-photography-tips
 ```
 
@@ -160,6 +162,7 @@ Write the post in its `index.qmd`, reference images relatively (`![Caption](my-p
 `draft: true` (or set it to `false`) when ready. The first paragraph becomes the listing summary unless `description:` is set;
 fill in `description:` anyway (1–2 sentences) — it's the search-result and share-preview text.
 Post images never appear in the gallery; a gallery photo can be used via `/photos/full/<id>.webp`.
+`post-images` also makes the post's `share.jpg` from `cover.webp` (see [Share images](#share-images)).
 
 ## Hiding and removing
 
@@ -183,7 +186,7 @@ webp carries copyright XMP (Creator, Rights, link to garrysykes.com/about.html �
 captions show `© Garry Sykes`, and `robots.txt` disallows AI crawlers.
 
 `uv run scripts/photos.py check` reports missing captions/alt text, cover problems, empty project
-descriptions and orphan files.
+descriptions, orphan files and share images that are missing or older than their cover.
 
 ## Deploying
 
@@ -237,27 +240,72 @@ Then `uv run quarto preview` to check, and commit + push. Blog listing summaries
 ## SEO and accessibility
 
 - `robots.txt` points to `https://garrysykes.com/sitemap.xml` (Quarto generates the sitemap from `site-url`).
-- Every page gets a `<link rel="canonical">` to its garrysykes.com URL (`_includes/canonical.lua`).
+- Every page gets a `<link rel="canonical">` to its garrysykes.com URL, plus matching `og:url` and
+  `og:type` (`_includes/canonical.lua`). `index.html` pages use the folder URL (`/`, `/blog/`,
+  `/blog/posts/<slug>/`); `scripts/sitemap.ts` rewrites the sitemap to match.
 - Home has a visually-hidden `<h1>` and Person/WebSite structured data (JSON-LD) in `index.qmd` —
   update the `sameAs` links there if social profiles change.
-- Share previews: project pages use their cover; a site-wide default image is a TODO in `_quarto.yml`
-  (`open-graph: {image: images/share.jpg}`, ideally a 1200×630 JPEG).
+- Share previews: see [Share images](#share-images).
 - Keyboard: "Skip to content" link on the first Tab (`_includes/skip-link.html`) and a visible blue focus ring.
 - Reduced motion: transitions and lightbox zoom are disabled when the OS "reduce motion" setting is on.
 - Photo alt text comes from Lightroom (Alt Text, falling back to Caption); `photos.py check` flags gaps.
+
+## Share images
+
+When a link is shared (Facebook, WhatsApp, iMessage, LinkedIn, Slack…) the preview card shows the
+page's `og:image`. Every page gets a 1200×630 JPEG (1.91:1, the size these sites expect; JPEG because
+some, like LinkedIn, don't show webp), stamped with the copyright XMP and no other metadata (no GPS).
+
+| Pages | Share image | Made by |
+|---|---|---|
+| Home, About, Projects listing | `images/share.jpg` (Skiddaw from High Rigg) | by hand; `image:` under `website:` in `_quarto.yml` |
+| Project pages | `photos/share/<cover id>.jpg`, centre crop of the cover | `photos.py rebuild` (also run by `ingest`, `remove`, `remove-project`, `reset`) |
+| Blog posts | `blog/posts/<post>/share.jpg`, centre crop of the post's `image:` webp | `photos.py post-images` or `rebuild` |
+| Blog listing | newest post's cover (Quarto's choice) | — |
+
+- Quarto puts each page's `image:` (the listing thumbnail webp) in its share tags. After rendering,
+  `scripts/share-image.ts` swaps project and post pages to their JPEG and adds the image size (and alt
+  text where known: project cover alt, default image alt), so cards show on a link's first share.
+- Share images are made **locally** — CI doesn't run `photos.py` — so run it before committing.
+  Project images are reused while the cover stays the same; unused ones are deleted. A post's
+  `share.jpg` is remade when its cover is newer, and deleted if the post has no webp `image:`.
+- Post covers narrower than 1200px are upscaled (soft) with a warning. Use a larger cover, or replace
+  `share.jpg` by hand: it's kept while newer than the cover. (The Quality Street post's comes from the
+  gallery copy of its photo, `20261017-090102-DSCF0996`, as its `cover.webp` is only 608px wide.)
+- Post `share.jpg` files are published via the `blog/posts/*/share.jpg` entry in `resources:` in
+  `_quarto.yml` (nothing links to them, so Quarto wouldn't copy them otherwise). A draft post with a
+  cover therefore has its `share.jpg` online before the post is.
+- `photos.py check` flags missing or out-of-date share images; `photos.py rebuild` fixes them.
+- To change the default image, replace `images/share.jpg` (1200×630 JPEG) and update the alt text in
+  `scripts/share-image.ts`.
+- Test a page with Facebook's [Sharing Debugger](https://developers.facebook.com/tools/debug/) (click
+  **Scrape Again** after changes; GitHub Pages caches pages for up to 10 minutes) or
+  [opengraph.xyz](https://www.opengraph.xyz/). The `fb:app_id` warning can be ignored.
+
+## Analytics
+
+[GoatCounter](https://www.goatcounter.com/) (dashboard: <https://garrysykes.goatcounter.com>) counts page
+views. It sets no cookies and stores no personal data, so no consent banner is needed. The script is
+in `_includes/head.html`; visits from `localhost` (preview) aren't counted.
+
+- **Photo views**: the gallery lightbox only changes the `#photo=<id>` hash, which GoatCounter ignores,
+  so `assets/js/gallery.js` sends an event `photo/<id>` (titled "project — caption") for each photo
+  viewed, opened or swiped to, once per page load. Blog post lightbox images aren't counted.
+- To exclude your own visits, use GoatCounter's setting to ignore your browser.
 
 ## Customisations
 
 Build-time helpers live in `_includes/` (the `_` prefix means Quarto neither renders nor publishes
 them), wired up globally in `_quarto.yml`:
 
-- **`_includes/canonical.lua`** — adds a canonical link to every page (`.html` form, matching the sitemap).
+- **`_includes/canonical.lua`** — adds a canonical link, `og:url` and `og:type` to every page (see
+  [SEO and accessibility](#seo-and-accessibility)).
 - **`_includes/skip-link.html`** — "Skip to content" link (`include-before-body`).
 - **`_includes/external-links.html`** — opens links to other sites in a new tab and blocks right-click /
   drag on images and middle/Cmd-click on blog lightbox links.
 - **`_includes/reorder-title-meta.html`** — moves the Published date directly beneath the title on pages
   with category tags (blog posts).
-- **`_includes/head.html`** — preconnects to Google Fonts (Inter) and sets the iOS
+- **`_includes/head.html`** — loads [GoatCounter](#analytics) analytics, preconnects to Google Fonts (Inter) and sets the iOS
   home-screen icon (`images/apple-touch-icon.png`). The favicon is `images/favicon.ico` (`favicon:` in
   `_quarto.yml`).
 - **About page Email button** — the address is stored reversed + base64 in a script in `about.qmd` and

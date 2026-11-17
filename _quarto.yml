@@ -19,6 +19,7 @@ project:
     - "!images/avatar/"
     - assets/
     - photos/
+    - blog/posts/*/share.jpg  # post share-card JPEGs (only referenced in meta tags)
     - data/
 
 lang: en

@@ -20,6 +20,7 @@ Files:
     data/photos.json      published manifest (catalog + overrides, hidden removed)
     photos/full|thumb|small/  webp images, named by photo id (copyright XMP only)
     photos/share/             project cover share-card JPEGs (1200x630, made on rebuild)
+    blog/posts/*/share.jpg    post share-card JPEG from its `image:` (rebuild, post-images)
     projects/<slug>.qmd   one page per project; image/date/draft lines are managed
 """
 
@@ -186,20 +187,25 @@ def stamp(paths):
 
 
 def make_share_image(pid):
-    """Centre-crop a full webp to a 1.91:1 share-card JPEG (JPEG: some apps skip webp)."""
+    """Project cover share JPEG in photos/share/ (kept if already made)."""
     dest = SHARE_DIR / f"{pid}.jpg"
-    if dest.exists():
-        return dest
-    SHARE_DIR.mkdir(parents=True, exist_ok=True)
+    if not dest.exists():
+        share_jpeg(FULL_DIR / f"{pid}.webp", dest)
+    return dest
+
+
+def share_jpeg(src, dest, upscale=False):
+    """Centre-crop a webp to a 1.91:1 share-card JPEG (JPEG: some apps skip webp)."""
+    dest.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         png = Path(tmp) / "full.png"
-        run(["dwebp", "-quiet", str(FULL_DIR / f"{pid}.webp"), "-o", str(png)])
+        run(["dwebp", "-quiet", str(src), "-o", str(png)])
         w, h = (int(x) for x in re.findall(r"pixel(?:Width|Height): (\d+)",
                 run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(png)])))
         tw, th = SHARE_SIZE
         cw, ch = (w, round(w * th / tw)) if w * th / tw <= h else (round(h * tw / th), h)
         run(["sips", "-c", str(ch), str(cw), str(png)])  # crops centred
-        size = (tw, th) if cw >= tw else (cw, ch)  # never upscale
+        size = (tw, th) if cw >= tw or upscale else (cw, ch)
         run(["sips", "-z", str(size[1]), str(size[0]), "-s", "format", "jpeg",
              "-s", "formatOptions", str(SHARE_QUALITY), str(png), "--out", str(dest)])
     run(["exiftool", "-q", "-overwrite_original", "-all=", str(dest)])
@@ -219,6 +225,56 @@ def sync_share_images(projects):
     for f in SHARE_DIR.glob("*.jpg") if SHARE_DIR.exists() else []:
         if f.name not in keep:
             f.unlink()
+
+
+def post_share_source(page):
+    """A post's `image:` webp (share image source), or None."""
+    head = page.read_text().partition("\n---\n")[0]
+    m = re.search(r"^image:\s*['\"]?([^'\"#\s]+)", head, re.M)
+    src = page.parent / m.group(1) if m else None
+    return src if src and src.suffix == ".webp" and src.exists() else None
+
+
+def is_stale(dest, src):
+    return not dest.exists() or dest.stat().st_mtime < src.stat().st_mtime
+
+
+def share_issues(manifest):
+    """Share-card JPEGs missing or older than their cover (fix: `photos.py rebuild`)."""
+    issues = []
+    used = set()
+    for proj in manifest["projects"]:
+        dest = SHARE_DIR / f"{proj['cover']}.jpg"
+        used.add(dest.name)
+        if not proj.get("share") or is_stale(dest, FULL_DIR / f"{proj['cover']}.webp"):
+            issues.append(f"projects/{proj['slug']}: share image missing or older than cover")
+    for f in sorted(SHARE_DIR.glob("*.jpg")) if SHARE_DIR.exists() else []:
+        if f.name not in used:
+            issues.append(f"orphan file: {f.relative_to(ROOT)}")
+    for page in sorted(POSTS_DIR.glob("*/index.qmd")):
+        src = post_share_source(page)
+        if src and is_stale(page.parent / "share.jpg", src):
+            issues.append(f"{page.parent.relative_to(ROOT)}: share.jpg missing or older than {src.name}")
+    return [f"{i} (run `photos.py rebuild`)" for i in issues]
+
+
+def sync_post_shares():
+    """Blog posts: share.jpg (always 1200x630) from the post's `image:` webp, remade
+    when the image is newer; removed if the post has no webp image."""
+    for page in sorted(POSTS_DIR.glob("*/index.qmd")):
+        src = post_share_source(page)
+        dest = page.parent / "share.jpg"
+        if not src:
+            dest.unlink(missing_ok=True)
+            continue
+        if not is_stale(dest, src):
+            continue
+        share_jpeg(src, dest, upscale=True)
+        print(f"  share image: {dest.relative_to(ROOT)}")
+        width = int(re.search(r"pixelWidth: (\d+)", run(["sips", "-g", "pixelWidth", str(src)])).group(1))
+        if width < SHARE_SIZE[0]:
+            print(f"    ! {src.name} is only {width}px wide: share image upscaled (soft). Use a larger"
+                  f" image, or replace share.jpg by hand (kept while newer than {src.name}).")
 
 
 def move_to_completed(src_root, files):
@@ -407,6 +463,7 @@ def cmd_ingest(args):
 
 def cmd_rebuild(args):
     rebuild()
+    sync_post_shares()
 
 
 def cmd_stamp(args):
@@ -463,6 +520,7 @@ def cmd_check(args):
         for pid in catalog:
             if not (d / f"{pid}.webp").exists():
                 issues.append(f"missing file: {(d / f'{pid}.webp').relative_to(ROOT)}")
+    issues += share_issues(manifest)
     genres = {}
     for p in published:
         for g in p["genres"]:
@@ -587,6 +645,7 @@ def cmd_post_images(args):
         written.append(dest)
         print(f"  {f.name} -> {dest.relative_to(ROOT)}")
     stamp(written)
+    sync_post_shares()
     if not args.no_move:
         print(f"Moved {len(files)} source(s) to {move_to_completed(src, files)}")
 
