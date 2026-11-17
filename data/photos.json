@@ -746,6 +746,11 @@
    "cover": "20260905-122917-DSCF0741",
    "covers_labelled": 1,
    "latest": "2026-11-12T11:21:48",
+   "share": {
+    "file": "photos/share/20260905-122917-DSCF0741.jpg",
+    "h": 630,
+    "w": 1200
+   },
    "slug": "street-photography-leeds",
    "title": "Street Photography: Leeds"
   },
@@ -754,6 +759,11 @@
    "cover": "20261007-125532-DSCF0959",
    "covers_labelled": 1,
    "latest": "2026-11-02T14:42:13",
+   "share": {
+    "file": "photos/share/20261007-125532-DSCF0959.jpg",
+    "h": 630,
+    "w": 1200
+   },
    "slug": "lake-district-national-park",
    "title": "Lake District National Park"
   }
