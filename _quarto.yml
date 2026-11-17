@@ -11,6 +11,7 @@ project:
   post-render:
     - scripts/search-index.ts
     - scripts/sitemap.ts
+    - scripts/share-image.ts
 
   resources:
     - robots.txt
