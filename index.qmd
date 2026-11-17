@@ -1,6 +1,11 @@
 ---
-pagetitle: "Garry Sykes"
-description: "Photography portfolio and blog of Garry Sykes."
+pagetitle: "Street & Landscape Photography"
+description: "Street and landscape photography by enthusiast photographer Garry Sykes: photo projects, stories from behind the camera and the odd competition win."
+# Quarto appends " – Garry Sykes" to <title> but not to share cards, so name them here.
+open-graph:
+  title: "Garry Sykes – Street & Landscape Photography"
+twitter-card:
+  title: "Garry Sykes – Street & Landscape Photography"
 page-layout: full
 toc: false
 ---
@@ -22,7 +27,8 @@ toc: false
       "@type": "Person",
       "@id": "https://garrysykes.com/#person",
       "name": "Garry Sykes",
-      "jobTitle": "Photographer",
+      "knowsAbout": ["Street photography", "Landscape photography"],
+      "homeLocation": { "@type": "Place", "name": "Ilkley, UK" },
       "url": "https://garrysykes.com/",
       "image": "https://garrysykes.com/images/about-stand.png",
       "sameAs": [
